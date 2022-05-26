@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { BtnBackgroundBorderRemove } from 'common/util.styled';
 
 interface MenuBtnProps {
   readonly num: number;
@@ -14,14 +15,11 @@ export const UserMenu = styled.menu`
 `;
 
 export const MenuBtn = styled.button<MenuBtnProps>`
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
+  ${BtnBackgroundBorderRemove}
 
   ${({ num }) =>
     num === 2 &&
     css`
-      padding: 0.8rem;
       background-color ${({ theme }) => theme.colors.grey3};
       border-radius: 3rem;
     `}

@@ -1,6 +1,7 @@
 import React from 'react';
-import { UserMenu, MenuBtn } from 'components/Menu/Menu.styled';
+
 import { USER_MENU_IMGS } from 'constant/constant';
+import { UserMenu, MenuBtn } from 'components/Menu/Menu.styled';
 
 function Menu(): JSX.Element {
   const userMenu = USER_MENU_IMGS.map(el => (

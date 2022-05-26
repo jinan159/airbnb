@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { GNB_TEXTS } from 'constant/constant';
 import { GNBMenu, GNBBtn } from './GNB.styled';
 
