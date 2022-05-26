@@ -1,11 +1,12 @@
 import React from 'react';
-import { Header, Logo } from 'components/Hero/Hero.styled';
+import { Header } from 'components/Hero/Hero.styled';
 import { Outlet } from 'react-router-dom';
+import GNB from 'components/GNB/GNB';
 
-function Hero() {
+function Hero(): JSX.Element {
   return (
     <Header>
-      <Logo>AIRBNB</Logo>
+      <GNB />
       <Outlet />
     </Header>
   );

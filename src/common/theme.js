@@ -1,4 +1,4 @@
-const fontSize = {
+const fontSizes = {
   xs: '1.2rem',
   sm: '1.4rem',
   md: '1.6rem',
@@ -7,7 +7,7 @@ const fontSize = {
   xxl: '3.2rem',
 };
 
-const fontWeight = {
+const fontWeights = {
   normal: '400',
   bold: '700',
   black: '900',
@@ -22,11 +22,11 @@ const lineHeights = {
   logo: '4.6rem',
 };
 
-const letterSpacing = {
+const letterSpacings = {
   tighter: '-0.04rem',
 };
 
-const color = {
+const colors = {
   secondary: '#118917',
   primary: '#E84C60',
   black: '#010101',
@@ -39,38 +39,31 @@ const color = {
   white: '#FFFFFF',
 };
 
-const borderSize = {
-  medium: '0.3rem',
+const borderSizes = {
   small: '0.19rem',
+  medium: '0.3rem',
 };
 
-const lineHeight = {
-  large: '6rem',
-  medium: '2.6rem',
-  small: '1.6rem',
-};
-
-const margin = {
+const margins = {
+  medium: '1.6rem',
+  large: '2.4rem',
   xLarge: '6rem',
-  large: '2.4rem',
-  medium: '1.6rem',
 };
 
-const padding = {
-  large: '2.4rem',
+const paddings = {
   medium: '1.6rem',
+  large: '2.4rem',
 };
 
 const theme = {
-  fontSize,
-  fontWeight,
+  fontSizes,
+  fontWeights,
   lineHeights,
-  letterSpacing,
-  color,
-  borderSize,
-  lineHeight,
-  margin,
-  padding,
+  letterSpacings,
+  colors,
+  borderSizes,
+  margins,
+  paddings,
 };
 
 export default theme;
