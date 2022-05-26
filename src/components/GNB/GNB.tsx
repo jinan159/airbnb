@@ -3,7 +3,7 @@ import React from 'react';
 import { GNB_TEXT } from 'constant/constant';
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { IconButton } from '@mui/material';
+import { styled, IconButton } from '@mui/material';
 
 import {
   Nav,
@@ -13,6 +13,13 @@ import {
   Menu,
   MenuItem,
 } from 'components/GNB/GNB.styled';
+
+const CustomPersonOutlineOutlinedIcon = styled(PersonOutlineOutlinedIcon)({
+  backgroundColor: '#828282',
+  borderRadius: '30px',
+  color: '#fff',
+  padding: '3px',
+});
 
 function GNB(): JSX.Element {
   const gnbItems = GNB_TEXT.map((el: { id: number; text: string }) => (
@@ -25,11 +32,11 @@ function GNB(): JSX.Element {
       <GNBList>{gnbItems}</GNBList>
       <Menu>
         <MenuItem>
-          <IconButton aria-label="menu">
-            <MenuIcon />
+          <IconButton aria-label="menu" size="small">
+            <MenuIcon fontSize="large" />
           </IconButton>
-          <IconButton aria-label="user" size="large">
-            <PersonOutlineOutlinedIcon />
+          <IconButton aria-label="user" size="small">
+            <CustomPersonOutlineOutlinedIcon fontSize="large" />
           </IconButton>
         </MenuItem>
       </Menu>

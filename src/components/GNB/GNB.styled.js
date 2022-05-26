@@ -33,4 +33,8 @@ export const GNBItem = styled.li`
 
 export const Menu = styled.menu``;
 
-export const MenuItem = styled.li``;
+export const MenuItem = styled.li`
+  background-color: ${({ theme: { colors } }) => colors.white};
+  border: 1px solid ${({ theme: { colors } }) => colors.grey4};
+  border-radius: 30px;
+`;
