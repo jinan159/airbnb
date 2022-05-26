@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Rooms() {
+function Rooms(): JSX.Element {
   return <div>Rooms</div>;
 }
 
