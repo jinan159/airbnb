@@ -1,4 +1,4 @@
-name: deploy-test deploy
+name: 백엔드 운영 CI/CD
 
 on:
   push:
@@ -6,11 +6,13 @@ on:
 
 jobs:
   buildAndDeploy:
-    name: Backend Production CI/CD
+    name: 백엔드 운영 CI/CD
     runs-on: ubuntu-18.04
     defaults:
       run:
         shell: bash
+    env:
+      working-directory: ./backend
 
     steps:
       - name: 체크아웃 Github-Action
@@ -25,13 +27,16 @@ jobs:
         run: ./gradlew clean build
         env:
           JASYPT_KEY: ${{ secrets.JASYPT_KEY }}
+        working-directory: ${{ env.working-directory }}
 
       - name: Docker 환경변수 파일 생성
         run:
           echo "JASYPT_KEY=${{secrets.JASYPT_KEY}}" > ./.env
+        working-directory: ${{ env.working-directory }}
 
       - name: airbnb-deploy.zip 생성
         run: zip -r ./airbnb-deploy.zip .
+        working-directory: ${{ env.working-directory }}
 
       - name: AWS Credential 설정
         uses: aws-actions/configure-aws-credentials@v1
@@ -42,9 +47,11 @@ jobs:
 
       - name: AWS S3 로 업로드
         run: aws s3 cp --region ap-northeast-2 ./airbnb-deploy.zip s3://airbnb-s3-bucket-deploy/airbnb-deploy.zip
+        working-directory: ${{ env.working-directory }}
 
       - name: AWS CodeDeploy 배포 실행
         run: aws deploy create-deployment 
           --application-name airbnb-deploy 
           --deployment-group airbnb-dg
           --s3-location bucket=airbnb-s3-bucket-deploy,key=airbnb-deploy.zip,bundleType=zip
+        working-directory: ${{ env.working-directory }}
