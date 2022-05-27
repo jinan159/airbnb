@@ -1,14 +1,18 @@
 import React from 'react';
-import { Header } from 'components/Hero/Hero.styled';
 import { Outlet } from 'react-router-dom';
-import GNB from 'components/GNB/GNB';
+
+import { Container } from 'components/Hero/Hero.styled';
+
+import Header from 'components/Header/Header';
+import Search from 'components/Search/Search';
 
 function Hero(): JSX.Element {
   return (
-    <Header>
-      <GNB />
+    <Container src="/assets/images/hero-img.png">
+      <Header />
+      <Search />
       <Outlet />
-    </Header>
+    </Container>
   );
 }
 

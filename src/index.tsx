@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
-import { StyledEngineProvider } from '@mui/styled-engine';
 import { ThemeProvider } from 'styled-components';
 
 import theme from 'common/theme';
@@ -16,13 +15,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <GlobalStyle />
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
   </React.StrictMode>,
 );

@@ -1,3 +1,5 @@
+import { DefaultTheme } from 'styled-components';
+
 const fontSizes = {
   xs: '1.2rem',
   sm: '1.4rem',
@@ -55,7 +57,7 @@ const paddings = {
   large: '2.4rem',
 };
 
-const theme = {
+const theme: DefaultTheme = {
   fontSizes,
   fontWeights,
   lineHeights,
