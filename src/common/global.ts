@@ -10,6 +10,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Sans KR', sans-serif;
     color: #010101;
   }
+
+  #modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 `;
 
 export default GlobalStyle;

@@ -1,11 +1,14 @@
 import React from 'react';
+
 import ModalPortal from 'common/portal';
 
-function Calendar(): JSX.Element {
+import { Backdrop } from './Calendar.styled';
+
+import { CalendarProps } from './Calendar.types';
+
+function Calendar({ show, handleClickHide }: CalendarProps): JSX.Element {
   return (
-    <ModalPortal>
-      <div>Calendar</div>
-    </ModalPortal>
+    <ModalPortal>{show && <Backdrop onClick={handleClickHide} />}</ModalPortal>
   );
 }
 

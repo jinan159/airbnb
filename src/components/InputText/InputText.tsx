@@ -1,18 +1,13 @@
 import React from 'react';
+
 import {
   SearchBarTitle,
   SearchBarInputText,
 } from 'components/InputText/InputText.styled';
 
-interface inputInfoProps {
-  info: {
-    title: string;
-    label: string;
-    placeHolder: string;
-  };
-}
+import { InputTextProps } from 'components/InputText/InputText.types';
 
-function InputText({ info }: inputInfoProps): JSX.Element {
+function InputText({ info }: InputTextProps): JSX.Element {
   return (
     <section>
       <label htmlFor={info.label}>
