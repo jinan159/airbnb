@@ -1,4 +1,4 @@
-name: deploy-test deploy
+name: 백엔드 개발 CI
 
 on:
   push:
@@ -6,11 +6,13 @@ on:
 
 jobs:
   buildAndDeploy:
-    name: Backend dev CI
+    name: 백엔드 개발 CI
     runs-on: ubuntu-18.04
     defaults:
       run:
         shell: bash
+    env:
+      working-directory: ./backend
 
     steps:
       - name: 체크아웃 Github-Action
@@ -25,4 +27,5 @@ jobs:
         run: ./gradlew clean build
         env:
           JASYPT_KEY: ${{ secrets.JASYPT_KEY }}
+        working-directory: ${{ env.working-directory }}
 
