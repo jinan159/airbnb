@@ -1,3 +1,3 @@
 export interface ModalPortalProps {
-  children: JSX.Element | boolean;
+  children?: JSX.Element;
 }

@@ -25,3 +25,18 @@ export const PERSONNEL_INFOS = {
   label: 'personnel',
   placeHolder: '게스트 추가',
 };
+
+export const CALENDAR_BUTTON_INFOS = [
+  {
+    id: 1,
+    src: './assets/images/left.svg',
+    alt: '캘린더 왼쪽 버튼',
+    className: 'left',
+  },
+  {
+    id: 2,
+    src: './assets/images/right.svg',
+    alt: '캘린더 오른쪽 버튼',
+    className: 'right',
+  },
+];

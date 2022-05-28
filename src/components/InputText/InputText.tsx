@@ -17,6 +17,7 @@ function InputText({ info }: InputTextProps): JSX.Element {
         type="text"
         id={info.label}
         placeholder={info.placeHolder}
+        readOnly
       />
     </section>
   );
