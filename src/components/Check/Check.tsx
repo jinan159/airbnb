@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import InputText from 'components/InputText/InputText';
-import Calendar from 'components/Calendar/Calendar';
+import CalendarModal from 'components/CalendarModal/CalendarModal';
 
 import { CHECK_INFOS } from 'constant/constant';
 
@@ -19,7 +19,7 @@ function Check(): JSX.Element {
   return (
     <>
       <CheckContainer onClick={handleClickShow}>{checkMenu}</CheckContainer>
-      <Calendar show={show} handleClickHide={handleClickHide} />
+      <CalendarModal show={show} handleClickHide={handleClickHide} />
     </>
   );
 }

@@ -40,3 +40,5 @@ export const CALENDAR_BUTTON_INFOS = [
     className: 'right',
   },
 ];
+
+export const DAY_TEXTS = ['일', '월', '화', '수', '목', '금', '토'];

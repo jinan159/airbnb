@@ -1,36 +1,52 @@
 import styled from 'styled-components';
-import { BtnBackgroundBorderRemove } from 'common/util.styled';
+import { FlexCenterSort } from 'common/util.styled';
 
-export const Backdrop = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
+export const CarouselItem = styled.article`
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const Modal = styled.div`
-  z-index: 1;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -85%);
-  width: 916px;
-  height: 512px;
-  border-radius: 4rem;
-  background-color: ${({ theme: { colors } }) => colors.white};
-  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1),
-    0px 0px 4px rgba(51, 51, 51, 0.05);
+export const CalendarTitle = styled.h3`
+  margin-bottom: 2.4rem;
+  font-weight: ${({ theme: { fontWeights } }) => fontWeights.bold};
+  font-size: ${({ theme: { fontSizes } }) => fontSizes.md};
+  line-height: ${({ theme: { lineHeights } }) => lineHeights.base};
 `;
 
-export const Button = styled.button`
-  ${BtnBackgroundBorderRemove}
-  position: absolute;
-  top: 7rem;
+export const CalendarContent = styled.div``;
 
-  &.left {
-    left: 9.7rem;
-  }
+export const Week = styled.ul`
+  display: flex;
+  margin-bottom: 0.4rem;
+`;
 
-  &.right {
-    right: 9.7rem;
-  }
+export const WeekCell = styled.li`
+  ${FlexCenterSort}
+  width: 4.8rem;
+  height: 2.4rem;
+  font-weight: ${({ theme: { fontWeights } }) => fontWeights.normal};
+  font-size: ${({ theme: { fontSizes } }) => fontSizes.xs};
+  line-height: ${({ theme: { lineHeights } }) => lineHeights.shorter};
+  color: ${({ theme: { colors } }) => colors.grey3};
+`;
+
+export const Dates = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  width: 33.6rem;
+  height: 33.6rem;
+`;
+
+export const DateCell = styled.li`
+  ${FlexCenterSort}
+  margin-top: 0.4rem;
+  width: 4.8rem;
+  height: 4.8rem;
+  font-weight: ${({ theme: { fontWeights } }) => fontWeights.bold};
+  font-size: ${({ theme: { fontSizes } }) => fontSizes.xs};
+  line-height: ${({ theme: { lineHeights } }) => lineHeights.shorter};
+  color: ${({ theme: { colors } }) => colors.grey4};
 `;
