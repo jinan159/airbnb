@@ -1,5 +1,6 @@
 package codesquad.airbnb.accomodation;
 
+import codesquad.airbnb.common.Money;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.geo.Point;
@@ -17,13 +18,16 @@ public class Accommodation {
     private String title;
 
     @Embedded
+    private Money price;
+
+    @Embedded
     private Image image;
+
+    private Point point;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private Address address;
-
-    private Point point;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "provides_id")

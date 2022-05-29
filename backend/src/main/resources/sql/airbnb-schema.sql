@@ -3,9 +3,10 @@
 DROP TABLE IF EXISTS `accommodation`;
 CREATE TABLE `accommodation` (
     `id`            BIGINT      NOT NULL AUTO_INCREMENT,
+    `title`         VARCHAR(255) NOT NULL,
+    `price`         DECIMAL(10,0),
     `image_url`     TEXT,
     `point`         POINT,
-    `title`         VARCHAR(255) NOT NULL,
     `address_id`    BIGINT,
     `provides_id`   BIGINT,
     PRIMARY KEY (id)
