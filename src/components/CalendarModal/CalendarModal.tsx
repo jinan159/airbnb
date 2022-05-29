@@ -68,7 +68,7 @@ function calendarReducer(
   }
 }
 
-function CalendarModal({ show, handleClickHide }: CalendarProps): JSX.Element {
+function CalendarModal({ show, handleClickShow }: CalendarProps): JSX.Element {
   const carouselCounter = useRef<number>(1);
   const [carouselXPos, setCarouselXPos] = useState<number>(0);
   const [calendarState, calendarDispatch] = useReducer(
@@ -99,7 +99,7 @@ function CalendarModal({ show, handleClickHide }: CalendarProps): JSX.Element {
   };
 
   const calendars = calendarState.map(el => (
-    <Calendar key={el.id} dateInfos={el} />
+    <Calendar key={el.id} dateInfo={el} />
   ));
 
   const buttons = CALENDAR_BUTTON_INFOS.map(el => (
@@ -125,7 +125,7 @@ function CalendarModal({ show, handleClickHide }: CalendarProps): JSX.Element {
             </Carousel>
             {buttons}
           </Modal>
-          <Backdrop onClick={handleClickHide} />
+          <Backdrop onClick={() => handleClickShow(false)} />
         </>
       </ModalPortal>
     );

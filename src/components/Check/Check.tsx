@@ -12,14 +12,14 @@ function Check(): JSX.Element {
 
   const checkMenu = CHECK_INFOS.map(el => <InputText key={el.id} info={el} />);
 
-  const handleClickShow = () => setShow(true);
-
-  const handleClickHide = () => setShow(false);
+  const handleClickShow = (flag: boolean): void => setShow(flag);
 
   return (
     <>
-      <CheckContainer onClick={handleClickShow}>{checkMenu}</CheckContainer>
-      <CalendarModal show={show} handleClickHide={handleClickHide} />
+      <CheckContainer onClick={() => handleClickShow(true)}>
+        {checkMenu}
+      </CheckContainer>
+      <CalendarModal show={show} handleClickShow={handleClickShow} />
     </>
   );
 }

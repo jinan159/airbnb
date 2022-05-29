@@ -3,6 +3,10 @@ import React from 'react';
 import { DAY_TEXTS } from 'constant/constant';
 
 import {
+  DateInfosInterface,
+  DateInfoInterface,
+} from 'components/Calendar/Calendar.types';
+import {
   CarouselItem,
   CalendarTitle,
   CalendarContent,
@@ -15,41 +19,55 @@ import {
 function createTotalDateArr(
   weekCount: number,
   curMonthOneDateDay: number,
-): { id: number; value: number }[] {
+  dateInfo: DateInfoInterface,
+): DateInfosInterface[] {
   const dates = Array.from(new Array(weekCount), (_, i) => {
-    if (i <= curMonthOneDateDay) return { id: i, value: 0 };
+    if (i <= curMonthOneDateDay) return { id: i, date: 0 };
 
-    return { id: i, value: i - curMonthOneDateDay };
+    return {
+      id: i,
+      year: dateInfo.year,
+      month: dateInfo.month,
+      date: i - curMonthOneDateDay,
+    };
   });
 
   return dates;
 }
 
-function Calendar({
-  dateInfos,
-}: {
-  dateInfos: { year: number; month: number };
-}): JSX.Element {
+function Calendar({ dateInfo }: { dateInfo: DateInfoInterface }): JSX.Element {
   // 해당 달의 1일에 요일 구하기
-  const curMonthOneDateDay = new Date(
-    dateInfos.year,
-    dateInfos.month - 1,
+  const curMonthOneDateDay: number = new Date(
+    dateInfo.year,
+    dateInfo.month - 1,
     1,
   ).getDay();
   // 해당 달의 일수 구하기
-  const curMonthTotalDate = new Date(
-    dateInfos.year,
-    dateInfos.month,
+  const curMonthTotalDate: number = new Date(
+    dateInfo.year,
+    dateInfo.month,
     0,
   ).getDate();
-  const totalDateCellCount = curMonthOneDateDay + curMonthTotalDate;
-  const dates = createTotalDateArr(totalDateCellCount, curMonthOneDateDay - 1);
+  const totalDateCellCount: number = curMonthOneDateDay + curMonthTotalDate;
+  const dates: DateInfosInterface[] = createTotalDateArr(
+    totalDateCellCount,
+    curMonthOneDateDay - 1,
+    dateInfo,
+  );
+
+  const handleClickDateCell = (el: DateInfosInterface): void => {
+    console.log(el);
+  };
 
   const datesCells = dates.map(el => {
-    if (el.value === 0) return <DateCell key={el.id} />;
+    if (el.date === 0) return <DateCell key={el.id} />;
     return (
-      <DateCell key={el.id} value={el.value}>
-        {el.value}
+      <DateCell
+        key={el.id}
+        date={el.date}
+        onClick={() => handleClickDateCell(el)}
+      >
+        {el.date}
       </DateCell>
     );
   });
@@ -59,7 +77,7 @@ function Calendar({
   return (
     <CarouselItem>
       <CalendarTitle>
-        {dateInfos.year}년 {dateInfos.month}월
+        {dateInfo.year}년 {dateInfo.month}월
       </CalendarTitle>
       <CalendarContent>
         <Week>{week}</Week>

@@ -52,12 +52,13 @@ export const DateCell = styled.li<DateCellProps>`
   color: ${({ theme: { colors } }) => colors.grey4};
 
   &:hover {
-    ${({ value }) =>
-      value &&
+    ${({ date }) =>
+      date &&
       css`
         background-color: ${({ theme: { colors } }) => colors.grey1};
         border-radius: 3rem;
         color: ${({ theme: { colors } }) => colors.white};
+        cursor: pointer;
       `}
   }
 `;
