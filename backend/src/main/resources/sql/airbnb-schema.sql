@@ -32,14 +32,14 @@ CREATE TABLE `member` (
 DROP TABLE IF EXISTS `provides`;
 CREATE TABLE `provides` (
     `id`                    BIGINT      NOT NULL AUTO_INCREMENT,
-    `bed_rooms`             INTEGER,
-    `beds`                  INTEGER,
-    `capacity`              INTEGER     NOT NULL,
+    `capacity`              TINYINT     NOT NULL,
+    `bed_rooms`             TINYINT,
+    `beds`                  TINYINT,
+    `wash_rooms`            TINYINT,
     `has_air_conditioner`   BOOLEAN,
     `has_hair_dryer`        BOOLEAN,
     `has_kitchin`           BOOLEAN,
     `has_wifi`               BOOLEAN,
-    `wash_rooms`            INTEGER,
     primary key (id)
 ) engine=InnoDB;
 
