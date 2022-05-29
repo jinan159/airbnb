@@ -19,7 +19,7 @@ import {
   CalendarActionInterface,
 } from './CalendarModal.types';
 
-const cur = new Date(Date.now());
+const cur: Date = new Date(Date.now());
 
 const initialCalendarState: CalendarInterface[] = [
   {

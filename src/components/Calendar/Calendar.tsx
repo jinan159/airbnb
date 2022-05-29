@@ -43,12 +43,15 @@ function Calendar({
     0,
   ).getDate();
   const totalDateCellCount = curMonthOneDateDay + curMonthTotalDate;
-
   const dates = createTotalDateArr(totalDateCellCount, curMonthOneDateDay - 1);
 
   const datesCells = dates.map(el => {
     if (el.value === 0) return <DateCell key={el.id} />;
-    return <DateCell key={el.id}>{el.value}</DateCell>;
+    return (
+      <DateCell key={el.id} value={el.value}>
+        {el.value}
+      </DateCell>
+    );
   });
 
   const week = DAY_TEXTS.map(el => <WeekCell key={el}>{el}</WeekCell>);
