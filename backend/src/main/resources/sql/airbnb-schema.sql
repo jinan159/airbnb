@@ -2,9 +2,9 @@
 
 DROP TABLE IF EXISTS `accommodation`;
 CREATE TABLE `accommodation` (
-    `id`            BIGINT      NOT NULL AUTO_INCREMENT,
-    `title`         VARCHAR(255) NOT NULL,
-    `price`         DECIMAL(10,0),
+    `id`            BIGINT        NOT NULL AUTO_INCREMENT,
+    `title`         VARCHAR(255)  NOT NULL,
+    `price`         DECIMAL(10,0) NOT NULL,
     `image_url`     TEXT,
     `point`         POINT,
     `address_id`    BIGINT,
@@ -14,7 +14,7 @@ CREATE TABLE `accommodation` (
 
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
-    `id`            BIGINT NOT  NULL AUTO_INCREMENT,
+    `id`            BIGINT NOT NULL AUTO_INCREMENT,
     `city`          VARCHAR(20),
     `sigungu`       VARCHAR(20),
     `street`        VARCHAR(80),
@@ -47,18 +47,18 @@ DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation` (
     `id`                BIGINT      NOT NULL AUTO_INCREMENT,
     `visitors`          TINYINT     NOT NULL,
-    `start_date`        TIMESTAMP,
-    `end_date`          TIMESTAMP,
-    `accommodation_id`  BIGINT,
-    `member_id`         BIGINT,
+    `start_date`        TIMESTAMP   NOT NULL,
+    `end_date`          TIMESTAMP   NOT NULL,
+    `accommodation_id`  BIGINT      NOT NULL,
+    `member_id`         BIGINT      NOT NULL,
     PRIMARY KEY (id)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS `wish`;
 CREATE TABLE `wish` (
     `id`                BIGINT  NOT NULL AUTO_INCREMENT,
-    `accommodation_id`  BIGINT,
-    `member_id`         BIGINT,
+    `accommodation_id`  BIGINT  NOT NULL,
+    `member_id`         BIGINT  NOT NULL,
     PRIMARY KEY (id)
 ) engine=InnoDB;
 

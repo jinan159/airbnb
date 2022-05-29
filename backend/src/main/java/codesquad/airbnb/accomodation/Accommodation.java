@@ -15,9 +15,11 @@ public class Accommodation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
     @Embedded
+    @Column(nullable = false)
     private Money price;
 
     @Embedded
