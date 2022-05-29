@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { DAY_TEXTS } from 'constant/constant';
 
@@ -25,18 +25,25 @@ function createTotalDateArr(
   return dates;
 }
 
-function Calendar(): JSX.Element {
-  const [curYear, curMonth, curDate] = useMemo(() => {
-    const cur = new Date(Date.now());
-    return [cur.getFullYear(), cur.getMonth() + 1, cur.getDate()];
-  }, []);
+function Calendar({
+  dateInfos,
+}: {
+  dateInfos: { year: number; month: number };
+}): JSX.Element {
   // 해당 달의 1일에 요일 구하기
   // const curMonthOneDateDay = new Date(2021, 4, 1).getDay();
-  console.log(curMonth);
-  const curMonthOneDateDay = new Date(curYear, curMonth - 1, 1).getDay();
+  const curMonthOneDateDay = new Date(
+    dateInfos.year,
+    dateInfos.month - 1,
+    1,
+  ).getDay();
   // 해당 달의 일수 구하기
   // const curMonthTotalDate = new Date(2021, 5, 0).getDate();
-  const curMonthTotalDate = new Date(curYear, curMonth, 0).getDate();
+  const curMonthTotalDate = new Date(
+    dateInfos.year,
+    dateInfos.month,
+    0,
+  ).getDate();
   const totalDateCellCount = curMonthOneDateDay + curMonthTotalDate;
 
   const dates = createTotalDateArr(totalDateCellCount, curMonthOneDateDay - 1);
@@ -51,7 +58,7 @@ function Calendar(): JSX.Element {
   return (
     <CarouselItem>
       <CalendarTitle>
-        {curYear}년 {curMonth}월
+        {dateInfos.year}년 {dateInfos.month}월
       </CalendarTitle>
       <CalendarContent>
         <Week>{week}</Week>

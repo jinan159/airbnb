@@ -32,12 +32,14 @@ export const CALENDAR_BUTTON_INFOS = [
     src: './assets/images/left.svg',
     alt: '캘린더 왼쪽 버튼',
     className: 'left',
+    carouselUnit: 40.4,
   },
   {
     id: 2,
     src: './assets/images/right.svg',
     alt: '캘린더 오른쪽 버튼',
     className: 'right',
+    carouselUnit: -40.4,
   },
 ];
 
