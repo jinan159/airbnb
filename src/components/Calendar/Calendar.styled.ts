@@ -53,8 +53,9 @@ export const DateCell = styled.li<DateCellProps>`
     past ? colors.grey1 : colors.grey4};
 
   &:hover {
-    ${({ date }) =>
+    ${({ past, date }) =>
       date &&
+      past &&
       css`
         background-color: ${({ theme: { colors } }) => colors.grey1};
         border-radius: 3rem;

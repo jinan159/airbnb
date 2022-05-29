@@ -55,13 +55,20 @@ function Calendar({ dateInfo }: { dateInfo: DateInfoInterface }): JSX.Element {
     dateInfo,
   );
 
+  const week = DAY_TEXTS.map(el => <WeekCell key={el}>{el}</WeekCell>);
+
   const handleClickDateCell = (el: DateInfosInterface): void => {
     console.log(el);
   };
 
   const distinguishPast = (el: DateInfosInterface): boolean => {
     const date = new Date(`${el.year}-${el.month}-${el.date}`);
-    return new Date(Date.now()) <= date;
+    const now = new Date(Date.now());
+    const cur = new Date(
+      `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`,
+    );
+
+    return cur <= date;
   };
 
   const datesCells = dates.map(el => {
@@ -80,8 +87,6 @@ function Calendar({ dateInfo }: { dateInfo: DateInfoInterface }): JSX.Element {
       </DateCell>
     );
   });
-
-  const week = DAY_TEXTS.map(el => <WeekCell key={el}>{el}</WeekCell>);
 
   return (
     <CarouselItem>
