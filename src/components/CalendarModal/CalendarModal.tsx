@@ -3,7 +3,7 @@ import React, { useReducer, useState, useRef } from 'react';
 import ModalPortal from 'common/portal';
 import Calendar from 'components/Calendar/Calendar';
 
-import { CALENDAR_BUTTON_INFOS } from 'constant/constant';
+import { CALENDAR_BUTTON_INFOS, BASIC_MONTH_INFOS } from 'constant/constant';
 
 import {
   Backdrop,
@@ -19,27 +19,59 @@ import {
   CalendarActionInterface,
 } from './CalendarModal.types';
 
+const cur = new Date(Date.now());
+
+const initialCalendarState: CalendarInterface[] = [
+  {
+    id: 1,
+    year: cur.getFullYear(),
+    month: cur.getMonth() + BASIC_MONTH_INFOS.thisMonth,
+  },
+  {
+    id: 2,
+    year: cur.getFullYear(),
+    month: cur.getMonth() + BASIC_MONTH_INFOS.nextMonth,
+  },
+  {
+    id: 3,
+    year: cur.getFullYear(),
+    month: cur.getMonth() + BASIC_MONTH_INFOS.theMonthAfterNext,
+  },
+];
+
+function updateCalendarState(state: CalendarInterface[]): CalendarInterface[] {
+  const copy = JSON.parse(JSON.stringify(state));
+  const recentState = copy[copy.length - 1];
+
+  if (recentState.month === 12) {
+    const newObj = {
+      id: recentState.id + 1,
+      year: recentState.year + 1,
+      month: 1,
+    };
+    return [...copy, newObj];
+  }
+
+  const newObj = {
+    id: recentState.id + 1,
+    year: recentState.year,
+    month: recentState.month + 1,
+  };
+
+  return [...copy, newObj];
+}
+
 function calendarReducer(
   state: CalendarInterface[],
   action: CalendarActionInterface,
-) {
+): CalendarInterface[] {
   switch (action.type) {
     case 'ADD_CALENDAR':
-      console.log(1);
-      return [...state];
-    // case 'ADD_CALENDAR_MONTH_UP':
-    // 맨 마지막 배열의 값을 받아와 date의 값으로 만들고 해당 년수를 가져와 +1하고 다시 반환
+      return updateCalendarState(state);
     default:
       return state;
   }
 }
-
-const cur = new Date(Date.now());
-const initialCalendarState: CalendarInterface[] = [
-  { id: 1, year: cur.getFullYear(), month: cur.getMonth() + 1 },
-  { id: 2, year: cur.getFullYear(), month: cur.getMonth() + 2 },
-  { id: 3, year: cur.getFullYear(), month: cur.getMonth() + 3 },
-];
 
 function CalendarModal({ show, handleClickHide }: CalendarProps): JSX.Element {
   const carouselCounter = useRef<number>(0);
@@ -52,6 +84,7 @@ function CalendarModal({ show, handleClickHide }: CalendarProps): JSX.Element {
   const moveNextCarousel = (carouselUnit: number): void => {
     setCarouselXPos(prev => prev + carouselUnit);
     carouselCounter.current += 1;
+    calendarDispatch({ type: 'ADD_CALENDAR' });
   };
 
   const movePrevCarousel = (carouselUnit: number): void => {

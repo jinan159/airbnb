@@ -35,7 +35,7 @@ export const CarouselItemContainer = styled.div<CarouselItemContainerProps>`
   width: 10000px;
   gap: 6.8rem;
   transform: translateX(${({ pos }) => `${pos}rem`});
-  transition: all 0.5s;
+  transition: all 0.3s;
   /* transform: translateX(-40.4rem); */
 `;
 
