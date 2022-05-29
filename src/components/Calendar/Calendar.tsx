@@ -59,13 +59,22 @@ function Calendar({ dateInfo }: { dateInfo: DateInfoInterface }): JSX.Element {
     console.log(el);
   };
 
+  const distinguishPast = (el: DateInfosInterface): boolean => {
+    const date = new Date(`${el.year}-${el.month}-${el.date}`);
+    return new Date(Date.now()) <= date;
+  };
+
   const datesCells = dates.map(el => {
     if (el.date === 0) return <DateCell key={el.id} />;
+
+    const past = distinguishPast(el);
+
     return (
       <DateCell
         key={el.id}
         date={el.date}
-        onClick={() => handleClickDateCell(el)}
+        past={past}
+        onClick={() => past && handleClickDateCell(el)}
       >
         {el.date}
       </DateCell>

@@ -49,7 +49,8 @@ export const DateCell = styled.li<DateCellProps>`
   font-weight: ${({ theme: { fontWeights } }) => fontWeights.bold};
   font-size: ${({ theme: { fontSizes } }) => fontSizes.xs};
   line-height: ${({ theme: { lineHeights } }) => lineHeights.shorter};
-  color: ${({ theme: { colors } }) => colors.grey4};
+  color: ${({ past, theme: { colors } }) =>
+    past ? colors.grey1 : colors.grey4};
 
   &:hover {
     ${({ date }) =>
