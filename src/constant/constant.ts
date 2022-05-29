@@ -29,7 +29,6 @@ export const PERSONNEL_INFOS = {
 export const BASIC_MONTH_INFOS = {
   thisMonth: 1,
   nextMonth: 2,
-  theMonthAfterNext: 3,
 };
 
 const CAROUSELUNIT_LEFT = 40.4;

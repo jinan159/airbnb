@@ -32,11 +32,6 @@ const initialCalendarState: CalendarInterface[] = [
     year: cur.getFullYear(),
     month: cur.getMonth() + BASIC_MONTH_INFOS.nextMonth,
   },
-  {
-    id: 3,
-    year: cur.getFullYear(),
-    month: cur.getMonth() + BASIC_MONTH_INFOS.theMonthAfterNext,
-  },
 ];
 
 function updateCalendarState(state: CalendarInterface[]): CalendarInterface[] {
@@ -74,7 +69,7 @@ function calendarReducer(
 }
 
 function CalendarModal({ show, handleClickHide }: CalendarProps): JSX.Element {
-  const carouselCounter = useRef<number>(0);
+  const carouselCounter = useRef<number>(1);
   const [carouselXPos, setCarouselXPos] = useState<number>(0);
   const [calendarState, calendarDispatch] = useReducer(
     calendarReducer,
@@ -84,7 +79,9 @@ function CalendarModal({ show, handleClickHide }: CalendarProps): JSX.Element {
   const moveNextCarousel = (carouselUnit: number): void => {
     setCarouselXPos(prev => prev + carouselUnit);
     carouselCounter.current += 1;
-    calendarDispatch({ type: 'ADD_CALENDAR' });
+
+    if (calendarState.length === carouselCounter.current)
+      calendarDispatch({ type: 'ADD_CALENDAR' });
   };
 
   const movePrevCarousel = (carouselUnit: number): void => {
@@ -93,10 +90,10 @@ function CalendarModal({ show, handleClickHide }: CalendarProps): JSX.Element {
   };
 
   const handleClickButton = (carouselUnit: number): void => {
-    if (carouselCounter.current > 0) {
+    if (carouselCounter.current > 1) {
       if (carouselUnit < 0) moveNextCarousel(carouselUnit);
       else movePrevCarousel(carouselUnit);
-    } else if (carouselCounter.current === 0) {
+    } else if (carouselCounter.current === 1) {
       if (carouselUnit < 0) moveNextCarousel(carouselUnit);
     }
   };
