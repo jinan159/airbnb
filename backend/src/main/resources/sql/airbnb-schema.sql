@@ -1,4 +1,4 @@
-# SET FOREIGN_KEY_CHECKS = 0;
+-- SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `accommodation`;
 CREATE TABLE `accommodation` (
@@ -63,11 +63,11 @@ CREATE TABLE `wish` (
 ) engine=InnoDB;
 
 -- FK
-# ALTER TABLE `accommodation` ADD CONSTRAINT `fk_accommodation_address` FOREIGN KEY (address_id) REFERENCES `address` (id);
-# ALTER TABLE `accommodation` ADD CONSTRAINT `fk_accommodation_provides` FOREIGN KEY (provides_id) REFERENCES `provides` (id);
-# ALTER TABLE `reservation` ADD CONSTRAINT `fk_reservation_accommodation` FOREIGN KEY (accommodation_id) REFERENCES `accommodation` (id);
-# ALTER TABLE `reservation` ADD CONSTRAINT `fk_reservation_member` FOREIGN KEY (member_id) REFERENCES `member` (id);
-# ALTER TABLE `wish` ADD CONSTRAINT `fk_wish_accommodation` FOREIGN KEY (accommodation_id) REFERENCES `accommodation` (id);
-# ALTER TABLE `wish` ADD CONSTRAINT `fk_wish_member` FOREIGN KEY (member_id) REFERENCES `member` (id);
-#
-# SET FOREIGN_KEY_CHECKS = 1;
+-- ALTER TABLE `accommodation` ADD CONSTRAINT `fk_accommodation_address` FOREIGN KEY (address_id) REFERENCES `address` (id);
+-- ALTER TABLE `accommodation` ADD CONSTRAINT `fk_accommodation_provides` FOREIGN KEY (provides_id) REFERENCES `provides` (id);
+-- ALTER TABLE `reservation` ADD CONSTRAINT `fk_reservation_accommodation` FOREIGN KEY (accommodation_id) REFERENCES `accommodation` (id);
+-- ALTER TABLE `reservation` ADD CONSTRAINT `fk_reservation_member` FOREIGN KEY (member_id) REFERENCES `member` (id);
+-- ALTER TABLE `wish` ADD CONSTRAINT `fk_wish_accommodation` FOREIGN KEY (accommodation_id) REFERENCES `accommodation` (id);
+-- ALTER TABLE `wish` ADD CONSTRAINT `fk_wish_member` FOREIGN KEY (member_id) REFERENCES `member` (id);
+--
+-- SET FOREIGN_KEY_CHECKS = 1;
