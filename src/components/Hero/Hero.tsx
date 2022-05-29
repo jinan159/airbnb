@@ -1,13 +1,18 @@
 import React from 'react';
-import { Header, Logo } from 'components/Hero/Hero.styled';
 import { Outlet } from 'react-router-dom';
 
-function Hero() {
+import { Container } from 'components/Hero/Hero.styled';
+
+import Header from 'components/Header/Header';
+import Search from 'components/Search/Search';
+
+function Hero(): JSX.Element {
   return (
-    <Header>
-      <Logo>AIRBNB</Logo>
+    <Container src="/assets/images/hero-img.png">
+      <Header />
+      <Search />
       <Outlet />
-    </Header>
+    </Container>
   );
 }
 

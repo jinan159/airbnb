@@ -28,6 +28,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'no-shadow': 0,
     'react/prop-types': 0,
+    'jsx-a11y/label-has-associated-control': 'off',
     'react/jsx-filename-extension': [
       2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
