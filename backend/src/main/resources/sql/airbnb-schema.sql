@@ -46,9 +46,9 @@ CREATE TABLE `provides` (
 DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation` (
     `id`                BIGINT      NOT NULL AUTO_INCREMENT,
-    `end_date`          TIMESTAMP,
+    `visitors`          TINYINT     NOT NULL,
     `start_date`        TIMESTAMP,
-    `visitors`          INTEGER     NOT NULL,
+    `end_date`          TIMESTAMP,
     `accommodation_id`  BIGINT,
     `member_id`         BIGINT,
     PRIMARY KEY (id)
