@@ -31,14 +31,12 @@ function Calendar({
   dateInfos: { year: number; month: number };
 }): JSX.Element {
   // 해당 달의 1일에 요일 구하기
-  // const curMonthOneDateDay = new Date(2021, 4, 1).getDay();
   const curMonthOneDateDay = new Date(
     dateInfos.year,
     dateInfos.month - 1,
     1,
   ).getDay();
   // 해당 달의 일수 구하기
-  // const curMonthTotalDate = new Date(2021, 5, 0).getDate();
   const curMonthTotalDate = new Date(
     dateInfos.year,
     dateInfos.month,
