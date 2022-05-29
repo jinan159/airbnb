@@ -57,7 +57,6 @@ CREATE TABLE `reservation` (
 DROP TABLE IF EXISTS `wish`;
 CREATE TABLE `wish` (
     `id`                BIGINT  NOT NULL AUTO_INCREMENT,
-    `wished`            BOOLEAN NOT NULL,
     `accommodation_id`  BIGINT,
     `member_id`         BIGINT,
     PRIMARY KEY (id)
