@@ -24,11 +24,11 @@ include::{snippets}/accommodation-statistics-price/http-request.adoc[]
 === http request body
 include::{snippets}/accommodation-statistics-price/request-body.adoc[]
 
-=== curl response
+=== http response
 include::{snippets}/accommodation-statistics-price/http-response.adoc[]
 
-=== curl response body
+=== http response body
 include::{snippets}/accommodation-statistics-price/response-body.adoc[]
 
-=== curl response fields
+=== http response fields
 include::{snippets}/accommodation-statistics-price/response-fields.adoc[]
