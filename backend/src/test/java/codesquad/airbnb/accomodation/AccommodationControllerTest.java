@@ -45,12 +45,13 @@ class AccommodationControllerTest {
         int count0 = 5;
         int count1 = 10;
         int count2 = 15;
+        double average = (priceRange0 * count0) + (priceRange1 * count1) + (priceRange2 * count2);
 
         PriceAndCountStatistics statistics = new PriceAndCountStatistics(List.of(
                 new PriceAndCount(priceRange0, count0),
                 new PriceAndCount(priceRange1, count1),
                 new PriceAndCount(priceRange2, count2)
-        ));
+        ), average);
 
         given(accommodationStatisticsService.getCachedPriceAndCountStatistics())
                 .willReturn(statistics);
@@ -67,13 +68,16 @@ class AccommodationControllerTest {
                 .andExpect(jsonPath("$.priceAndCountList[1].accommodationCount").value(count1))
                 .andExpect(jsonPath("$.priceAndCountList[2].priceRange").value(priceRange2))
                 .andExpect(jsonPath("$.priceAndCountList[2].accommodationCount").value(count2))
+                .andExpect(jsonPath("$.averagePrice").exists())
+                .andExpect(jsonPath("$.averagePrice").value(average))
 
                 .andDo(document("accommodation-statistics-price",
                         getDocumentRequest(),
                         getDocumentResponse(),
                         responseFields(
                                 fieldWithPath("priceAndCountList.[].priceRange").type(JsonFieldType.NUMBER).description("가격대"),
-                                fieldWithPath("priceAndCountList.[].accommodationCount").type(JsonFieldType.NUMBER).description("숙소 수")
+                                fieldWithPath("priceAndCountList.[].accommodationCount").type(JsonFieldType.NUMBER).description("숙소 수"),
+                                fieldWithPath("averagePrice").type(JsonFieldType.NUMBER).description("숙소 가격 평균")
                         )
                         ));
     }
