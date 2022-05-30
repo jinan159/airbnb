@@ -3,60 +3,60 @@ import 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     fontSizes: {
-      xs: string;
-      sm: string;
-      md: string;
-      lg: string;
-      xl: string;
-      xxl: string;
+      xs: '1.2rem';
+      sm: '1.4rem';
+      md: '1.6rem';
+      lg: '1.8rem';
+      xl: '2rem';
+      xxl: '3.2rem';
     };
 
     fontWeights: {
-      normal: string;
-      bold: stirng;
-      black: string;
+      normal: '400';
+      bold: '700';
+      black: '900';
     };
 
     lineHeights: {
-      shorter: string;
-      short: string;
-      base: string;
-      tall: string;
-      taller: string;
-      logo: string;
+      shorter: '1.7rem';
+      short: '2rem';
+      base: '2.3rem';
+      tall: '2.6rem';
+      taller: '2.9rem';
+      logo: '4.6rem';
     };
 
     letterSpacings: {
-      tighter: string;
+      tighter: '-0.04rem';
     };
 
     colors: {
-      secondary: string;
-      primary: string;
-      black: string;
-      grey1: string;
-      grey2: string;
-      grey3: string;
-      grey4: string;
-      grey5: string;
-      grey6: string;
-      white: string;
+      secondary: '#118917';
+      primary: '#E84C60';
+      black: '#010101';
+      grey1: '#333333';
+      grey2: '#4F4F4F';
+      grey3: '#828282';
+      grey4: '#BDBDBD';
+      grey5: '#E0E0E0';
+      grey6: '#F5F5F7';
+      white: '#FFFFFF';
     };
 
     borderSizes: {
-      small: string;
-      medium: string;
+      small: '0.19rem';
+      medium: '0.3rem';
     };
 
     margins: {
-      medium: string;
-      large: string;
-      xLarge: string;
+      medium: '1.6rem';
+      large: '2.4rem';
+      xLarge: '6rem';
     };
 
     paddings: {
-      medium: string;
-      large: string;
+      medium: '1.6rem';
+      large: '2.4rem';
     };
   }
 }

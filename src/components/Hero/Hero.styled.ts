@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-
-interface ContainerProps {
-  readonly src: string;
-}
+import { ContainerProps } from 'components/Hero/Hero.types';
 
 export const Container = styled.header<ContainerProps>`
   width: 1440px;

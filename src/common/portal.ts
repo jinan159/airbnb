@@ -1,21 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
 
-interface ModalPortalProps {
-  children: JSX.Element;
-}
+import { ModalPortalProps } from 'common/portal.types';
 
 function ModalPortal({ children }: ModalPortalProps): JSX.Element {
-  const modal = document.getElementById('modal');
-  const el: HTMLElement = document.createElement('div');
-
-  useEffect(() => {
-    modal?.appendChild(el);
-    return () => {
-      modal?.removeChild(el);
-    };
-  }, []);
-
+  const el = document.getElementById('modal') as HTMLElement;
   return ReactDom.createPortal(children, el);
 }
 

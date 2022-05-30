@@ -1,9 +1,6 @@
 import styled, { css } from 'styled-components';
 import { BtnBackgroundBorderRemove } from 'common/util.styled';
-
-interface MenuBtnProps {
-  readonly num: number;
-}
+import { MenuBtnProps } from 'components/Menu/Menu.types';
 
 export const UserMenu = styled.menu`
   display: flex;

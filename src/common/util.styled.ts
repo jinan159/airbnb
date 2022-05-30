@@ -6,6 +6,12 @@ export const BtnBackgroundBorderRemove = css`
   border: none;
 `;
 
+export const FlexCenterSort = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Stick = styled.span`
   margin-right: 2.4rem;
   width: 0.1rem;
