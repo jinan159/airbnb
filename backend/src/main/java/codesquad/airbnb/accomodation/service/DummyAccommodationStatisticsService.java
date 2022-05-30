@@ -44,7 +44,7 @@ public class DummyAccommodationStatisticsService implements AccommodationStatist
                 new PriceAndCount(280000L, 80),
                 new PriceAndCount(290000L, 30),
                 new PriceAndCount(300000L, 15)
-        ));
+        ), 114468.1156);
     }
 
     @Override

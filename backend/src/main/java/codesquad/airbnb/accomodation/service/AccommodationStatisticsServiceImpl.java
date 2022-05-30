@@ -42,7 +42,9 @@ public class AccommodationStatisticsServiceImpl implements AccommodationStatisti
 
     private void updateCache(LocalDate key) {
         List<PriceAndCount> priceAndCountList = findPriceAndCountStatistics(amountUnitPolicy.getAmount());
-        PriceAndCountStatistics priceAndCountStatistics = new PriceAndCountStatistics(priceAndCountList);
+        double averagePrice = accommodationQueryRepository.findAveragePrice();
+
+        PriceAndCountStatistics priceAndCountStatistics = new PriceAndCountStatistics(priceAndCountList, averagePrice);
         simpleCache.put(key, priceAndCountStatistics);
     }
 

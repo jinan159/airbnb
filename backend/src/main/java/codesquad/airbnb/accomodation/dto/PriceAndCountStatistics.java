@@ -9,9 +9,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PriceAndCountStatistics implements Iterable<PriceAndCount> {
     private final List<PriceAndCount> priceAndCountList;
+    private final double averagePrice;
 
     public List<PriceAndCount> getPriceAndCountList() {
         return Collections.unmodifiableList(priceAndCountList);
+    }
+
+    public double getAveragePrice() {
+        return averagePrice;
     }
 
     @Override
