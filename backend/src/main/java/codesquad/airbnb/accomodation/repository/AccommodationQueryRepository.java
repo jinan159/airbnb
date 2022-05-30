@@ -32,4 +32,12 @@ public class AccommodationQueryRepository {
                 .orderBy(priceCutByAmountUnit.asc())
                 .fetch();
     }
+
+    public double findAveragePrice() {
+        NumberExpression<Double> avg = accommodation.price.avg();
+
+        return queryFactory.select(accommodation.price.avg())
+                .from(accommodation)
+                .fetchFirst();
+    }
 }

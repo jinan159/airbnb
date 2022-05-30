@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/accommodation")
 public class AccommodationController {
 
-    private final AccommodationStatisticsService service;
+    private final AccommodationStatisticsService dummyAccommodationStatisticsService;
 
     @GetMapping("/statistics/price")
     public PriceAndCountStatistics getAccommodationPriceStatistics() {
-        return service.getCachedPriceAndCountStatistics();
+        return dummyAccommodationStatisticsService.getCachedPriceAndCountStatistics();
     }
 }
