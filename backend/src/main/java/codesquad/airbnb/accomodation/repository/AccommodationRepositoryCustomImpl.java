@@ -23,7 +23,7 @@ public class AccommodationRepositoryCustomImpl implements AccommodationRepositor
     @Override
     public List<PriceAndCount> findPriceAndCountStatisticsByAmountUnit(long amountUnit) {
         NumberExpression<Long> floorResultOfPriceDivAmountUnit =
-                Expressions.numberTemplate(Long.class, "FLOOR({0} / {1})", accommodation.price, amountUnit);
+                Expressions.numberTemplate(Long.class, "FLOOR({0} / {1}) * {2}", accommodation.price, amountUnit, amountUnit);
 
         NumberExpression<Integer> countAll =
                 Expressions.numberTemplate(Integer.class, "COUNT(*)");
