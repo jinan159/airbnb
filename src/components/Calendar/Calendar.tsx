@@ -2,6 +2,8 @@ import React from 'react';
 
 import { DAY_TEXTS } from 'constant/constant';
 
+import DateCell from 'components/DateCell/DateCell';
+
 import {
   DateInfosInterface,
   DateInfoInterface,
@@ -13,7 +15,6 @@ import {
   Week,
   WeekCell,
   Dates,
-  DateCell,
 } from './Calendar.styled';
 
 function createTotalDateArr(
@@ -57,10 +58,6 @@ function Calendar({ dateInfo }: { dateInfo: DateInfoInterface }): JSX.Element {
 
   const week = DAY_TEXTS.map(el => <WeekCell key={el}>{el}</WeekCell>);
 
-  const handleClickDateCell = (el: DateInfosInterface): void => {
-    console.log(el);
-  };
-
   const distinguishPast = (el: DateInfosInterface): boolean => {
     const date = new Date(`${el.year}-${el.month}-${el.date}`);
     const now = new Date(Date.now());
@@ -76,16 +73,7 @@ function Calendar({ dateInfo }: { dateInfo: DateInfoInterface }): JSX.Element {
 
     const past = distinguishPast(el);
 
-    return (
-      <DateCell
-        key={el.id}
-        date={el.date}
-        past={past}
-        onClick={() => past && handleClickDateCell(el)}
-      >
-        {el.date}
-      </DateCell>
-    );
+    return <DateCell key={el.id} date={el.date} past={past} />;
   });
 
   return (

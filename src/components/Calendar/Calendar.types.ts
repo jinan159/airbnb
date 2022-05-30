@@ -1,8 +1,3 @@
-export interface DateCellProps {
-  date?: number;
-  past?: boolean;
-}
-
 export interface DateInfosInterface {
   id: number;
   year?: number;

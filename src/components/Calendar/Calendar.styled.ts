@@ -1,6 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { FlexCenterSort } from 'common/util.styled';
-import { DateCellProps } from 'components/Calendar/Calendar.types';
 
 export const CarouselItem = styled.article`
   margin-top: 0.5rem;
@@ -39,28 +38,4 @@ export const Dates = styled.ul`
   flex-wrap: wrap;
   width: 33.6rem;
   height: 33.6rem;
-`;
-
-export const DateCell = styled.li<DateCellProps>`
-  ${FlexCenterSort}
-  margin-top: 0.4rem;
-  width: 4.8rem;
-  height: 4.8rem;
-  font-weight: ${({ theme: { fontWeights } }) => fontWeights.bold};
-  font-size: ${({ theme: { fontSizes } }) => fontSizes.xs};
-  line-height: ${({ theme: { lineHeights } }) => lineHeights.shorter};
-  color: ${({ past, theme: { colors } }) =>
-    past ? colors.grey1 : colors.grey4};
-
-  &:hover {
-    ${({ past, date }) =>
-      date &&
-      past &&
-      css`
-        background-color: ${({ theme: { colors } }) => colors.grey1};
-        border-radius: 3rem;
-        color: ${({ theme: { colors } }) => colors.white};
-        cursor: pointer;
-      `}
-  }
 `;
