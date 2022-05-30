@@ -1,0 +1,31 @@
+name: 백엔드 개발 CI
+
+on:
+  push:
+    branches: [be]
+
+jobs:
+  buildAndDeploy:
+    name: 백엔드 개발 CI
+    runs-on: ubuntu-18.04
+    defaults:
+      run:
+        shell: bash
+    env:
+      working-directory: ./backend
+
+    steps:
+      - name: 체크아웃 Github-Action
+        uses: actions/checkout@v2
+
+      - name: JDK 11 세팅
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11.0.11
+
+      - name: 프로젝트 빌드
+        run: ./gradlew clean build
+        env:
+          JASYPT_KEY: ${{ secrets.JASYPT_KEY }}
+        working-directory: ${{ env.working-directory }}
+
