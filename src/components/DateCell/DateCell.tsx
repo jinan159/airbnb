@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { DateCellInterface } from 'components/DateCell/DateCell.types';
 import { DateCellContent } from 'components/DateCell/DateCell.styled';
 
-function DateCell({ date, past }: DateCellInterface): JSX.Element {
+export function DateCell({ date, past }: DateCellInterface): JSX.Element {
   const [flag, setFlag] = useState<boolean>(false);
 
   const handleClickDateCellContent = () => setFlag(prev => !prev);
@@ -19,5 +19,3 @@ function DateCell({ date, past }: DateCellInterface): JSX.Element {
     </DateCellContent>
   );
 }
-
-export default DateCell;

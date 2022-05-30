@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { DAY_TEXTS } from 'constant/constant';
+import { DAY_TEXTS } from 'constant';
 
-import DateCell from 'components/DateCell/DateCell';
+import { DateCell } from 'components/DateCell';
 
 import {
   DateInfosInterface,
@@ -36,7 +36,11 @@ function createTotalDateArr(
   return dates;
 }
 
-function Calendar({ dateInfo }: { dateInfo: DateInfoInterface }): JSX.Element {
+export function Calendar({
+  dateInfo,
+}: {
+  dateInfo: DateInfoInterface;
+}): JSX.Element {
   // 해당 달의 1일에 요일 구하기
   const curMonthOneDateDay: number = new Date(
     dateInfo.year,
@@ -88,5 +92,3 @@ function Calendar({ dateInfo }: { dateInfo: DateInfoInterface }): JSX.Element {
     </CarouselItem>
   );
 }
-
-export default Calendar;

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-import InputText from 'components/InputText/InputText';
-import CalendarModal from 'components/CalendarModal/CalendarModal';
+import { InputText } from 'components/InputText';
+import { CalendarModal } from 'components/CalendarModal';
 
-import { CHECK_INFOS } from 'constant/constant';
+import { CHECK_INFOS } from 'constant';
 
 import { CheckContainer } from './Check.styled';
 
-function Check(): JSX.Element {
+export function Check(): JSX.Element {
   const [show, setShow] = useState<boolean>(false);
 
   const checkMenu = CHECK_INFOS.map(el => <InputText key={el.id} info={el} />);
@@ -23,5 +23,3 @@ function Check(): JSX.Element {
     </>
   );
 }
-
-export default Check;

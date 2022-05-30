@@ -1,9 +1,9 @@
 import React, { useReducer, useState, useRef } from 'react';
 
 import ModalPortal from 'common/portal';
-import Calendar from 'components/Calendar/Calendar';
+import { Calendar } from 'components/Calendar';
 
-import { CALENDAR_BUTTON_INFOS, BASIC_MONTH_INFOS } from 'constant/constant';
+import { CALENDAR_BUTTON_INFOS, BASIC_MONTH_INFOS } from 'constant';
 
 import {
   Backdrop,
@@ -68,7 +68,10 @@ function calendarReducer(
   }
 }
 
-function CalendarModal({ show, handleClickShow }: CalendarProps): JSX.Element {
+export function CalendarModal({
+  show,
+  handleClickShow,
+}: CalendarProps): JSX.Element {
   const carouselCounter = useRef<number>(1);
   const [carouselXPos, setCarouselXPos] = useState<number>(0);
   const [calendarState, calendarDispatch] = useReducer(
@@ -133,5 +136,3 @@ function CalendarModal({ show, handleClickShow }: CalendarProps): JSX.Element {
 
   return <ModalPortal />;
 }
-
-export default CalendarModal;

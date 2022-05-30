@@ -7,7 +7,7 @@ import {
 
 import { InputTextProps } from 'components/InputText/InputText.types';
 
-function InputText({ info }: InputTextProps): JSX.Element {
+export function InputText({ info }: InputTextProps): JSX.Element {
   return (
     <section>
       <label htmlFor={info.label}>
@@ -22,5 +22,3 @@ function InputText({ info }: InputTextProps): JSX.Element {
     </section>
   );
 }
-
-export default InputText;

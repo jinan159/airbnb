@@ -1,11 +1,9 @@
 import React from 'react';
 
-import InputText from 'components/InputText/InputText';
+import { InputText } from 'components/InputText';
 
-import { PERSONNEL_INFOS } from 'constant/constant';
+import { PERSONNEL_INFOS } from 'constant';
 
-function Personnel(): JSX.Element {
+export function Personnel(): JSX.Element {
   return <InputText info={PERSONNEL_INFOS} />;
 }
-
-export default Personnel;
