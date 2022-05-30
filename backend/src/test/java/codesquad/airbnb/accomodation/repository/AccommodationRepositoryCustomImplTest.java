@@ -1,4 +1,4 @@
-package codesquad.airbnb.accomodation;
+package codesquad.airbnb.accomodation.repository;
 
 import codesquad.airbnb.accomodation.dto.PriceAndCount;
 import codesquad.airbnb.config.QueryDSLConfig;
