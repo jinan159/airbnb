@@ -1,9 +1,10 @@
 import React from 'react';
 
-import Check from 'components/Check/Check';
+import { Check } from 'components/Check';
+import { Fare } from 'components/Fare';
+import { Personnel } from 'components/Personnel';
+
 import { Stick } from 'common/util.styled';
-import Fare from 'components/Fare/Fare';
-import Personnel from 'components/Personnel/Personnel';
 import { SearchBar, SearchBtn, SearchForm } from './Search.styeld';
 
 function Search(): JSX.Element {
@@ -23,4 +24,4 @@ function Search(): JSX.Element {
   );
 }
 
-export default Search;
+export { Search };

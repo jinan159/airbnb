@@ -1,18 +1,13 @@
 import React from 'react';
+
 import {
   SearchBarTitle,
   SearchBarInputText,
 } from 'components/InputText/InputText.styled';
 
-interface inputInfoProps {
-  info: {
-    title: string;
-    label: string;
-    placeHolder: string;
-  };
-}
+import { InputTextProps } from 'components/InputText/InputText.types';
 
-function InputText({ info }: inputInfoProps): JSX.Element {
+export function InputText({ info }: InputTextProps): JSX.Element {
   return (
     <section>
       <label htmlFor={info.label}>
@@ -22,9 +17,8 @@ function InputText({ info }: inputInfoProps): JSX.Element {
         type="text"
         id={info.label}
         placeholder={info.placeHolder}
+        readOnly
       />
     </section>
   );
 }
-
-export default InputText;
