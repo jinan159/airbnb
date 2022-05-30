@@ -30,7 +30,17 @@ jobs:
         working-directory: ${{ env.working-directory }}
 
       - name: API 문서 빌드 확인
-        id: api_docs_check
+        id: check_api_docs
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "build/resources/main/static/docs/index.html"
+
+      - name: 프로젝트 일부 재빌드(gradle bootJar)
+        if: steps.check_api_docs.outputs.files_exists == 'false'
+        run: ./gradlew bootJar
+
+      - name: API 문서 빌드 재확인
+        if: steps.check_api_docs.outputs.files_exists == 'false'
         uses: andstor/file-existence-action@v1
         with:
           files: "build/resources/main/static/docs/index.html"
