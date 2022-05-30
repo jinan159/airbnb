@@ -36,21 +36,22 @@ const initialCalendarState: CalendarInterface[] = [
 
 function updateCalendarState(state: CalendarInterface[]): CalendarInterface[] {
   const copy = JSON.parse(JSON.stringify(state));
-  const recentState = copy[copy.length - 1];
+  const recentDate = copy[copy.length - 1];
+  const DECEMBER = 12;
 
-  if (recentState.month === 12) {
+  if (recentDate.month === DECEMBER) {
     const newObj = {
-      id: recentState.id + 1,
-      year: recentState.year + 1,
+      id: recentDate.id + 1,
+      year: recentDate.year + 1,
       month: 1,
     };
     return [...copy, newObj];
   }
 
   const newObj = {
-    id: recentState.id + 1,
-    year: recentState.year,
-    month: recentState.month + 1,
+    id: recentDate.id + 1,
+    year: recentDate.year,
+    month: recentDate.month + 1,
   };
 
   return [...copy, newObj];
