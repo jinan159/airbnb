@@ -4,7 +4,6 @@ import codesquad.airbnb.accomodation.domain.QAccommodation;
 import codesquad.airbnb.accomodation.dto.PriceAndCount;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.NumberExpression;
-import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,13 +12,12 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class AccommodationRepositoryCustomImpl implements AccommodationRepositoryCustom {
+public class AccommodationQueryRepository {
 
     private final static QAccommodation accommodation = QAccommodation.accommodation;
 
     private final JPAQueryFactory queryFactory;
 
-    @Override
     public List<PriceAndCount> findPriceAndCountStatisticsByAmountUnit(long amountUnit) {
         NumberExpression<Long> priceCutByAmountUnit = accommodation.price.divide(amountUnit).multiply(amountUnit);
         NumberExpression<Integer> countAll = accommodation.count().intValue();

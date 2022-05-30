@@ -16,16 +16,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import(QueryDSLConfig.class)
-class AccommodationRepositoryCustomTest {
+class AccommodationQueryRepositoryTest {
 
     @Autowired
     private JPAQueryFactory jpaQueryFactory;
 
-    private AccommodationRepositoryCustom accommodationRepositoryCustom;
+    private AccommodationQueryRepository accommodationQueryRepository;
 
     @BeforeEach
     void setUp() {
-        accommodationRepositoryCustom = new AccommodationRepositoryCustomImpl(jpaQueryFactory);
+        accommodationQueryRepository = new AccommodationQueryRepository(jpaQueryFactory);
     }
 
     @Test
@@ -35,7 +35,7 @@ class AccommodationRepositoryCustomTest {
         long amountUnit = 10000L;
 
         // when
-        List<PriceAndCount> priceAndCountList = accommodationRepositoryCustom.findPriceAndCountStatisticsByAmountUnit(amountUnit);
+        List<PriceAndCount> priceAndCountList = accommodationQueryRepository.findPriceAndCountStatisticsByAmountUnit(amountUnit);
 
         // then
         assertThat(priceAndCountList).isNotNull();

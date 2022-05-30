@@ -2,7 +2,7 @@ package codesquad.airbnb.accomodation.service;
 
 import codesquad.airbnb.accomodation.dto.PriceAndCount;
 import codesquad.airbnb.accomodation.dto.PriceAndCountStatistics;
-import codesquad.airbnb.accomodation.repository.AccommodationRepositoryCustom;
+import codesquad.airbnb.accomodation.repository.AccommodationQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class AccommodationStatisticsService {
 
     private static final ConcurrentHashMap<LocalDate, PriceAndCountStatistics> simpleCache = new ConcurrentHashMap<>();
 
-    private final AccommodationRepositoryCustom accommodationRepositoryCustom;
+    private final AccommodationQueryRepository accommodationQueryRepository;
     private final AmountUnitPolicy amountUnitPolicy;
 
     public PriceAndCountStatistics getCachedPriceAndCountStatistics() {
@@ -45,6 +45,6 @@ public class AccommodationStatisticsService {
     }
 
     private List<PriceAndCount> findPriceAndCountStatistics(long amountUnit) {
-        return accommodationRepositoryCustom.findPriceAndCountStatisticsByAmountUnit(amountUnit);
+        return accommodationQueryRepository.findPriceAndCountStatisticsByAmountUnit(amountUnit);
     }
 }
