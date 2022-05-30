@@ -1,4 +1,4 @@
-package codesquad.airbnb.accomodation;
+package codesquad.airbnb.accomodation.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

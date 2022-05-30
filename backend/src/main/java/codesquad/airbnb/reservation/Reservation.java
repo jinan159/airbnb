@@ -1,6 +1,6 @@
 package codesquad.airbnb.reservation;
 
-import codesquad.airbnb.accomodation.Accommodation;
+import codesquad.airbnb.accomodation.domain.Accommodation;
 import codesquad.airbnb.member.Member;
 
 import javax.persistence.*;
