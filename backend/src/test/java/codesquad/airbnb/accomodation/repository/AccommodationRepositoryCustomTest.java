@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import(QueryDSLConfig.class)
-class AccommodationRepositoryCustomImplTest {
+class AccommodationRepositoryCustomTest {
 
     @Autowired
     private JPAQueryFactory jpaQueryFactory;
