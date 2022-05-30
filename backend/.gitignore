@@ -41,3 +41,6 @@ out/
 
 # docker env
 .env
+
+# QueryDSL
+/src/main/generated

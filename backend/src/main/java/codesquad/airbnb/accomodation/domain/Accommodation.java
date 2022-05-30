@@ -1,6 +1,5 @@
-package codesquad.airbnb.accomodation;
+package codesquad.airbnb.accomodation.domain;
 
-import codesquad.airbnb.common.Money;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.geo.Point;
@@ -18,9 +17,8 @@ public class Accommodation {
     @Column(nullable = false)
     private String title;
 
-    @Embedded
     @Column(nullable = false)
-    private Money price;
+    private long price;
 
     @Embedded
     private Image image;

@@ -1,5 +1,4 @@
-package codesquad.airbnb.common;
-
+package codesquad.airbnb.accomodation.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +10,6 @@ import javax.persistence.Embeddable;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor // for @Embeddable
-public class Money {
-    public static final Money ZERO = new Money(0L);
-
-    private Long amount;
+public class Image {
+    private String imageUrl;
 }
