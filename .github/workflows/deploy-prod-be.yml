@@ -37,7 +37,7 @@ jobs:
 
       - name: (API 문서 없을경우) jar 파일 재빌드
         if: steps.check_api_docs.outputs.files_exists == 'false'
-        run: ./backend/gradlew bootJar
+        run: ./gradlew bootJar
         env:
           JASYPT_KEY: ${{ secrets.JASYPT_KEY }}
         working-directory: ${{ env.working-directory }}
