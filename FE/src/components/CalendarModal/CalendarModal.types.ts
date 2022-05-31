@@ -1,6 +1,7 @@
 export interface CalendarProps {
   show: boolean;
   handleClickShow: () => void;
+  calendarClickCount: { current: number };
 }
 
 export interface CalendarInterface {

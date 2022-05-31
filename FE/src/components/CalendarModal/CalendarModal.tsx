@@ -22,8 +22,8 @@ import { CalendarProps } from './CalendarModal.types';
 export function CalendarModal({
   show,
   handleClickShow,
+  calendarClickCount,
 }: CalendarProps): JSX.Element {
-  const calendarClickCount = useRef<number>(0);
   const carouselCounter = useRef<number>(1);
   const [carouselXPos, setCarouselXPos] = useState<number>(0);
   const [calendarState, calendarDispatch] = useReducer(
