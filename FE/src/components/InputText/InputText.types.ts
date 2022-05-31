@@ -4,4 +4,5 @@ export interface InputTextProps {
     label: string;
     placeHolder: string;
   };
+  check?: string;
 }

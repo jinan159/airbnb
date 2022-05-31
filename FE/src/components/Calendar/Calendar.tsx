@@ -7,6 +7,7 @@ import { DateCell } from 'components/DateCell';
 import {
   DateInfosInterface,
   DateInfoInterface,
+  CalendarPropsInterface,
 } from 'components/Calendar/Calendar.types';
 import {
   CarouselItem,
@@ -18,11 +19,11 @@ import {
 } from './Calendar.styled';
 
 function createTotalDateArr(
-  weekCount: number,
+  totalDate: number,
   curMonthOneDateDay: number,
   dateInfo: DateInfoInterface,
 ): DateInfosInterface[] {
-  const dates = Array.from(new Array(weekCount), (_, i) => {
+  const dates = Array.from(new Array(totalDate), (_, i) => {
     if (i <= curMonthOneDateDay) return { id: i, date: 0 };
 
     return {
@@ -38,9 +39,8 @@ function createTotalDateArr(
 
 export function Calendar({
   dateInfo,
-}: {
-  dateInfo: DateInfoInterface;
-}): JSX.Element {
+  calendarClickCount,
+}: CalendarPropsInterface): JSX.Element {
   // 해당 달의 1일에 요일 구하기
   const curMonthOneDateDay: number = new Date(
     dateInfo.year,
@@ -73,11 +73,19 @@ export function Calendar({
   };
 
   const datesCells = dates.map(el => {
-    if (el.date === 0) return <DateCell key={el.id} />;
+    if (el.date === 0)
+      return <DateCell key={el.id} calendarClickCount={calendarClickCount} />;
 
     const past = distinguishPast(el);
 
-    return <DateCell key={el.id} date={el.date} past={past} />;
+    return (
+      <DateCell
+        key={el.id}
+        date={el.date}
+        past={past}
+        calendarClickCount={calendarClickCount}
+      />
+    );
   });
 
   return (

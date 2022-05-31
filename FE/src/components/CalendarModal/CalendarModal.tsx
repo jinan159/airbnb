@@ -23,6 +23,7 @@ export function CalendarModal({
   show,
   handleClickShow,
 }: CalendarProps): JSX.Element {
+  const calendarClickCount = useRef<number>(0);
   const carouselCounter = useRef<number>(1);
   const [carouselXPos, setCarouselXPos] = useState<number>(0);
   const [calendarState, calendarDispatch] = useReducer(
@@ -53,7 +54,11 @@ export function CalendarModal({
   };
 
   const calendars = calendarState.map(el => (
-    <Calendar key={el.id} dateInfo={el} />
+    <Calendar
+      key={el.id}
+      dateInfo={el}
+      calendarClickCount={calendarClickCount}
+    />
   ));
 
   const buttons = CALENDAR_BUTTON_INFOS.map(el => (
