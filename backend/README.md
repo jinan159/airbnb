@@ -88,7 +88,7 @@ CI/CD 는 많은 작업이 Github Action 에서 진행되며, 다음과 같은 �
 ### 1-2. 망분리 환경 구축
 
 ![image](https://user-images.githubusercontent.com/45728407/171114685-20f80be8-126e-4ff3-bd56-529b45b1e11c.png)
-그림-3 (점선 부분은 실습만 해보고, 인스턴스를 삭제한 항목들)
+<br>그림-3 (점선 부분은 실습만 해보고, 인스턴스를 삭제한 항목들)
 
 VPC 에서 2개의 가용영역에 각각 public, private subnet 을 구축했습니다.
 그리고 요구사항에 따라, WAS 인스턴스와 RDS 인스턴스를 다른 subnet 으로 구성했습니다.
@@ -101,11 +101,12 @@ WAS 인스턴스와 RDS 모두 이중화 되는것이 좋지만, 비용상의 �
 
 ### 1-3. 로드밸런싱
 
-그림-3 에서 ALB 는 public subnet 에 속해있고, private subnet 의 `WAS` 인스턴스들에게 요청을 포워딩 합니다.
+`그림-3` 에서 ALB 는 public subnet 에 속해있고, private subnet 의 `WAS` 인스턴스들에게 요청을 포워딩 합니다.
 
 ### 2. 도메인 모델 설계
 
 ![image](https://user-images.githubusercontent.com/45728407/171122283-38cd7e1b-2f7b-4111-89a1-3b7c6902090c.png)
+<br>그림-4
 
 주요 도메인들을 추려내어, 설계한 구조입니다.
 파란색으로 표시한 도메인들은, 영속화할(DB에 저장할) 도메인들 입니다.
@@ -115,3 +116,19 @@ WAS 인스턴스와 RDS 모두 이중화 되는것이 좋지만, 비용상의 �
 
 그리고 이 중에 `할인 정책(DiscountPolicy)`, `할인 조건(DiscountCondition)`, `수수료 정책(FeesPolicy)` 는 DB에 저장해야하는지,
 만약 저장한다면 어떤 방식으로 저장하는게 좋은지는 아직 고민중입니다.
+
+<img width="225" alt="image" src="https://user-images.githubusercontent.com/45728407/171124642-183b8488-3ef0-42c9-bf0e-389ea412d52a.png">
+<br>그림-5
+<br>
+이번 프로젝트에서는 `그림-5` 과 같은 할인 정책과, 수수료들이 있습니다.
+
+<img width="978" alt="image" src="https://user-images.githubusercontent.com/45728407/171124894-455e638f-77bd-4181-985a-0124a1d3d14b.png">
+<br>그림-6
+
+처음에는 `그림-6` 처럼, 각 숙소마다 할인 정책을 붙이는 방향으로 생각했는데요.
+조금 더 요구사항을 살펴보니, 숙소와 관계없이 결제 시 일정에 따른 할인이라는 것을 알 수 있었습니다.
+
+![](https://user-images.githubusercontent.com/45728407/171122283-38cd7e1b-2f7b-4111-89a1-3b7c6902090c.png)
+<br>그림-7
+
+그래서 최종적으로 `그림-7` 같은 형태로 생각하게 되었습니다.
