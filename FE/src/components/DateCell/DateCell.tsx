@@ -71,13 +71,25 @@ export function DateCell({
         `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
       );
       calendarClickCount.current += 1;
-      setSelcetFlag(true);
     } else if (calendarClickCount.current === 1) {
-      checkContext?.setCheckOut(
-        `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
-      );
-      calendarClickCount.current += 1;
-      setSelcetFlag(true);
+      if (
+        new Date(`${checkContext?.checkIn}`) <
+        new Date(`${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`)
+      ) {
+        checkContext?.setCheckOut(
+          `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
+        );
+        calendarClickCount.current += 1;
+      } else if (
+        new Date(`${checkContext?.checkIn}`) >
+        new Date(`${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`)
+      ) {
+        checkContext?.setCheckIn(
+          `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
+        );
+        checkContext?.setCheckOut('');
+        calendarClickCount.current = 1;
+      }
     } else if (calendarClickCount.current === 2) {
       if (
         new Date(`${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`) <
@@ -87,9 +99,7 @@ export function DateCell({
           `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
         );
         checkContext?.setCheckOut('');
-      } else if (
-        new Date(`${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`)
-      ) {
+      } else {
         checkContext?.setCheckOut(
           `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
         );
