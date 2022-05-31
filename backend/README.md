@@ -12,6 +12,8 @@ airbnb 의 일부 기능을 구현하는 프로젝트로, 다음과 같은 기�
     - 할인 정책 적용
     - 수수료 정책 적용
 
+배포된 서버 주소 : http://airbnb-alb-ap-northeast-2-668068179.ap-northeast-2.elb.amazonaws.com/
+API 문서 주소 : http://airbnb-alb-ap-northeast-2-668068179.ap-northeast-2.elb.amazonaws.com/docs/index.html
     
 ## 1. 인프라 구조
 
