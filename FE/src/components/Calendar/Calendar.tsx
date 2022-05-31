@@ -81,7 +81,7 @@ export function Calendar({
     return (
       <DateCell
         key={el.id}
-        date={el.date}
+        dateInfo={el}
         past={past}
         calendarClickCount={calendarClickCount}
       />

@@ -84,7 +84,7 @@ export function CalendarModal({
             </Carousel>
             {buttons}
           </Modal>
-          <Backdrop onClick={() => handleClickShow(false)} />
+          <Backdrop onClick={handleClickShow} />
         </>
       </ModalPortal>
     );

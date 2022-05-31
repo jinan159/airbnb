@@ -1,6 +1,6 @@
 export interface CalendarProps {
   show: boolean;
-  handleClickShow: (handleClickShow: boolean) => void;
+  handleClickShow: () => void;
 }
 
 export interface CalendarInterface {

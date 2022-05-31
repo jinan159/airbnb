@@ -1,36 +1,114 @@
 /* eslint-disable no-param-reassign */
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { DateCellInterface } from 'components/DateCell/DateCell.types';
-import { DateCellContent } from 'components/DateCell/DateCell.styled';
+import {
+  DateCellContent,
+  DateCellCircle,
+} from 'components/DateCell/DateCell.styled';
+import { CheckContext } from 'contexts/checkcontext/checkContext';
 
 export function DateCell({
-  date,
+  dateInfo,
   past,
   calendarClickCount,
 }: DateCellInterface): JSX.Element {
-  const [flag, setFlag] = useState<boolean>(false);
+  const [selcetFlag, setSelcetFlag] = useState<boolean>(false);
+  const [rangeFlag, setRangeFlag] = useState<boolean>(false);
+  const checkContext = useContext(CheckContext);
 
-  // const handleMouseOverDateCellContent = () => {};
+  useEffect(() => {
+    if (
+      calendarClickCount.current === 1 &&
+      new Date(`${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`) <
+        new Date(`${checkContext?.mouseOverCheckOut}`) &&
+      new Date(`${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`) >
+        new Date(`${checkContext?.checkIn}`)
+    )
+      setRangeFlag(true);
+    else setRangeFlag(false);
+
+    if (
+      new Date(`${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`) <
+        new Date(`${checkContext?.checkOut}`) &&
+      new Date(`${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`) >
+        new Date(`${checkContext?.checkIn}`) &&
+      calendarClickCount.current === 2
+    )
+      setRangeFlag(prev => !prev);
+
+    if (
+      new Date(
+        `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
+      ).getTime() === new Date(`${checkContext?.checkIn}`).getTime()
+    )
+      setSelcetFlag(true);
+    else setSelcetFlag(false);
+
+    if (
+      new Date(
+        `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
+      ).getTime() === new Date(`${checkContext?.checkOut}`).getTime()
+    )
+      setSelcetFlag(true);
+  }, [
+    checkContext?.mouseOverCheckOut,
+    checkContext?.checkOut,
+    checkContext?.checkIn,
+  ]);
+
+  const handleMouseOverDateCellContent = () => {
+    if (calendarClickCount.current === 1) {
+      checkContext?.setMouseOverCheckOut(
+        `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
+      );
+    }
+  };
 
   const handleClickDateCellContent = () => {
-    if (calendarClickCount.current < 2) setFlag(prev => !prev);
-    // else if (calendarClickCount.current === 2)
-    // const a = { ...calendarClickCount };
-    // a.current += 1;
-    // calendarClickCount = a;
-    console.log(calendarClickCount.current);
+    if (calendarClickCount.current === 0) {
+      checkContext?.setCheckIn(
+        `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
+      );
+      calendarClickCount.current += 1;
+      setSelcetFlag(true);
+    } else if (calendarClickCount.current === 1) {
+      checkContext?.setCheckOut(
+        `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
+      );
+      calendarClickCount.current += 1;
+      setSelcetFlag(true);
+    } else if (calendarClickCount.current === 2) {
+      if (
+        new Date(`${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`) <
+        new Date(`${checkContext?.checkIn}`)
+      ) {
+        checkContext?.setCheckIn(
+          `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
+        );
+        checkContext?.setCheckOut('');
+      } else if (
+        new Date(`${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`)
+      ) {
+        checkContext?.setCheckOut(
+          `${dateInfo?.year}, ${dateInfo?.month}, ${dateInfo?.date}`,
+        );
+      }
+    }
   };
 
   return (
     <DateCellContent
-      date={date}
+      dateInfo={dateInfo}
       past={past}
-      flag={flag}
+      selectFlag={selcetFlag}
+      rangeFlag={rangeFlag}
       onClick={handleClickDateCellContent}
-      // onMouseOver={handleMouseOverDateCellContent}
+      onMouseOver={handleMouseOverDateCellContent}
     >
-      {date}
+      <DateCellCircle past={past} dateInfo={dateInfo} rangeFlag={rangeFlag}>
+        {dateInfo?.date}
+      </DateCellCircle>
     </DateCellContent>
   );
 }
