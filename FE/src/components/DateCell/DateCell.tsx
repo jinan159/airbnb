@@ -11,7 +11,7 @@ export function DateCell({
 }: DateCellInterface): JSX.Element {
   const [flag, setFlag] = useState<boolean>(false);
 
-  const handleMouseOverDateCellContent = () => {};
+  // const handleMouseOverDateCellContent = () => {};
 
   const handleClickDateCellContent = () => {
     if (calendarClickCount.current < 2) setFlag(prev => !prev);
@@ -28,7 +28,7 @@ export function DateCell({
       past={past}
       flag={flag}
       onClick={handleClickDateCellContent}
-      onMouseOver={handleMouseOverDateCellContent}
+      // onMouseOver={handleMouseOverDateCellContent}
     >
       {date}
     </DateCellContent>
