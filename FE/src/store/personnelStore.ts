@@ -41,6 +41,13 @@ export function personnelReducer(
         ...state,
         infant: state.infant - 1,
       };
+    case 'CLEAR':
+      return {
+        ...state,
+        adult: 0,
+        child: 0,
+        infant: 0,
+      };
     default:
       return state;
   }

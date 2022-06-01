@@ -15,9 +15,9 @@ export function Check(): JSX.Element {
 
   const checkMenu = CHECK_INFOS.map(el =>
     el.id === 1 ? (
-      <InputText key={el.id} info={el} check={checkContext?.checkIn} />
+      <InputText key={el.id} info={el} value={checkContext?.checkIn} />
     ) : (
-      <InputText key={el.id} info={el} check={checkContext?.checkOut} />
+      <InputText key={el.id} info={el} value={checkContext?.checkOut} />
     ),
   );
 
