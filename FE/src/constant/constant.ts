@@ -220,3 +220,6 @@ export const PERSONNEL_TEXTS = [
   { id: 2, title: '어린이', age: '만 2~12세', actionTypeName: 'CHILD' },
   { id: 3, title: '유아', age: '만 2세 미만', actionTypeName: 'INFANT' },
 ];
+
+export const PERSONNEL_MAX_VALUE = 8;
+export const PERSONNEL_MIN_VALUE = 0;

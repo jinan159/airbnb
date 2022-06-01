@@ -3,6 +3,9 @@ import React, { useContext } from 'react';
 import { PersonnelContext } from 'contexts/personnelcontext/personnelContext';
 
 import { IPersonnelState } from 'components/Personnel/Presonnel.types';
+
+import { PERSONNEL_MAX_VALUE, PERSONNEL_MIN_VALUE } from 'constant';
+
 import { Container, Button, ButtonImg, Count } from './PersonnelCounter.styled';
 
 const distinguishPersonnelValue = (
@@ -25,25 +28,33 @@ export function PersonnelCounter({
   actionTypeName: string;
 }): JSX.Element {
   const personnelContext = useContext(PersonnelContext);
-
   const count = distinguishPersonnelValue(
     actionTypeName,
     personnelContext.personnelState,
   );
+  const isMin = count > PERSONNEL_MIN_VALUE;
+  const isMax = count < PERSONNEL_MAX_VALUE;
+
+  const minusBtnImg = isMin
+    ? './assets/images/minuse.svg'
+    : './assets/images/minuse-off.svg';
+  const plusBtnImg = isMax
+    ? './assets/images/pluse.svg'
+    : './assets/images/pluse-off.svg';
 
   const handleClickPersonnelMinus = () => {
-    if (count > 0)
+    if (isMin)
       personnelContext.personnelDispatch({
         type: `SUBTRACT_${actionTypeName}`,
       });
   };
 
   const handleClickPersonnelPlus = () => {
-    if (count < 8)
+    if (isMax)
       personnelContext.personnelDispatch({ type: `ADD_${actionTypeName}` });
 
     if (
-      personnelContext.personnelState.adult === 0 &&
+      personnelContext.personnelState.adult === PERSONNEL_MIN_VALUE &&
       (actionTypeName === 'INFANT' || actionTypeName === 'CHILD')
     )
       personnelContext.personnelDispatch({ type: `ADD_ADULT` });
@@ -52,11 +63,11 @@ export function PersonnelCounter({
   return (
     <Container>
       <Button onClick={handleClickPersonnelMinus}>
-        <ButtonImg src="./assets/images/minuse.svg" alt="인원 마이너스" />
+        <ButtonImg src={minusBtnImg} alt="인원 마이너스" />
       </Button>
       <Count>{count}</Count>
       <Button onClick={handleClickPersonnelPlus}>
-        <ButtonImg src="./assets/images/pluse.svg" alt="인원 플러스" />
+        <ButtonImg src={plusBtnImg} alt="인원 플러스" />
       </Button>
     </Container>
   );
