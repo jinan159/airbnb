@@ -16,6 +16,11 @@ const GlobalStyle = createGlobalStyle`
     top: 0;
     left: 0;
   }
+
+  a {
+    text-decoration: none;
+    color: #010101;
+  }
 `;
 
 export default GlobalStyle;
