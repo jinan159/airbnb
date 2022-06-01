@@ -27,7 +27,7 @@ export function PersonnelModal({
         <PersonnelTitle>{personnel.title}</PersonnelTitle>
         <PersonnelAge>{personnel.age}</PersonnelAge>
       </Personnel>
-      <PersonnelCounter />
+      <PersonnelCounter actionTypeName={personnel.actionTypeName} />
     </PersonnelItem>
   ));
 

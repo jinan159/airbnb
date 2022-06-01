@@ -216,7 +216,7 @@ export const FNB_INFOS = [
 ];
 
 export const PERSONNEL_TEXTS = [
-  { id: 1, title: '성인', age: '만 13세 이상' },
-  { id: 2, title: '어린이', age: '만 2~12세' },
-  { id: 3, title: '유아', age: '만 2세 미만' },
+  { id: 1, title: '성인', age: '만 13세 이상', actionTypeName: 'ADULT' },
+  { id: 2, title: '어린이', age: '만 2~12세', actionTypeName: 'CHILD' },
+  { id: 3, title: '유아', age: '만 2세 미만', actionTypeName: 'INFANT' },
 ];
