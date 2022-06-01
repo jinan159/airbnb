@@ -48,3 +48,13 @@ export const ModalStyle = css`
     0px 0px 4px rgba(51, 51, 51, 0.05);
   box-sizing: border-box;
 `;
+
+export const ClearBtn = css`
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  ${BtnBackgroundBorderRemove}
+  cursor: pointer;
+`;

@@ -3,3 +3,7 @@ export interface IPersonnelState {
   child: number;
   infant: number;
 }
+
+export interface IPersonnelInputClearBtn {
+  isClearBtnShow: boolean;
+}
