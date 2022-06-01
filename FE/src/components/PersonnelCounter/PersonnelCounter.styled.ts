@@ -17,7 +17,7 @@ export const ButtonImg = styled.img`
   width: 3rem;
 `;
 
-export const Number = styled.em`
+export const Count = styled.em`
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-size: ${({ theme }) => theme.fontSizes.xl};
   line-height: ${({ theme }) => theme.lineHeights.taller};
