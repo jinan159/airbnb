@@ -42,6 +42,8 @@ export function PersonnelCounter({
     ? './assets/images/pluse.svg'
     : './assets/images/pluse-off.svg';
 
+  const { adult } = personnelContext.personnelState;
+
   const handleClickPersonnelMinus = () => {
     if (isMin)
       personnelContext.personnelDispatch({
@@ -54,7 +56,7 @@ export function PersonnelCounter({
       personnelContext.personnelDispatch({ type: `ADD_${actionTypeName}` });
 
     if (
-      personnelContext.personnelState.adult === PERSONNEL_MIN_VALUE &&
+      adult === PERSONNEL_MIN_VALUE &&
       (actionTypeName === 'INFANT' || actionTypeName === 'CHILD')
     )
       personnelContext.personnelDispatch({ type: `ADD_ADULT` });

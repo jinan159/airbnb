@@ -17,61 +17,23 @@ export function Personnel(): JSX.Element {
   const [isShow, setIsShow] = useState<boolean>(false);
   const [isClearBtnShow, setIsClearBtnShow] = useState<boolean>(false);
   const personnelContext = useContext(PersonnelContext);
+  const { adult, child, infant } = personnelContext.personnelState;
 
   useEffect(() => {
-    const guest =
-      personnelContext.personnelState.adult +
-      personnelContext.personnelState.child;
-
     activeClearBtn();
 
-    if (
-      personnelContext.personnelState.adult === 0 &&
-      (personnelContext.personnelState.child > 0 ||
-        personnelContext.personnelState.infant > 0)
-    )
-      setPersonnelText('');
-    else if (
-      personnelContext.personnelState.adult === 0 &&
-      personnelContext.personnelState.infant === 0
-    )
-      setPersonnelText('');
-    else if (
-      personnelContext.personnelState.adult > 0 &&
-      personnelContext.personnelState.infant === 0
-    ) {
-      setPersonnelText(`게스트 ${guest}명`);
-    } else if (
-      personnelContext.personnelState.adult === 0 &&
-      personnelContext.personnelState.infant > 0
-    ) {
-      setPersonnelText(`유아 ${personnelContext.personnelState.infant}명`);
-    } else if (
-      personnelContext.personnelState.adult > 0 &&
-      personnelContext.personnelState.infant > 0
-    ) {
-      setPersonnelText(
-        `게스트 ${guest}명 유아 ${personnelContext.personnelState.infant}명`,
-      );
-    }
-  }, [
-    personnelContext.personnelState.adult,
-    personnelContext.personnelState.child,
-    personnelContext.personnelState.infant,
-  ]);
+    if (adult === 0 && (child > 0 || infant > 0)) setPersonnelText('');
+    else if (adult === 0 && infant === 0) setPersonnelText('');
+    else if (adult > 0 && infant === 0)
+      setPersonnelText(`게스트 ${adult + child}명`);
+    else if (adult === 0 && infant > 0) setPersonnelText(`유아 ${infant}명`);
+    else if (adult > 0 && infant > 0)
+      setPersonnelText(`게스트 ${adult + child}명 유아 ${infant}명`);
+  }, [adult, child, infant]);
 
   const activeClearBtn = () => {
-    if (
-      personnelContext.personnelState.adult > 0 ||
-      personnelContext.personnelState.child > 0 ||
-      personnelContext.personnelState.infant > 0
-    )
-      setIsClearBtnShow(true);
-    else if (
-      personnelContext.personnelState.adult === 0 &&
-      personnelContext.personnelState.child === 0 &&
-      personnelContext.personnelState.infant === 0
-    )
+    if (adult > 0 || child > 0 || infant > 0) setIsClearBtnShow(true);
+    else if (adult === 0 && child === 0 && infant === 0)
       setIsClearBtnShow(false);
   };
 
