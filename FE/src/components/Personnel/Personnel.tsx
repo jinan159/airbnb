@@ -19,7 +19,41 @@ export function Personnel(): JSX.Element {
   const personnelContext = useContext(PersonnelContext);
 
   useEffect(() => {
+    const guest =
+      personnelContext.personnelState.adult +
+      personnelContext.personnelState.child;
+
     activeClearBtn();
+
+    if (
+      personnelContext.personnelState.adult === 0 &&
+      (personnelContext.personnelState.child > 0 ||
+        personnelContext.personnelState.infant > 0)
+    )
+      setPersonnelText('');
+    else if (
+      personnelContext.personnelState.adult === 0 &&
+      personnelContext.personnelState.infant === 0
+    )
+      setPersonnelText('');
+    else if (
+      personnelContext.personnelState.adult > 0 &&
+      personnelContext.personnelState.infant === 0
+    ) {
+      setPersonnelText(`게스트 ${guest}명`);
+    } else if (
+      personnelContext.personnelState.adult === 0 &&
+      personnelContext.personnelState.infant > 0
+    ) {
+      setPersonnelText(`유아 ${personnelContext.personnelState.infant}명`);
+    } else if (
+      personnelContext.personnelState.adult > 0 &&
+      personnelContext.personnelState.infant > 0
+    ) {
+      setPersonnelText(
+        `게스트 ${guest}명 유아 ${personnelContext.personnelState.infant}명`,
+      );
+    }
   }, [
     personnelContext.personnelState.adult,
     personnelContext.personnelState.child,
