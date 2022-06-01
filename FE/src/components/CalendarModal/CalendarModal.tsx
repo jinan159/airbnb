@@ -9,8 +9,8 @@ import {
 
 import { CALENDAR_BUTTON_INFOS } from 'constant';
 
+import { Backdrop } from 'common/util.styled';
 import {
-  Backdrop,
   Modal,
   Carousel,
   CarouselItemContainer,

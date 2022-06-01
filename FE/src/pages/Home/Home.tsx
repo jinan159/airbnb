@@ -59,7 +59,7 @@ export function Home(): JSX.Element {
       </LNBItem>
       {info.link.map(text => (
         <LNBItem key={text}>
-          <LNBItemLink href="#">{text}</LNBItemLink>
+          <LNBItemLink>{text}</LNBItemLink>
         </LNBItem>
       ))}
     </LNBList>
@@ -67,7 +67,7 @@ export function Home(): JSX.Element {
 
   const fnbs = FNB_INFOS.map(info => (
     <FNBItem key={info.id}>
-      <FNBItemLink href="#">{info.link}</FNBItemLink>
+      <FNBItemLink>{info.link}</FNBItemLink>
     </FNBItem>
   ));
   return (

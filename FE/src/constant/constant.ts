@@ -214,3 +214,9 @@ export const FNB_INFOS = [
     link: '회사 세부정보',
   },
 ];
+
+export const PERSONNEL_TEXTS = [
+  { id: 1, title: '성인', age: '만 13세 이상' },
+  { id: 2, title: '어린이', age: '만 2~12세' },
+  { id: 3, title: '유아', age: '만 2세 미만' },
+];
