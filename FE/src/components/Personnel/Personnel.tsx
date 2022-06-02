@@ -18,28 +18,50 @@ export function Personnel(): JSX.Element {
   const [isClearBtnShow, setIsClearBtnShow] = useState<boolean>(false);
   const personnelContext = useContext(PersonnelContext);
   const { adult, child, infant } = personnelContext.personnelState;
+  const {
+    adultEqualtoZero,
+    adultGreatethanZero,
+    childEqualtoZero,
+    childGreatethanZero,
+    infantEqualtoZero,
+    infantGreatethanZero,
+  } = {
+    adultEqualtoZero: adult === 0,
+    adultGreatethanZero: adult > 0,
+    childEqualtoZero: child === 0,
+    childGreatethanZero: child > 0,
+    infantEqualtoZero: infant === 0,
+    infantGreatethanZero: infant > 0,
+  };
 
   useEffect(() => {
-    activeClearBtn();
-
-    if (adult === 0 && (child > 0 || infant > 0)) setPersonnelText('');
-    else if (adult === 0 && infant === 0) setPersonnelText('');
-    else if (adult > 0 && infant === 0)
-      setPersonnelText(`게스트 ${adult + child}명`);
-    else if (adult === 0 && infant > 0) setPersonnelText(`유아 ${infant}명`);
-    else if (adult > 0 && infant > 0)
-      setPersonnelText(`게스트 ${adult + child}명 유아 ${infant}명`);
+    showClearBtn();
+    updateInputPersonnelText();
   }, [adult, child, infant]);
 
-  const activeClearBtn = () => {
-    if (adult > 0 || child > 0 || infant > 0) setIsClearBtnShow(true);
-    else if (adult === 0 && child === 0 && infant === 0)
+  const showClearBtn = () => {
+    if (adultGreatethanZero || childGreatethanZero || infantGreatethanZero)
+      setIsClearBtnShow(true);
+    else if (adultEqualtoZero && childEqualtoZero && infantEqualtoZero)
       setIsClearBtnShow(false);
   };
 
   const handleClickPersonnelModalShow = () => setIsShow(prev => !prev);
 
-  const handleClickPersonnelClearBtn = () => {
+  const handleClickPersonnelClearBtn = () =>
+    clearInputPersonnelTextAndClearBtn();
+
+  const updateInputPersonnelText = () => {
+    if (adultEqualtoZero && (childGreatethanZero || infantGreatethanZero)) {
+      setPersonnelText('');
+    } else if (adultGreatethanZero) {
+      if (infantEqualtoZero) setPersonnelText(`게스트 ${adult + child}명`);
+      else if (infantGreatethanZero)
+        setPersonnelText(`게스트 ${adult + child}명 유아 ${infant}명`);
+    }
+  };
+
+  const clearInputPersonnelTextAndClearBtn = () => {
     setPersonnelText('');
     setIsShow(prev => !prev);
     setIsClearBtnShow(prev => !prev);

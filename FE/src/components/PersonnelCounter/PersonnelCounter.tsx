@@ -28,33 +28,46 @@ export function PersonnelCounter({
   actionTypeName: string;
 }): JSX.Element {
   const personnelContext = useContext(PersonnelContext);
+
   const count = distinguishPersonnelValue(
     actionTypeName,
     personnelContext.personnelState,
   );
-  const isMin = count > PERSONNEL_MIN_VALUE;
-  const isMax = count < PERSONNEL_MAX_VALUE;
 
-  const minusBtnImg = isMin
+  const countGreaterThanMin = count > PERSONNEL_MIN_VALUE;
+  const countLessThanMax = count < PERSONNEL_MAX_VALUE;
+
+  const minusBtnImg = countGreaterThanMin
     ? './assets/images/minuse.svg'
     : './assets/images/minuse-off.svg';
-  const plusBtnImg = isMax
+  const plusBtnImg = countLessThanMax
     ? './assets/images/pluse.svg'
     : './assets/images/pluse-off.svg';
 
   const { adult } = personnelContext.personnelState;
 
   const handleClickPersonnelMinus = () => {
-    if (isMin)
+    subtractPersonnelCount();
+  };
+
+  const subtractPersonnelCount = () => {
+    if (countGreaterThanMin)
       personnelContext.personnelDispatch({
         type: `SUBTRACT_${actionTypeName}`,
       });
   };
 
   const handleClickPersonnelPlus = () => {
-    if (isMax)
-      personnelContext.personnelDispatch({ type: `ADD_${actionTypeName}` });
+    addPersonnelCount();
+    addPersonnelAdultCountWhenRestCountZero();
+  };
 
+  const addPersonnelCount = () => {
+    if (countLessThanMax)
+      personnelContext.personnelDispatch({ type: `ADD_${actionTypeName}` });
+  };
+
+  const addPersonnelAdultCountWhenRestCountZero = () => {
     if (
       adult === PERSONNEL_MIN_VALUE &&
       (actionTypeName === 'INFANT' || actionTypeName === 'CHILD')
