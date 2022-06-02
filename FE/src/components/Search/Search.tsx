@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useReducer } from 'react';
+import React, { useState, useMemo, useReducer, useContext } from 'react';
 
 import { Check } from 'components/Check';
 import { Fare } from 'components/Fare';
@@ -18,6 +18,7 @@ import {
   SearchBtn,
   SearchForm,
 } from 'components/Search/Search.styeld';
+import { SearchContext } from 'contexts/searchcontext/searchContext';
 
 export function Search(): JSX.Element {
   const [checkIn, setCheckIn] = useState<string>('');
@@ -27,6 +28,7 @@ export function Search(): JSX.Element {
     personnelReducer,
     initialPersonnelState,
   );
+  const { isSearchShowing, setIsSearchShowing } = useContext(SearchContext);
 
   const checkContext: ICheckContext = useMemo(
     () => ({
@@ -48,9 +50,11 @@ export function Search(): JSX.Element {
     [personnelState],
   );
 
+  const handleClickSearchBar = () => setIsSearchShowing(false);
+
   return (
-    <SearchBar>
-      <SearchForm>
+    <SearchBar isSearchShowing={isSearchShowing} onClick={handleClickSearchBar}>
+      <SearchForm isSearchShowing={isSearchShowing}>
         <CheckContext.Provider value={checkContext}>
           <Check />
         </CheckContext.Provider>

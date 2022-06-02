@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { ClearBtn } from 'common/util.styled';
 
 export const PersonnelContainer = styled.div`
+  display: flex;
   position: relative;
   cursor: pointer;
 `;
