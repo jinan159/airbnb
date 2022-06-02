@@ -10,24 +10,26 @@ import { CheckContainer, CheckClearBtn } from './Check.styled';
 
 export function Check(): JSX.Element {
   const calendarClickCount = useRef<number>(0);
-  const checkContext = useContext(CheckContext);
-  const [show, setShow] = useState<boolean>(false);
+  const { checkIn, checkOut, setCheckIn, setCheckOut } =
+    useContext(CheckContext);
+  const [isShowing, setIsShowing] = useState<boolean>(false);
 
   const checkMenu = CHECK_INFOS.map(el =>
     el.id === 1 ? (
-      <InputText key={el.id} info={el} value={checkContext?.checkIn} />
+      <InputText key={el.id} info={el} value={checkIn} />
     ) : (
-      <InputText key={el.id} info={el} value={checkContext?.checkOut} />
+      <InputText key={el.id} info={el} value={checkOut} />
     ),
   );
 
-  const handleClickShow = () => {
-    setShow(prev => !prev);
-  };
+  const handleClickShow = () => setIsShowing(prev => !prev);
 
-  const handleClickCheckClearBtn = () => {
-    checkContext?.setCheckIn('');
-    checkContext?.setCheckOut('');
+  const handleClickCheckClearBtn = () => clearInutCheckTextAndClearBtn();
+
+  const clearInutCheckTextAndClearBtn = () => {
+    setIsShowing(true);
+    setCheckIn('');
+    setCheckOut('');
     calendarClickCount.current = 0;
   };
 
@@ -38,7 +40,7 @@ export function Check(): JSX.Element {
         <CheckClearBtn
           type="button"
           onClick={handleClickCheckClearBtn}
-          checkIn={checkContext?.checkIn}
+          checkIn={checkIn}
         >
           <img
             src="./assets/images/x-circle.svg"
@@ -47,7 +49,7 @@ export function Check(): JSX.Element {
         </CheckClearBtn>
       </CheckContainer>
       <CalendarModal
-        show={show}
+        isShowing={isShowing}
         handleClickShow={handleClickShow}
         calendarClickCount={calendarClickCount}
       />

@@ -7,7 +7,7 @@ import { Personnel } from 'components/Personnel';
 import { CheckContext } from 'contexts/checkcontext/checkContext';
 import { PersonnelContext } from 'contexts/personnelcontext/personnelContext';
 
-import { checkContextInterface } from 'contexts/checkcontext/checkContext.types';
+import { ICheckContext } from 'contexts/checkcontext/checkContext.types';
 import { IPersonnelContext } from 'contexts/personnelcontext/personnelContext.types';
 
 import { initialPersonnelState, personnelReducer } from 'store/personnelStore';
@@ -28,7 +28,7 @@ export function Search(): JSX.Element {
     initialPersonnelState,
   );
 
-  const checkContext: checkContextInterface = useMemo(
+  const checkContext: ICheckContext = useMemo(
     () => ({
       checkIn,
       checkOut,

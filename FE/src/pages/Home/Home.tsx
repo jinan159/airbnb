@@ -30,8 +30,6 @@ import {
 } from 'pages/Home/Home.styled';
 import { TRAVEL_INFOS, ANYWHERE_INFOS, LNB_INFOS, FNB_INFOS } from 'constant';
 
-import { LNBInterface } from './Home.types';
-
 export function Home(): JSX.Element {
   const travels = TRAVEL_INFOS.map(info => (
     <NearItem key={info.id}>
@@ -52,7 +50,7 @@ export function Home(): JSX.Element {
     </AnyWhereItem>
   ));
 
-  const lnbs = LNB_INFOS.map((info: LNBInterface) => (
+  const lnbs = LNB_INFOS.map(info => (
     <LNBList key={info.id}>
       <LNBItem>
         <LNBItemTitle>{info.title}</LNBItemTitle>

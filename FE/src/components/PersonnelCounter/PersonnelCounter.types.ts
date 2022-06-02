@@ -1,6 +1,3 @@
-import { IPersonnelState } from 'components/Personnel/Presonnel.types';
+import { IPersonnelState } from 'contexts/personnelcontext/personnelContext.types';
 
-export interface IDistinguishPersonnelValue {
-  actionTypeName: string;
-  PersonnelValue: IPersonnelState;
-}
+export type PersonnelValue = IPersonnelState;

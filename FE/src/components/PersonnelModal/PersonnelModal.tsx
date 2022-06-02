@@ -18,7 +18,7 @@ import {
 import { IPersonnelModalProps } from './PersonnelModal.types';
 
 export function PersonnelModal({
-  isShow,
+  isShowing,
   handleClickPersonnelModalShow,
 }: IPersonnelModalProps): JSX.Element {
   const personnels = PERSONNEL_INFOS.map(personnel => (
@@ -31,7 +31,7 @@ export function PersonnelModal({
     </PersonnelItem>
   ));
 
-  if (isShow)
+  if (isShowing)
     return (
       <ModalPortal>
         <>

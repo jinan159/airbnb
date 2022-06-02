@@ -2,8 +2,6 @@ import styled from 'styled-components';
 
 import { ModalStyle, BtnBackgroundBorderRemove } from 'common/util.styled';
 
-import { CarouselItemContainerProps } from 'components/CalendarModal/CalendarModal.types';
-
 export const Modal = styled.div`
   ${ModalStyle}
   padding: 6.5rem 8.8rem;
@@ -18,7 +16,7 @@ export const Carousel = styled.div`
   overflow: hidden;
 `;
 
-export const CarouselItemContainer = styled.div<CarouselItemContainerProps>`
+export const CarouselItemContainer = styled.div<{ pos: number }>`
   display: flex;
   justify-content: flex-start;
   flex-wrap: nowrap;

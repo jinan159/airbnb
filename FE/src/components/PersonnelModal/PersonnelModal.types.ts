@@ -1,4 +1,4 @@
 export interface IPersonnelModalProps {
-  isShow: boolean;
+  isShowing: boolean;
   handleClickPersonnelModalShow: () => void;
 }

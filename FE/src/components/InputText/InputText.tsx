@@ -5,9 +5,9 @@ import {
   SearchBarInputText,
 } from 'components/InputText/InputText.styled';
 
-import { InputTextProps } from 'components/InputText/InputText.types';
+import { IInputTextProps } from 'components/InputText/InputText.types';
 
-export function InputText({ info, value }: InputTextProps): JSX.Element {
+export function InputText({ info, value }: IInputTextProps): JSX.Element {
   return (
     <section>
       <label htmlFor={info.label}>

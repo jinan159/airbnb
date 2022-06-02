@@ -2,18 +2,18 @@ import styled, { css } from 'styled-components';
 
 import { ClearBtn } from 'common/util.styled';
 
-import { IPersonnelInputClearBtn } from './Presonnel.types';
-
 export const PersonnelContainer = styled.div`
   position: relative;
   cursor: pointer;
 `;
 
-export const PersonnelInputClearBtn = styled.button<IPersonnelInputClearBtn>`
+export const PersonnelInputClearBtn = styled.button<{
+  isClearBtnShowing: boolean;
+}>`
   display: none;
 
-  ${({ isClearBtnShow }) =>
-    isClearBtnShow &&
+  ${({ isClearBtnShowing }) =>
+    isClearBtnShowing &&
     css`
       ${ClearBtn}
     `}

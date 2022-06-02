@@ -1,4 +1,4 @@
-import { IPersonnelState } from 'components/Personnel/Presonnel.types';
+import { IPersonnelState } from 'contexts/personnelcontext/personnelContext.types';
 
 export const initialPersonnelState = {
   adult: 0,

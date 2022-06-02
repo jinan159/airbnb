@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 
 import { PersonnelContext } from 'contexts/personnelcontext/personnelContext';
 
-import { IPersonnelState } from 'components/Personnel/Presonnel.types';
-
 import { PERSONNEL_MAX_VALUE, PERSONNEL_MIN_VALUE } from 'constant';
+
+import { PersonnelValue } from './PersonnelCounter.types';
 
 import { Container, Button, ButtonImg, Count } from './PersonnelCounter.styled';
 
 const distinguishPersonnelValue = (
   actionTypeName: string,
-  PersonnelValue: IPersonnelState,
+  PersonnelValue: PersonnelValue,
 ) => {
   switch (actionTypeName) {
     case 'ADULT':
@@ -27,12 +27,11 @@ export function PersonnelCounter({
 }: {
   actionTypeName: string;
 }): JSX.Element {
-  const personnelContext = useContext(PersonnelContext);
+  const { personnelState, personnelDispatch } = useContext(PersonnelContext);
 
-  const count = distinguishPersonnelValue(
-    actionTypeName,
-    personnelContext.personnelState,
-  );
+  const { adult } = personnelState;
+
+  const count = distinguishPersonnelValue(actionTypeName, personnelState);
 
   const countGreaterThanMin = count > PERSONNEL_MIN_VALUE;
   const countLessThanMax = count < PERSONNEL_MAX_VALUE;
@@ -44,15 +43,11 @@ export function PersonnelCounter({
     ? './assets/images/pluse.svg'
     : './assets/images/pluse-off.svg';
 
-  const { adult } = personnelContext.personnelState;
-
-  const handleClickPersonnelMinus = () => {
-    subtractPersonnelCount();
-  };
+  const handleClickPersonnelMinus = () => subtractPersonnelCount();
 
   const subtractPersonnelCount = () => {
     if (countGreaterThanMin)
-      personnelContext.personnelDispatch({
+      personnelDispatch({
         type: `SUBTRACT_${actionTypeName}`,
       });
   };
@@ -63,8 +58,7 @@ export function PersonnelCounter({
   };
 
   const addPersonnelCount = () => {
-    if (countLessThanMax)
-      personnelContext.personnelDispatch({ type: `ADD_${actionTypeName}` });
+    if (countLessThanMax) personnelDispatch({ type: `ADD_${actionTypeName}` });
   };
 
   const addPersonnelAdultCountWhenRestCountZero = () => {
@@ -72,7 +66,7 @@ export function PersonnelCounter({
       adult === PERSONNEL_MIN_VALUE &&
       (actionTypeName === 'INFANT' || actionTypeName === 'CHILD')
     )
-      personnelContext.personnelDispatch({ type: `ADD_ADULT` });
+      personnelDispatch({ type: `ADD_ADULT` });
   };
 
   return (

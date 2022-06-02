@@ -14,10 +14,13 @@ import { PERSONNEL_TEXT } from 'constant';
 
 export function Personnel(): JSX.Element {
   const [personnelText, setPersonnelText] = useState<string>('');
-  const [isShow, setIsShow] = useState<boolean>(false);
-  const [isClearBtnShow, setIsClearBtnShow] = useState<boolean>(false);
-  const personnelContext = useContext(PersonnelContext);
-  const { adult, child, infant } = personnelContext.personnelState;
+  const [isShowing, setIsShowing] = useState<boolean>(false);
+  const [isClearBtnShowing, setIsClearBtnShowing] = useState<boolean>(false);
+  const {
+    personnelState: { adult, child, infant },
+    personnelDispatch,
+  } = useContext(PersonnelContext);
+
   const {
     adultEqualtoZero,
     adultGreatethanZero,
@@ -41,31 +44,32 @@ export function Personnel(): JSX.Element {
 
   const showClearBtn = () => {
     if (adultGreatethanZero || childGreatethanZero || infantGreatethanZero)
-      setIsClearBtnShow(true);
+      setIsClearBtnShowing(true);
     else if (adultEqualtoZero && childEqualtoZero && infantEqualtoZero)
-      setIsClearBtnShow(false);
+      setIsClearBtnShowing(false);
   };
 
-  const handleClickPersonnelModalShow = () => setIsShow(prev => !prev);
+  const handleClickPersonnelModalShow = () => setIsShowing(prev => !prev);
 
   const handleClickPersonnelClearBtn = () =>
     clearInputPersonnelTextAndClearBtn();
 
   const updateInputPersonnelText = () => {
-    if (adultEqualtoZero && (childGreatethanZero || infantGreatethanZero)) {
-      setPersonnelText('');
-    } else if (adultGreatethanZero) {
-      if (infantEqualtoZero) setPersonnelText(`게스트 ${adult + child}명`);
-      else if (infantGreatethanZero)
-        setPersonnelText(`게스트 ${adult + child}명 유아 ${infant}명`);
-    }
+    if (adultEqualtoZero) setPersonnelText('');
+    else if (adultGreatethanZero) addGuestPersonnel();
+  };
+
+  const addGuestPersonnel = () => {
+    if (infantEqualtoZero) setPersonnelText(`게스트 ${adult + child}명`);
+    else if (infantGreatethanZero)
+      setPersonnelText(`게스트 ${adult + child}명 유아 ${infant}명`);
   };
 
   const clearInputPersonnelTextAndClearBtn = () => {
     setPersonnelText('');
-    setIsShow(prev => !prev);
-    setIsClearBtnShow(prev => !prev);
-    personnelContext.personnelDispatch({ type: 'CLEAR' });
+    setIsShowing(true);
+    setIsClearBtnShowing(false);
+    personnelDispatch({ type: 'CLEAR' });
   };
 
   return (
@@ -73,7 +77,7 @@ export function Personnel(): JSX.Element {
       <PersonnelContainer onClick={handleClickPersonnelModalShow}>
         <InputText info={PERSONNEL_TEXT} value={personnelText} />
         <PersonnelInputClearBtn
-          isClearBtnShow={isClearBtnShow}
+          isClearBtnShowing={isClearBtnShowing}
           type="button"
           onClick={handleClickPersonnelClearBtn}
         >
@@ -81,7 +85,7 @@ export function Personnel(): JSX.Element {
         </PersonnelInputClearBtn>
       </PersonnelContainer>
       <PersonnelModal
-        isShow={isShow}
+        isShowing={isShowing}
         handleClickPersonnelModalShow={handleClickPersonnelModalShow}
       />
     </>

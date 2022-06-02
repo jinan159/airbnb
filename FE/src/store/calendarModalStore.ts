@@ -1,12 +1,9 @@
 import { BASIC_MONTH_INFO } from 'constant';
-import {
-  CalendarInterface,
-  CalendarActionInterface,
-} from 'components//CalendarModal/CalendarModal.types';
+import { ICalendar } from 'components//CalendarModal/CalendarModal.types';
 
 const cur: Date = new Date(Date.now());
 
-export const initialCalendarState: CalendarInterface[] = [
+export const initialCalendarState: ICalendar[] = [
   {
     id: 1,
     year: cur.getFullYear(),
@@ -19,7 +16,7 @@ export const initialCalendarState: CalendarInterface[] = [
   },
 ];
 
-function updateCalendarState(state: CalendarInterface[]): CalendarInterface[] {
+function updateCalendarState(state: ICalendar[]): ICalendar[] {
   const copy = JSON.parse(JSON.stringify(state));
   const recentDate = copy[copy.length - 1];
   const DECEMBER = 12;
@@ -43,9 +40,9 @@ function updateCalendarState(state: CalendarInterface[]): CalendarInterface[] {
 }
 
 export function calendarReducer(
-  state: CalendarInterface[],
-  action: CalendarActionInterface,
-): CalendarInterface[] {
+  state: ICalendar[],
+  action: { type: string },
+): ICalendar[] {
   switch (action.type) {
     case 'ADD_CALENDAR':
       return updateCalendarState(state);
