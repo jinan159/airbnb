@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DAY_TEXTS } from 'constant';
+import { DAYS } from 'constant';
 
 import { DateCell } from 'components/DateCell';
 
@@ -60,7 +60,7 @@ export function Calendar({
     dateInfo,
   );
 
-  const week = DAY_TEXTS.map(el => <WeekCell key={el}>{el}</WeekCell>);
+  const week = DAYS.map(day => <WeekCell key={day}>{day}</WeekCell>);
 
   const distinguishPast = (el: DateInfosInterface): boolean => {
     const date = new Date(`${el.year}-${el.month}-${el.date}`);

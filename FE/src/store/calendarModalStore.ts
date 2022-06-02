@@ -1,4 +1,4 @@
-import { BASIC_MONTH_INFOS } from 'constant';
+import { BASIC_MONTH_INFO } from 'constant';
 import {
   CalendarInterface,
   CalendarActionInterface,
@@ -10,12 +10,12 @@ export const initialCalendarState: CalendarInterface[] = [
   {
     id: 1,
     year: cur.getFullYear(),
-    month: cur.getMonth() + BASIC_MONTH_INFOS.thisMonth,
+    month: cur.getMonth() + BASIC_MONTH_INFO.thisMonth,
   },
   {
     id: 2,
     year: cur.getFullYear(),
-    month: cur.getMonth() + BASIC_MONTH_INFOS.nextMonth,
+    month: cur.getMonth() + BASIC_MONTH_INFO.nextMonth,
   },
 ];
 

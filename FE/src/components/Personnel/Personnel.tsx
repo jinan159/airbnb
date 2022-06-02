@@ -10,7 +10,7 @@ import {
   PersonnelInputClearBtn,
 } from 'components/Personnel/Personnel.styled';
 
-import { PERSONNEL_INFOS } from 'constant';
+import { PERSONNEL_TEXT } from 'constant';
 
 export function Personnel(): JSX.Element {
   const [personnelText, setPersonnelText] = useState<string>('');
@@ -71,7 +71,7 @@ export function Personnel(): JSX.Element {
   return (
     <>
       <PersonnelContainer onClick={handleClickPersonnelModalShow}>
-        <InputText info={PERSONNEL_INFOS} value={personnelText} />
+        <InputText info={PERSONNEL_TEXT} value={personnelText} />
         <PersonnelInputClearBtn
           isClearBtnShow={isClearBtnShow}
           type="button"

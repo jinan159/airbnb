@@ -3,7 +3,7 @@ import React from 'react';
 import ModalPortal from 'common/portal';
 import { PersonnelCounter } from 'components/PersonnelCounter';
 
-import { PERSONNEL_TEXTS } from 'constant';
+import { PERSONNEL_INFOS } from 'constant';
 
 import { Backdrop } from 'common/util.styled';
 import {
@@ -21,7 +21,7 @@ export function PersonnelModal({
   isShow,
   handleClickPersonnelModalShow,
 }: IPersonnelModalProps): JSX.Element {
-  const personnels = PERSONNEL_TEXTS.map(personnel => (
+  const personnels = PERSONNEL_INFOS.map(personnel => (
     <PersonnelItem key={personnel.id}>
       <Personnel>
         <PersonnelTitle>{personnel.title}</PersonnelTitle>
