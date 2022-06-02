@@ -1,10 +1,10 @@
-export const GNB_TEXTS = [
+export const GNBS = [
   { id: 1, text: '숙소' },
   { id: 2, text: '체험' },
   { id: 3, text: '온라인 체험' },
 ];
 
-export const USER_MENU_IMGS = [
+export const MENUS = [
   { id: 1, src: '/assets/images/menu.svg', alt: '메뉴' },
   { id: 2, src: '/assets/images/user.svg', alt: '유저정보' },
 ];
@@ -14,19 +14,19 @@ export const CHECK_INFOS = [
   { id: 2, title: '체크아웃', label: 'checkout', placeHolder: '날짜 입력' },
 ];
 
-export const FARE_INFOS = {
+export const FARE_INFO = {
   title: '요금',
   label: 'fare',
   placeHolder: '금액대 설정',
 };
 
-export const PERSONNEL_INFOS = {
+export const PERSONNEL_TEXT = {
   title: '인원',
   label: 'personnel',
   placeHolder: '게스트 추가',
 };
 
-export const BASIC_MONTH_INFOS = {
+export const BASIC_MONTH_INFO = {
   thisMonth: 1,
   nextMonth: 2,
 };
@@ -51,7 +51,7 @@ export const CALENDAR_BUTTON_INFOS = [
   },
 ];
 
-export const DAY_TEXTS = ['일', '월', '화', '수', '목', '금', '토'];
+export const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 export const TRAVEL_INFOS = [
   {
@@ -214,3 +214,12 @@ export const FNB_INFOS = [
     link: '회사 세부정보',
   },
 ];
+
+export const PERSONNEL_INFOS = [
+  { id: 1, title: '성인', age: '만 13세 이상', actionTypeName: 'ADULT' },
+  { id: 2, title: '어린이', age: '만 2~12세', actionTypeName: 'CHILD' },
+  { id: 3, title: '유아', age: '만 2세 미만', actionTypeName: 'INFANT' },
+];
+
+export const PERSONNEL_MAX_VALUE = 8;
+export const PERSONNEL_MIN_VALUE = 0;

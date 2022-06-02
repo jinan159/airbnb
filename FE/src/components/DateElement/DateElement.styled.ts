@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 import { FlexCenterSort } from 'common/util.styled';
 import {
-  DateCellContentProps,
-  DateCellCircleProps,
-} from 'components/DateCell/DateCell.types';
+  IDateElementContentStyle,
+  IDateElementCircleStyle,
+} from 'components/DateElement/DateElement.types';
 
-export const DateCellContent = styled.li<DateCellContentProps>`
+export const DateElementContent = styled.li<IDateElementContentStyle>`
   ${FlexCenterSort}
   margin-top: 0.4rem;
   width: 4.8rem;
@@ -16,14 +16,14 @@ export const DateCellContent = styled.li<DateCellContentProps>`
   color: ${({ past, theme: { colors } }) =>
     past ? colors.grey1 : colors.grey4};
 
-  ${({ rangeFlag }) =>
-    rangeFlag &&
+  ${({ isRange }) =>
+    isRange &&
     css`
       background-color: ${({ theme: { colors } }) => colors.grey6};
     `};
 
-  ${({ selectFlag }) =>
-    selectFlag &&
+  ${({ isSelcet }) =>
+    isSelcet &&
     css`
       border-radius: 3rem;
       background-color: ${({ theme: { colors } }) => colors.grey1};
@@ -31,8 +31,8 @@ export const DateCellContent = styled.li<DateCellContentProps>`
     `};
 
   &:hover {
-    ${({ rangeFlag, past, dateInfo }) =>
-      !rangeFlag &&
+    ${({ isRange, past, dateInfo }) =>
+      !isRange &&
       dateInfo &&
       past &&
       css`
@@ -44,14 +44,14 @@ export const DateCellContent = styled.li<DateCellContentProps>`
   }
 `;
 
-export const DateCellCircle = styled.div<DateCellCircleProps>`
+export const DateElementCircle = styled.div<IDateElementCircleStyle>`
   ${FlexCenterSort}
   width: 100%;
   height: 100%;
 
   &:hover {
-    ${({ rangeFlag, past, dateInfo }) =>
-      rangeFlag &&
+    ${({ isRange, past, dateInfo }) =>
+      isRange &&
       dateInfo &&
       past &&
       css`

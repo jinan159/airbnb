@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { HeroInterface } from 'pages/Home/Home.types';
 import { FooterTitle, FooterText } from 'common/util.styled';
 
-export const Hero = styled.div<HeroInterface>`
+export const Hero = styled.div<{ src: string }>`
   width: 1440px;
   height: 640px;
   background-position: center;

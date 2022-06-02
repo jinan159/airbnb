@@ -5,9 +5,9 @@ import {
   SearchBarInputText,
 } from 'components/InputText/InputText.styled';
 
-import { InputTextProps } from 'components/InputText/InputText.types';
+import { IInputTextProps } from 'components/InputText/InputText.types';
 
-export function InputText({ info, check }: InputTextProps): JSX.Element {
+export function InputText({ info, value }: IInputTextProps): JSX.Element {
   return (
     <section>
       <label htmlFor={info.label}>
@@ -18,7 +18,7 @@ export function InputText({ info, check }: InputTextProps): JSX.Element {
         id={info.label}
         placeholder={info.placeHolder}
         readOnly
-        value={check}
+        value={value}
       />
     </section>
   );

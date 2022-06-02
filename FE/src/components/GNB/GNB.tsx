@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { GNB_TEXTS } from 'constant';
+import { GNBS } from 'constant';
 
 import { GNBMenu, GNBBtn } from './GNB.styled';
 
 export function GNB(): JSX.Element {
-  const gnb = GNB_TEXTS.map(el => <GNBBtn key={el.id}>{el.text}</GNBBtn>);
+  const gnbBtns = GNBS.map(gnb => <GNBBtn key={gnb.id}>{gnb.text}</GNBBtn>);
 
-  return <GNBMenu>{gnb}</GNBMenu>;
+  return <GNBMenu>{gnbBtns}</GNBMenu>;
 }
