@@ -28,7 +28,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_ACCESS_KEY }}
-
+# working-directory: ${{ env.working-directory }}
       - name: 이미지 빌드 및 푸시
         uses: docker/build-push-action@v2
         with:
