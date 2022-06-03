@@ -32,8 +32,8 @@ jobs:
       - name: 이미지 빌드 및 푸시
         uses: docker/build-push-action@v2
         with:
-          context: ./FE
-          file: ./Dockerfile
+          context: ./
+          file: ./FE/Dockerfile
           push: true
           tags: 
             ghcr.io/${{ github.repository_owner }}/airbnb-fe:latest
