@@ -9,7 +9,7 @@ export const SearchBar = styled.main<IInputTextStyle>`
     isSearchShowing
       ? css`
           top: 2.3rem;
-          padding: 0.8rem 1.6rem;
+          padding: 0 0.8rem;
         `
       : css`
           margin-top: 4rem;
@@ -24,18 +24,37 @@ export const SearchBar = styled.main<IInputTextStyle>`
   border-radius: 6rem;
 `;
 
-export const SearchBtn = styled.button`
+export const SearchBtn = styled.button<IInputTextStyle>`
+  ${({ isSearchShowing }) =>
+    isSearchShowing
+      ? css`
+          width: 3.2rem;
+          height: 3.2rem;
+        `
+      : css`
+          width: 4rem;
+          height: 4rem;
+        `}
   ${FlexCenterSort}
   ${BtnBackgroundBorderRemove}
   background-color: ${({ theme }) => theme.colors.primary};
-  padding: 0;
+  margin-top: 0.2rem;
+  padding: 0.8rem;
   border-radius: 3rem;
-  width: 4rem;
-  height: 4rem;
 `;
 
+export const SearchBtnImg = styled.img<IInputTextStyle>`
+  ${({ isSearchShowing }) =>
+    isSearchShowing
+      ? css`
+          width: 1.6rem;
+        `
+      : css`
+          width: 2.4rem;
+        `}
+`;
 export const SearchForm = styled.form<IInputTextStyle>`
-  display: flex;
+  ${FlexCenterSort}
   ${({ isSearchShowing }) =>
     isSearchShowing
       ? css`

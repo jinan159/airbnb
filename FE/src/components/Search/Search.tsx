@@ -17,6 +17,7 @@ import {
   SearchBar,
   SearchBtn,
   SearchForm,
+  SearchBtnImg,
 } from 'components/Search/Search.styeld';
 import { SearchContext } from 'contexts/searchcontext/searchContext';
 
@@ -64,8 +65,12 @@ export function Search(): JSX.Element {
         <PersonnelContext.Provider value={personnelContext}>
           <Personnel />
         </PersonnelContext.Provider>
-        <SearchBtn type="submit">
-          <img src="./assets/images/search.svg" alt="검색" />
+        <SearchBtn type="submit" isSearchShowing={isSearchShowing}>
+          <SearchBtnImg
+            src="./assets/images/search.svg"
+            alt="검색"
+            isSearchShowing={isSearchShowing}
+          />
         </SearchBtn>
       </SearchForm>
     </SearchBar>

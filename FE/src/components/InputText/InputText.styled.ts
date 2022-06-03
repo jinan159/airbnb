@@ -1,13 +1,14 @@
 import styled, { css } from 'styled-components';
+
 import { IInputTextStyle } from 'contexts/searchcontext/searchContext.types';
+
+import { FlexCenterSort } from 'common/util.styled';
 
 export const Container = styled.section<IInputTextStyle>`
   ${({ isSearchShowing }) =>
     isSearchShowing &&
     css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      ${FlexCenterSort}
     `}
 `;
 

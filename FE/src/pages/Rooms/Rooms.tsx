@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
+import { LodgingList } from 'components/Rooms/LodgingList';
+import { Maps } from 'components/Rooms/Maps';
+
 import { IRoomsOutletContext } from './Rooms.types';
+
+import { RoomsContainer } from './Rooms.styled';
 
 export function Rooms(): JSX.Element {
   const { setIsSearchShowing } = useOutletContext<IRoomsOutletContext>();
@@ -13,5 +18,10 @@ export function Rooms(): JSX.Element {
     };
   }, []);
 
-  return <div />;
+  return (
+    <RoomsContainer>
+      <LodgingList />
+      <Maps />
+    </RoomsContainer>
+  );
 }

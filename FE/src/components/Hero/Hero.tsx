@@ -7,7 +7,7 @@ import { Search } from 'components/Search';
 import { ISearchContext } from 'contexts/searchcontext/searchContext.types';
 
 import { SearchContext } from 'contexts/searchcontext/searchContext';
-import { Container, Wrapper } from './Hero.styled';
+import { HeroContainer, Wrapper } from './Hero.styled';
 
 export function Hero(): JSX.Element {
   const [isSearchShowing, setIsSearchShowing] = useState<boolean>(false);
@@ -23,10 +23,10 @@ export function Hero(): JSX.Element {
   return (
     <Wrapper>
       <SearchContext.Provider value={searchContext}>
-        <Container>
+        <HeroContainer isSearchShowing={isSearchShowing}>
           <Header />
           <Search />
-        </Container>
+        </HeroContainer>
         <Outlet context={{ setIsSearchShowing }} />
       </SearchContext.Provider>
     </Wrapper>
