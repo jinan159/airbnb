@@ -29,9 +29,6 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_ACCESS_KEY }}
 
-      - name: 이미지 버전 채번
-        run: echo "RELEASE_VERSION=${GITHB_REF#refs/*/v}" >> $GITHUB_ENV
-      
       - name: 이미지 빌드 및 푸시
         uses: docker/build-push-action@v2
         with:
@@ -40,7 +37,6 @@ jobs:
           push: true
           tags: 
             ghcr.io/${{ github.repository_owner }}/airbnb-fe:latest
-            ghcr.io/${{ github.repository_owner }}/airbnb-fe:${{ env.RELEASE_VERSION }}
           working-directory: ${{ env.working-directory }}
       
       - name: airbnb-deploy.zip 생성
