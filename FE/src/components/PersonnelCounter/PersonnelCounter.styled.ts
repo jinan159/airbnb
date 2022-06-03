@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { BtnBackgroundBorderRemove } from 'common/util.styled';
 
-export const Container = styled.div`
+export const PersonnelCounterContainer = styled.div`
   display: flex;
   gap: 1.9rem;
   align-items: center;

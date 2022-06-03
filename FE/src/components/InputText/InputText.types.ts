@@ -1,5 +1,5 @@
 export interface IInputTextProps {
-  info: {
+  info?: {
     title: string;
     label: string;
     placeHolder: string;

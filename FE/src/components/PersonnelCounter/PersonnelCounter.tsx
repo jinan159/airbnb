@@ -6,7 +6,12 @@ import { PERSONNEL_MAX_VALUE, PERSONNEL_MIN_VALUE } from 'constant';
 
 import { PersonnelValue } from './PersonnelCounter.types';
 
-import { Container, Button, ButtonImg, Count } from './PersonnelCounter.styled';
+import {
+  PersonnelCounterContainer,
+  Button,
+  ButtonImg,
+  Count,
+} from './PersonnelCounter.styled';
 
 const distinguishPersonnelValue = (
   actionTypeName: string,
@@ -70,7 +75,7 @@ export function PersonnelCounter({
   };
 
   return (
-    <Container>
+    <PersonnelCounterContainer>
       <Button onClick={handleClickPersonnelMinus}>
         <ButtonImg src={minusBtnImg} alt="인원 마이너스" />
       </Button>
@@ -78,6 +83,6 @@ export function PersonnelCounter({
       <Button onClick={handleClickPersonnelPlus}>
         <ButtonImg src={plusBtnImg} alt="인원 플러스" />
       </Button>
-    </Container>
+    </PersonnelCounterContainer>
   );
 }

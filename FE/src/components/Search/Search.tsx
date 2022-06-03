@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useReducer } from 'react';
+import React, { useState, useMemo, useReducer, useContext } from 'react';
 
 import { Check } from 'components/Check';
 import { Fare } from 'components/Fare';
@@ -17,7 +17,9 @@ import {
   SearchBar,
   SearchBtn,
   SearchForm,
+  SearchBtnImg,
 } from 'components/Search/Search.styeld';
+import { SearchContext } from 'contexts/searchcontext/searchContext';
 
 export function Search(): JSX.Element {
   const [checkIn, setCheckIn] = useState<string>('');
@@ -27,6 +29,7 @@ export function Search(): JSX.Element {
     personnelReducer,
     initialPersonnelState,
   );
+  const { isSearchShowing, setIsSearchShowing } = useContext(SearchContext);
 
   const checkContext: ICheckContext = useMemo(
     () => ({
@@ -48,9 +51,11 @@ export function Search(): JSX.Element {
     [personnelState],
   );
 
+  const handleClickSearchBar = () => setIsSearchShowing(false);
+
   return (
-    <SearchBar>
-      <SearchForm>
+    <SearchBar isSearchShowing={isSearchShowing} onClick={handleClickSearchBar}>
+      <SearchForm isSearchShowing={isSearchShowing}>
         <CheckContext.Provider value={checkContext}>
           <Check />
         </CheckContext.Provider>
@@ -60,8 +65,12 @@ export function Search(): JSX.Element {
         <PersonnelContext.Provider value={personnelContext}>
           <Personnel />
         </PersonnelContext.Provider>
-        <SearchBtn type="submit">
-          <img src="./assets/images/search.svg" alt="검색" />
+        <SearchBtn type="submit" isSearchShowing={isSearchShowing}>
+          <SearchBtnImg
+            src="./assets/images/search.svg"
+            alt="검색"
+            isSearchShowing={isSearchShowing}
+          />
         </SearchBtn>
       </SearchForm>
     </SearchBar>
