@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -6,8 +6,17 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const Container = styled.header`
-  position: absolute;
-  width: 1440px;
-  height: 640px;
+export const HeroContainer = styled.header<{ isSearchShowing: boolean }>`
+  width: 144rem;
+
+  ${({ isSearchShowing }) =>
+    isSearchShowing
+      ? css`
+          max-height: 19rem;
+          padding-bottom: 2.3rem;
+        `
+      : css`
+          position: absolute;
+          height: 64rem;
+        `}
 `;

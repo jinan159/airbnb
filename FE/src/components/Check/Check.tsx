@@ -6,6 +6,7 @@ import { CalendarModal } from 'components/CalendarModal';
 import { CHECK_INFOS } from 'constant';
 
 import { CheckContext } from 'contexts/checkcontext/checkContext';
+import { SearchContext } from 'contexts/searchcontext/searchContext';
 import { CheckContainer, CheckClearBtn } from './Check.styled';
 
 export function Check(): JSX.Element {
@@ -13,14 +14,17 @@ export function Check(): JSX.Element {
   const { checkIn, checkOut, setCheckIn, setCheckOut } =
     useContext(CheckContext);
   const [isShowing, setIsShowing] = useState<boolean>(false);
+  const { isSearchShowing } = useContext(SearchContext);
 
-  const checkMenu = CHECK_INFOS.map(el =>
+  const bigCheckMenu = CHECK_INFOS.map(el =>
     el.id === 1 ? (
       <InputText key={el.id} info={el} value={checkIn} />
     ) : (
       <InputText key={el.id} info={el} value={checkOut} />
     ),
   );
+
+  const smallCheckMenu = <InputText value={`${checkIn} - ${checkOut}`} />;
 
   const handleClickShow = () => setIsShowing(prev => !prev);
 
@@ -36,17 +40,19 @@ export function Check(): JSX.Element {
   return (
     <>
       <CheckContainer onClick={handleClickShow}>
-        {checkMenu}
-        <CheckClearBtn
-          type="button"
-          onClick={handleClickCheckClearBtn}
-          checkIn={checkIn}
-        >
-          <img
-            src="./assets/images/x-circle.svg"
-            alt="체크인, 체크아웃 초기화 버튼"
-          />
-        </CheckClearBtn>
+        {isSearchShowing ? smallCheckMenu : bigCheckMenu}
+        {!isSearchShowing && (
+          <CheckClearBtn
+            type="button"
+            onClick={handleClickCheckClearBtn}
+            checkIn={checkIn}
+          >
+            <img
+              src="./assets/images/x-circle.svg"
+              alt="체크인, 체크아웃 초기화 버튼"
+            />
+          </CheckClearBtn>
+        )}
       </CheckContainer>
       <CalendarModal
         isShowing={isShowing}

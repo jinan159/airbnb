@@ -11,6 +11,7 @@ import {
 } from 'components/Personnel/Personnel.styled';
 
 import { PERSONNEL_TEXT } from 'constant';
+import { SearchContext } from 'contexts/searchcontext/searchContext';
 
 export function Personnel(): JSX.Element {
   const [personnelText, setPersonnelText] = useState<string>('');
@@ -20,6 +21,7 @@ export function Personnel(): JSX.Element {
     personnelState: { adult, child, infant },
     personnelDispatch,
   } = useContext(PersonnelContext);
+  const { isSearchShowing } = useContext(SearchContext);
 
   const {
     adultEqualtoZero,
@@ -76,13 +78,15 @@ export function Personnel(): JSX.Element {
     <>
       <PersonnelContainer onClick={handleClickPersonnelModalShow}>
         <InputText info={PERSONNEL_TEXT} value={personnelText} />
-        <PersonnelInputClearBtn
-          isClearBtnShowing={isClearBtnShowing}
-          type="button"
-          onClick={handleClickPersonnelClearBtn}
-        >
-          <img src="./assets/images/x-circle.svg" alt="인원 초기화 버튼" />
-        </PersonnelInputClearBtn>
+        {!isSearchShowing && (
+          <PersonnelInputClearBtn
+            isClearBtnShowing={isClearBtnShowing}
+            type="button"
+            onClick={handleClickPersonnelClearBtn}
+          >
+            <img src="./assets/images/x-circle.svg" alt="인원 초기화 버튼" />
+          </PersonnelInputClearBtn>
+        )}
       </PersonnelContainer>
       <PersonnelModal
         isShowing={isShowing}

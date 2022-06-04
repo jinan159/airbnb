@@ -1,5 +1,5 @@
 import { BASIC_MONTH_INFO } from 'constant';
-import { ICalendar } from 'components//CalendarModal/CalendarModal.types';
+import { ICalendar } from 'components/CalendarModal/CalendarModal.types';
 
 const cur: Date = new Date(Date.now());
 

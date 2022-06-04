@@ -4,13 +4,11 @@ FROM node:16.13.1
 COPY . /app
 WORKDIR /app
 
-# PM2 설정
+# npm install 설정
 RUN \
-    npm install \
-    npm build
+    npm install -g serve
 
 # 3000 포트 허용
 EXPOSE 3000
 
-ENTRYPOINT ["npm"]
-CMD ["start"]
+CMD ["serve", "-s", "build"]
