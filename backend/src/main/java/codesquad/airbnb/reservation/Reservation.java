@@ -2,6 +2,9 @@ package codesquad.airbnb.reservation;
 
 import codesquad.airbnb.accomodation.domain.Accommodation;
 import codesquad.airbnb.member.Member;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -15,6 +18,9 @@ import javax.persistence.OneToOne;
 
 
 @Entity
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor // for @Entity
 public class Reservation {
 
     @Id
