@@ -1,6 +1,5 @@
 package codesquad.airbnb.accomodation;
 
-import codesquad.airbnb.ApiDocumentUtils;
 import codesquad.airbnb.accomodation.dto.PriceAndCount;
 import codesquad.airbnb.accomodation.dto.PriceAndCountStatistics;
 import codesquad.airbnb.accomodation.service.AccommodationStatisticsService;
@@ -15,7 +14,10 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.List;
 
-import static codesquad.airbnb.ApiDocumentUtils.*;
+import static codesquad.airbnb.ApiDocumentUtils.HOST;
+import static codesquad.airbnb.ApiDocumentUtils.SCHEME;
+import static codesquad.airbnb.ApiDocumentUtils.getDocumentRequest;
+import static codesquad.airbnb.ApiDocumentUtils.getDocumentResponse;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
