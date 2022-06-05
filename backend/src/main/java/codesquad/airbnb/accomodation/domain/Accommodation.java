@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.data.geo.Point;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -29,7 +30,6 @@ public class Accommodation {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "provides_id")
-    private Provides provides;
+    @OneToMany(mappedBy = "accommodation", fetch = FetchType.LAZY)
+    private List<AccommodationProvide> accommodationProvides;
 }

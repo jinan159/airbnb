@@ -8,7 +8,6 @@ CREATE TABLE `accommodation` (
     `image_url`     TEXT,
     `point`         POINT,
     `address_id`    BIGINT,
-    `provides_id`   BIGINT,
     PRIMARY KEY (id)
 ) engine=InnoDB;
 
@@ -29,17 +28,19 @@ CREATE TABLE `member` (
     PRIMARY KEY (id)
 ) engine=InnoDB;
 
-DROP TABLE IF EXISTS `provides`;
-CREATE TABLE `provides` (
-    `id`                    BIGINT      NOT NULL AUTO_INCREMENT,
-    `capacity`              TINYINT     NOT NULL,
-    `bed_rooms`             TINYINT,
-    `beds`                  TINYINT,
-    `wash_rooms`            TINYINT,
-    `has_air_conditioner`   BOOLEAN,
-    `has_hair_dryer`        BOOLEAN,
-    `has_kitchin`           BOOLEAN,
-    `has_wifi`               BOOLEAN,
+DROP TABLE IF EXISTS `provide` CASCADE;
+CREATE TABLE `provide` (
+    `id`   BIGINT       NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    primary key (id)
+) engine=InnoDB;
+
+DROP TABLE IF EXISTS `accommodation_provide` CASCADE;
+CREATE TABLE `accommodation_provide` (
+    id                  BIGINT AUTO_INCREMENT,
+    count               INTEGER DEFAULT 0 NOT NULL,
+    accommodation_id    BIGINT NOT NULL,
+    provide_id          BIGINT NOT NULL,
     primary key (id)
 ) engine=InnoDB;
 
@@ -69,5 +70,9 @@ CREATE TABLE `wish` (
 -- ALTER TABLE `reservation` ADD CONSTRAINT `fk_reservation_member` FOREIGN KEY (member_id) REFERENCES `member` (id);
 -- ALTER TABLE `wish` ADD CONSTRAINT `fk_wish_accommodation` FOREIGN KEY (accommodation_id) REFERENCES `accommodation` (id);
 -- ALTER TABLE `wish` ADD CONSTRAINT `fk_wish_member` FOREIGN KEY (member_id) REFERENCES `member` (id);
---
+-- ALTER TABLE `accommodation_provide` ADD CONSTRAINT `fk_accommodation_provide_accommodation` FOREIGN KEY (accommodation_id) REFERENCES accommodation;
+-- ALTER TABLE `accommodation_provide` ADD CONSTRAINT `fk_accommodation_provide_provide` FOREIGN KEY (provide_id) REFERENCES provide;
 -- SET FOREIGN_KEY_CHECKS = 1;
+
+
+
