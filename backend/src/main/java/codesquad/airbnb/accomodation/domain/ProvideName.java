@@ -1,6 +1,6 @@
 package codesquad.airbnb.accomodation.domain;
 
-public enum ProvideElement {
+public enum ProvideName {
     CAPACITY("최대 인원"),
     BED_ROOM("침실"),
     BED("침대"),
@@ -12,7 +12,7 @@ public enum ProvideElement {
 
     private final String name;
 
-    ProvideElement(String name) {
+    ProvideName(String name) {
         this.name = name;
     }
 
@@ -20,9 +20,9 @@ public enum ProvideElement {
         return name;
     }
 
-    public static ProvideElement provideNameOf(String provideName) {
+    public static ProvideName provideNameOf(String provideName) {
 
-        for (ProvideElement provideElement : values()) {
+        for (ProvideName provideElement : values()) {
             if (provideElement.getName().equals(provideName)) {
                 return provideElement;
             }

@@ -21,6 +21,6 @@ public class Provide {
     private Long id;
 
     @Column(nullable = false)
-    @Convert(converter = ProvideElementsConverter.class)
-    private ProvideElement name;
+    @Convert(converter = ProvideNameConverter.class)
+    private ProvideName name;
 }
