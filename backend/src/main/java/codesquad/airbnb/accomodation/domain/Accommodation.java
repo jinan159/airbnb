@@ -1,6 +1,8 @@
 package codesquad.airbnb.accomodation.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.geo.Point;
 
@@ -18,6 +20,8 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor // for @Entity
 public class Accommodation {
 
     @Id
