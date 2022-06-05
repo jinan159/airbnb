@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureRestDocs(uriScheme = SCHEME, uriHost = HOST)
 class AccommodationControllerTest {
 
-    private static final String BASE_URL = "/api/accommodation";
+    private static final String BASE_URL = "/api/accommodations";
 
     @Autowired
     private MockMvc mockMvc;

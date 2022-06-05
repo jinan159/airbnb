@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/accommodation")
+@RequestMapping("/api/accommodations")
 public class AccommodationController {
 
     private final AccommodationStatisticsService dummyAccommodationStatisticsService;
