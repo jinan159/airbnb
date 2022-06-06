@@ -6,6 +6,7 @@ import codesquad.airbnb.accomodation.repository.AccommodationRepository;
 import codesquad.airbnb.member.Member;
 import codesquad.airbnb.member.MemberRepository;
 import codesquad.airbnb.member.exception.MemberNotFoundException;
+import codesquad.airbnb.wish.dto.WishResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +46,12 @@ class WishServiceTest {
         Member savedMember = createNewMember();
 
         // when
-        Wish wish = wishService.addWish(savedAccommodation.getId(), savedMember.getId());
+        WishResponse wishResponse = wishService.addWish(savedAccommodation.getId(), savedMember.getId());
 
         // then
-        assertThat(wish).isNotNull();
-        assertThat(wish.getAccommodationId()).isEqualTo(savedAccommodation.getId());
-        assertThat(wish.getMemberId()).isEqualTo(savedMember.getId());
+        assertThat(wishResponse).isNotNull();
+        assertThat(wishResponse.getAccommodationId()).isEqualTo(savedAccommodation.getId());
+        assertThat(wishResponse.getMemberId()).isEqualTo(savedMember.getId());
     }
 
     @Test
@@ -58,11 +59,11 @@ class WishServiceTest {
         // given
         Accommodation savedAccommodation = createNewAccommodation();
         Member savedMember = createNewMember();
-        Wish addedWish = wishService.addWish(savedAccommodation.getId(), savedMember.getId());
+        WishResponse wishResponse = wishService.addWish(savedAccommodation.getId(), savedMember.getId());
 
         // when
-        wishService.removeWish(addedWish.getAccommodationId(), addedWish.getMemberId());
-        Optional<Wish> findResult = wishRepository.findById(addedWish.getId());
+        wishService.removeWish(wishResponse.getId());
+        Optional<Wish> findResult = wishRepository.findById(wishResponse.getId());
 
         // then
         assertThat(findResult.isPresent()).isFalse();

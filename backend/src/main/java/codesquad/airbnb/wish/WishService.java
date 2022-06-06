@@ -4,6 +4,7 @@ import codesquad.airbnb.accomodation.exception.AccommodationNotFoundException;
 import codesquad.airbnb.accomodation.repository.AccommodationRepository;
 import codesquad.airbnb.member.MemberRepository;
 import codesquad.airbnb.member.exception.MemberNotFoundException;
+import codesquad.airbnb.wish.dto.WishResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,16 +18,16 @@ public class WishService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public Wish addWish(Long accommodationId, Long memberId) {
+    public WishResponse addWish(Long accommodationId, Long memberId) {
         validateAccommodationExists(accommodationId);
         validateMemberExists(memberId);
 
-        return wishRepository.save(new Wish(null, accommodationId, memberId));
+        return WishResponse.from(wishRepository.save(new Wish(null, accommodationId, memberId)));
     }
 
     @Transactional
-    public void removeWish(Long accommodationId, Long memberId) {
-        wishRepository.deleteByAccommodationIdAndMemberId(accommodationId, memberId);
+    public void removeWish(long id) {
+        wishRepository.deleteById(id);
     }
 
     private void validateMemberExists(Long memberId) {
