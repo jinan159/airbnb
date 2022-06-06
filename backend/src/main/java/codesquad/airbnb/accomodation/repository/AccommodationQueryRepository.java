@@ -14,30 +14,30 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccommodationQueryRepository {
 
-    private final static QAccommodation accommodation = QAccommodation.accommodation;
+    private final static QAccommodation Q_ACCOMMODATION = QAccommodation.accommodation;
 
     private final JPAQueryFactory queryFactory;
 
     public List<PriceAndCount> findPriceAndCountStatisticsByAmountUnit(long amountUnit) {
-        NumberExpression<Long> priceCutByAmountUnit = accommodation.price.divide(amountUnit).multiply(amountUnit);
-        NumberExpression<Integer> countAll = accommodation.count().intValue();
+        NumberExpression<Long> priceCutByAmountUnit = Q_ACCOMMODATION.price.divide(amountUnit).multiply(amountUnit);
+        NumberExpression<Integer> countAll = Q_ACCOMMODATION.count().intValue();
 
         return queryFactory.select(
                 Projections.constructor(PriceAndCount.class,
                         priceCutByAmountUnit,
                         countAll
                 ))
-                .from(accommodation)
+                .from(Q_ACCOMMODATION)
                 .groupBy(priceCutByAmountUnit)
                 .orderBy(priceCutByAmountUnit.asc())
                 .fetch();
     }
 
     public double findAveragePrice() {
-        NumberExpression<Double> avg = accommodation.price.avg();
+        NumberExpression<Double> avg = Q_ACCOMMODATION.price.avg();
 
-        return queryFactory.select(accommodation.price.avg())
-                .from(accommodation)
+        return queryFactory.select(Q_ACCOMMODATION.price.avg())
+                .from(Q_ACCOMMODATION)
                 .fetchFirst();
     }
 }

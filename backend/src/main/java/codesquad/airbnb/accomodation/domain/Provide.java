@@ -4,24 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor // for @Entity
-public class Provides {
+public class Provide {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private int capacity;
-    private Integer bedRooms;
-    private Integer beds;
-    private Integer washRooms;
-    private Boolean hasKitchin;
-    private Boolean hasWifi;
-    private Boolean hasAirConditioner;
-    private Boolean hasHairDryer;
+    @Convert(converter = ProvideNameConverter.class)
+    private ProvideName name;
 }

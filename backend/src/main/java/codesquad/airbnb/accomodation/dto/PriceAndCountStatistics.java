@@ -12,7 +12,7 @@ public class PriceAndCountStatistics implements Iterable<PriceAndCount> {
     private final double averagePrice;
 
     public List<PriceAndCount> getPriceAndCountList() {
-        return Collections.unmodifiableList(priceAndCountList);
+        return List.copyOf(priceAndCountList);
     }
 
     public double getAveragePrice() {
@@ -21,6 +21,6 @@ public class PriceAndCountStatistics implements Iterable<PriceAndCount> {
 
     @Override
     public Iterator<PriceAndCount> iterator() {
-        return Collections.unmodifiableList(priceAndCountList).iterator();
+        return List.copyOf(priceAndCountList).iterator();
     }
 }

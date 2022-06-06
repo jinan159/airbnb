@@ -32,3 +32,25 @@ include::{snippets}/accommodation-statistics-price/response-body.adoc[]
 
 === http response fields
 include::{snippets}/accommodation-statistics-price/response-fields.adoc[]
+
+== 숙소 조회 API
+
+예약 가능한 숙소를 조회하는 API 입니다.
+
+=== curl
+include::{snippets}/not-reserved-accommodations/curl-request.adoc[]
+
+=== http request
+include::{snippets}/not-reserved-accommodations/http-request.adoc[]
+
+=== http request body
+include::{snippets}/not-reserved-accommodations/request-body.adoc[]
+
+=== http response
+include::{snippets}/not-reserved-accommodations/http-response.adoc[]
+
+=== http response body
+include::{snippets}/not-reserved-accommodations/response-body.adoc[]
+
+=== http response fields
+include::{snippets}/not-reserved-accommodations/response-fields.adoc[]

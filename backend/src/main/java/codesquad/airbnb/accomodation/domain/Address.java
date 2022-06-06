@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Getter
@@ -17,4 +20,9 @@ public class Address {
     private String city;
     private String sigungu;
     private String street;
+
+    @Override
+    public String toString() {
+        return String.format("%s %s %s", city, sigungu, street);
+    }
 }
