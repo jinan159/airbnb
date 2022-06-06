@@ -1,13 +1,14 @@
 package codesquad.airbnb.accomodation.dto;
 
 import codesquad.airbnb.accomodation.domain.Accommodation;
-import codesquad.airbnb.accomodation.domain.AccommodationProvide;
-import codesquad.airbnb.accomodation.domain.Address;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
+@AllArgsConstructor
 public class AccommodationResponse {
 
     private long id;
@@ -16,22 +17,25 @@ public class AccommodationResponse {
     private String imageUrl;
     private double x;
     private double y;
-    private Address address;
-    private List<AccommodationProvide> accommodationProvideList;
+    private String address;
+    private List<ProvideResponse> provideResponseList;
 
     public static AccommodationResponse of(Accommodation accommodation) {
-        AccommodationResponse accommodationResponse = new AccommodationResponse();
+        List<ProvideResponse> provideResponses = accommodation.getAccommodationProvides()
+                .stream()
+                .map(ap -> new ProvideResponse(ap.getProvide().getName(), ap.getCount()))
+                .collect(Collectors.toUnmodifiableList());
 
-        accommodationResponse.id = accommodation.getId();
-        accommodationResponse.title = accommodation.getTitle();
-        accommodationResponse.price = accommodation.getPrice();
-        accommodationResponse.imageUrl = (accommodation.getImage() != null) ? accommodation.getImage().getImageUrl() : "";
-        accommodationResponse.x = (accommodation.getPoint() != null) ? accommodation.getPoint().getX() : 0;
-        accommodationResponse.y = (accommodation.getPoint() != null) ? accommodation.getPoint().getY() : 0;
-        accommodationResponse.address = accommodation.getAddress();
-        accommodationResponse.accommodationProvideList = accommodation.getAccommodationProvides();
-
-        return accommodationResponse;
+        return new AccommodationResponse(
+                accommodation.getId(),
+                accommodation.getTitle(),
+                accommodation.getPrice(),
+                (accommodation.getImage() != null) ? accommodation.getImage().getImageUrl() : "",
+                (accommodation.getPoint() != null) ? accommodation.getPoint().getX() : 0,
+                (accommodation.getPoint() != null) ? accommodation.getPoint().getY() : 0,
+                accommodation.getAddress().toString(),
+                provideResponses
+        );
     }
 
 }

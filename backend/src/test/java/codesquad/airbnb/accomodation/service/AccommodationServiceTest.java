@@ -5,12 +5,12 @@ import codesquad.airbnb.accomodation.dto.AccommodationResponse;
 import codesquad.airbnb.accomodation.dto.AccommodationResponseList;
 import codesquad.airbnb.accomodation.dto.AccommodationSearchRequest;
 import codesquad.airbnb.accomodation.repository.AccommodationReservationQueryRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -32,6 +32,7 @@ class AccommodationServiceTest {
     }
 
     @Test
+    @Transactional
     void 겹치는_일정이_없고_숙소_인원수가_맞으면_숙소_목록을_반환한다() {
         // given
         LocalDate startDate = LocalDate.of(2022, 5, 1);
