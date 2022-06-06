@@ -18,7 +18,7 @@ public class AccommodationResponse {
     private double x;
     private double y;
     private String address;
-    private List<ProvideResponse> provideResponseList;
+    private List<ProvideResponse> provides;
 
     public static AccommodationResponse of(Accommodation accommodation) {
         List<ProvideResponse> provideResponses = accommodation.getAccommodationProvides()
