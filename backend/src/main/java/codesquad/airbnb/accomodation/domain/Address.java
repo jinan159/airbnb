@@ -20,4 +20,9 @@ public class Address {
     private String city;
     private String sigungu;
     private String street;
+
+    @Override
+    public String toString() {
+        return String.format("%s %s %s", city, sigungu, street);
+    }
 }
