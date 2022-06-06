@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Embeddable
@@ -18,7 +19,7 @@ public class Schedule {
     private StartEndDate startEndDate;
     private Integer visitors;
 
-    public static Schedule of(LocalDateTime startDate, LocalDateTime endDate, Integer visitors) {
+    public static Schedule of(LocalDate startDate, LocalDate endDate, Integer visitors) {
         return new Schedule(new StartEndDate(startDate, endDate), visitors);
     }
 }

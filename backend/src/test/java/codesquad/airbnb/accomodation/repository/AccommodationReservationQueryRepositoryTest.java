@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -50,8 +51,8 @@ class AccommodationReservationQueryRepositoryTest {
     @Test
     void 예약된_일정이_일치하면_숙소가_반환되지_않는다 () {
         // given
-        LocalDateTime reservedStartDate = LocalDateTime.of(2022, 6, 1, 0, 0);
-        LocalDateTime reservedEndDate = LocalDateTime.of(2022, 6, 3, 0, 0);
+        LocalDate reservedStartDate = LocalDate.of(2022, 6, 1);
+        LocalDate reservedEndDate = LocalDate.of(2022, 6, 3);
 
         prepareReservation(reservedStartDate, reservedEndDate);
 
@@ -66,13 +67,13 @@ class AccommodationReservationQueryRepositoryTest {
     @Test
     void 예약된_일정과_시작일만_겹쳐도_숙소가_반환되지_않는다 () {
         // given
-        LocalDateTime reservedStartDate = LocalDateTime.of(2022, 6, 1, 0, 0);
-        LocalDateTime reservedEndDate = LocalDateTime.of(2022, 6, 3, 0, 0);
+        LocalDate reservedStartDate = LocalDate.of(2022, 6, 1);
+        LocalDate reservedEndDate = LocalDate.of(2022, 6, 3);
 
         prepareReservation(reservedStartDate, reservedEndDate);
 
-        LocalDateTime startDate = LocalDateTime.of(2022, 6,2,0,0);
-        LocalDateTime endDate = LocalDateTime.of(2022, 6, 4, 0, 0);
+        LocalDate startDate = LocalDate.of(2022, 6,2);
+        LocalDate endDate = LocalDate.of(2022, 6, 4);
 
         // when
         List<Accommodation> notReservedAccommodations = repository.findNotReservedAccommodations(createNewSchedule(startDate, endDate));
@@ -85,13 +86,13 @@ class AccommodationReservationQueryRepositoryTest {
     @Test
     void 예약된_일정과_종료일만_겹쳐도_숙소가_반환되지_않는다 () {
         // given
-        LocalDateTime reservedStartDate = LocalDateTime.of(2022, 6, 1, 0, 0);
-        LocalDateTime reservedEndDate = LocalDateTime.of(2022, 6, 3, 0, 0);
+        LocalDate reservedStartDate = LocalDate.of(2022, 6, 1);
+        LocalDate reservedEndDate = LocalDate.of(2022, 6, 3);
 
         prepareReservation(reservedStartDate, reservedEndDate);
 
-        LocalDateTime startDate = LocalDateTime.of(2022, 5,30,0,0);
-        LocalDateTime endDate = LocalDateTime.of(2022, 6,2,0,0);
+        LocalDate startDate = LocalDate.of(2022, 5,30);
+        LocalDate endDate = LocalDate.of(2022, 6,2);
 
         // when
         List<Accommodation> notReservedAccommodations = repository.findNotReservedAccommodations(createNewSchedule(startDate, endDate));
@@ -104,13 +105,13 @@ class AccommodationReservationQueryRepositoryTest {
     @Test
     void 숙소_예약이_겹치지_않으면_예약_가능한_숙소_리스트를_반환한다 () {
         // given
-        LocalDateTime reservedStartDate = LocalDateTime.of(2022, 6, 1, 0, 0);
-        LocalDateTime reservedEndDate = LocalDateTime.of(2022, 6, 3, 0, 0);
+        LocalDate reservedStartDate = LocalDate.of(2022, 6, 1);
+        LocalDate reservedEndDate = LocalDate.of(2022, 6, 3);
 
         prepareReservation(reservedStartDate, reservedEndDate);
 
-        LocalDateTime startDate = LocalDateTime.of(2022, 6,4,0,0);
-        LocalDateTime endDate = LocalDateTime.of(2022, 6,6,0,0);
+        LocalDate startDate = LocalDate.of(2022, 6,4);
+        LocalDate endDate = LocalDate.of(2022, 6,6);
 
         // when
         List<Accommodation> notReservedAccommodations = repository.findNotReservedAccommodations(createNewSchedule(startDate, endDate));
@@ -120,11 +121,11 @@ class AccommodationReservationQueryRepositoryTest {
         assertThat(notReservedAccommodations).isNotEmpty();
     }
 
-    private Schedule createNewSchedule(LocalDateTime startDate, LocalDateTime endDate) {
+    private Schedule createNewSchedule(LocalDate startDate, LocalDate endDate) {
         return Schedule.of(startDate, endDate, null);
     }
 
-    private void prepareReservation(LocalDateTime startDate, LocalDateTime endDate) {
+    private void prepareReservation(LocalDate startDate, LocalDate endDate) {
         Accommodation savedAccommodation = accommodationRepository.save(createNewAccommodation());
         Member savedMember = memberRepository.save(createNewMember());
         reservationRepository.save(createNewReservation(savedAccommodation, savedMember, startDate, endDate));
@@ -134,7 +135,7 @@ class AccommodationReservationQueryRepositoryTest {
         return new Accommodation(null, "test hotel", 0L, null, null, null, null);
     }
 
-    private Reservation createNewReservation(Accommodation accommodation, Member member, LocalDateTime startDate, LocalDateTime endDate) {
+    private Reservation createNewReservation(Accommodation accommodation, Member member, LocalDate startDate, LocalDate endDate) {
         StartEndDate startEndDate = new StartEndDate(startDate, endDate);
         return new Reservation(null, accommodation, member, new Schedule(startEndDate, null));
     }

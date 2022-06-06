@@ -8,6 +8,7 @@ import org.apache.logging.log4j.util.PropertySource;
 import org.springframework.util.comparator.Comparators;
 
 import javax.persistence.Embeddable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Embeddable
@@ -15,10 +16,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor // for @Embeddable
 public class StartEndDate {
 
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
-    public StartEndDate(LocalDateTime startDate, LocalDateTime endDate) {
+    public StartEndDate(LocalDate startDate, LocalDate endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
 
