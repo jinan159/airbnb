@@ -2,7 +2,6 @@ package codesquad.airbnb.accomodation.service;
 
 
 import codesquad.airbnb.accomodation.dto.AccommodationResponse;
-import codesquad.airbnb.accomodation.dto.AccommodationResponseList;
 import codesquad.airbnb.accomodation.dto.AccommodationSearchRequest;
 import codesquad.airbnb.accomodation.repository.AccommodationReservationQueryRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,15 +39,12 @@ class AccommodationServiceTest {
         int visitors = 3;
 
         // when
-        AccommodationResponseList notReservedAccommodations =
+        List<AccommodationResponse> notReservedAccommodations =
                 accommodationService.findNotReservedAccommodations(new AccommodationSearchRequest(startDate, endDate, visitors));
 
         // then
         assertThat(notReservedAccommodations).isNotNull();
-
-        List<AccommodationResponse> responses = notReservedAccommodations.getResponses();
-        assertThat(responses).isNotNull();
-        assertThat(responses).isNotEmpty();
+        assertThat(notReservedAccommodations).isNotEmpty();
     }
 
     @Test
@@ -59,15 +55,12 @@ class AccommodationServiceTest {
         int visitors = 10;
 
         // when
-        AccommodationResponseList notReservedAccommodations =
+        List<AccommodationResponse> notReservedAccommodations =
                 accommodationService.findNotReservedAccommodations(new AccommodationSearchRequest(startDate, endDate, visitors));
 
         // then
         assertThat(notReservedAccommodations).isNotNull();
-
-        List<AccommodationResponse> responses = notReservedAccommodations.getResponses();
-        assertThat(responses).isNotNull();
-        assertThat(responses).isEmpty();
+        assertThat(notReservedAccommodations).isEmpty();
     }
 
     @Test
@@ -78,14 +71,11 @@ class AccommodationServiceTest {
         int visitors = 10;
 
         // when
-        AccommodationResponseList notReservedAccommodations =
+        List<AccommodationResponse> notReservedAccommodations =
                 accommodationService.findNotReservedAccommodations(new AccommodationSearchRequest(startDate, endDate, visitors));
 
         // then
         assertThat(notReservedAccommodations).isNotNull();
-
-        List<AccommodationResponse> responses = notReservedAccommodations.getResponses();
-        assertThat(responses).isNotNull();
-        assertThat(responses).isEmpty();
+        assertThat(notReservedAccommodations).isEmpty();
     }
 }
