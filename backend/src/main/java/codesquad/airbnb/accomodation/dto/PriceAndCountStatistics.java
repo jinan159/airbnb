@@ -19,10 +19,6 @@ public class PriceAndCountStatistics implements Iterable<PriceAndCount> {
         return averagePrice;
     }
 
-    public double getAveragePrice() {
-        return averagePrice;
-    }
-
     @Override
     public Iterator<PriceAndCount> iterator() {
         return List.copyOf(priceAndCountList).iterator();
