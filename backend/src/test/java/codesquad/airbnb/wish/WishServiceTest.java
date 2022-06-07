@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
+@Transactional
 class WishServiceTest {
 
     @Autowired
@@ -34,9 +36,9 @@ class WishServiceTest {
 
     @BeforeEach
     void setUp() {
-        accommodationRepository.deleteAll();
-        memberRepository.deleteAll();
         wishRepository.deleteAll();
+        memberRepository.deleteAll();
+        accommodationRepository.deleteAll();
     }
 
     @Test
