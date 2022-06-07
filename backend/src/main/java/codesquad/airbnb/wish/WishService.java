@@ -23,7 +23,7 @@ public class WishService {
         validateAccommodationExists(request.getAccommodationId());
         validateMemberExists(request.getMemberId());
 
-        Wish savedWish = wishRepository.save(new Wish(null, request.getAccommodationId(), request.getMemberId()));
+        Wish savedWish = wishRepository.save(Wish.createNewWish(request.getAccommodationId(), request.getMemberId()));
         return WishResponse.from(savedWish);
     }
 
