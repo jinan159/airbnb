@@ -6,6 +6,7 @@ import codesquad.airbnb.accomodation.repository.AccommodationRepository;
 import codesquad.airbnb.member.Member;
 import codesquad.airbnb.member.MemberRepository;
 import codesquad.airbnb.member.exception.MemberNotFoundException;
+import codesquad.airbnb.wish.dto.WishAddRequest;
 import codesquad.airbnb.wish.dto.WishResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,9 +47,10 @@ class WishServiceTest {
         // given
         Accommodation savedAccommodation = createNewAccommodation();
         Member savedMember = createNewMember();
+        WishAddRequest wishAddRequest = new WishAddRequest(savedAccommodation.getId(), savedMember.getId());
 
         // when
-        WishResponse wishResponse = wishService.addWish(savedAccommodation.getId(), savedMember.getId());
+        WishResponse wishResponse = wishService.addWish(wishAddRequest);
 
         // then
         assertThat(wishResponse).isNotNull();
@@ -61,7 +63,7 @@ class WishServiceTest {
         // given
         Accommodation savedAccommodation = createNewAccommodation();
         Member savedMember = createNewMember();
-        WishResponse wishResponse = wishService.addWish(savedAccommodation.getId(), savedMember.getId());
+        WishResponse wishResponse = wishService.addWish(new WishAddRequest(savedAccommodation.getId(), savedMember.getId()));
 
         // when
         wishService.removeWish(wishResponse.getId());
@@ -74,11 +76,11 @@ class WishServiceTest {
     @Test
     void 존재하지_않는_숙소는_위시리스트를_추가하면_예외가_발생한다() {
         // given
-        Long notExistAccommodationId = 1L;
+        long notExistAccommodationId = 1L;
         Member savedMember = createNewMember();
 
         // then
-        assertThatThrownBy(() -> wishService.addWish(notExistAccommodationId, savedMember.getId()))
+        assertThatThrownBy(() -> wishService.addWish(new WishAddRequest(notExistAccommodationId, savedMember.getId())))
                 .isInstanceOf(AccommodationNotFoundException.class)
                 .hasMessageContaining("존재하지 않는 숙소입니다.");
     }
@@ -87,10 +89,10 @@ class WishServiceTest {
     void 존재하지_않는_회원은_위시리스트를_추가하면_예외가_발생한다() {
         // given
         Accommodation savedAccommodation = createNewAccommodation();
-        Long notExistMemberId = 1L;
+        long notExistMemberId = 1L;
 
         // then
-        assertThatThrownBy(() -> wishService.addWish(savedAccommodation.getId(), notExistMemberId))
+        assertThatThrownBy(() -> wishService.addWish(new WishAddRequest(savedAccommodation.getId(), notExistMemberId)))
                 .isInstanceOf(MemberNotFoundException.class)
                 .hasMessageContaining("존재하지 않는 회원입니다.");
     }
