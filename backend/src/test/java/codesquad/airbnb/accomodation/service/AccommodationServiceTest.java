@@ -17,6 +17,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@Transactional
 @Sql("classpath:sql/accommodation-reservation.sql")
 class AccommodationServiceTest {
 
@@ -31,7 +32,6 @@ class AccommodationServiceTest {
     }
 
     @Test
-    @Transactional
     void 겹치는_일정이_없고_숙소_인원수가_맞으면_숙소_목록을_반환한다() {
         // given
         LocalDate startDate = LocalDate.of(2022, 5, 1);
