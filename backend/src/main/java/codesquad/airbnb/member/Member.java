@@ -3,6 +3,7 @@ package codesquad.airbnb.member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.geolatte.geom.M;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,4 +24,8 @@ public class Member {
     private String email;
 
     private String name;
+
+    public static Member createNewMember(String email, String name) {
+        return new Member(null, email, name);
+    }
 }

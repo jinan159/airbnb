@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -45,4 +46,8 @@ public class Accommodation {
 
     @OneToMany(mappedBy = "accommodation", fetch = FetchType.LAZY)
     private List<AccommodationProvide> accommodationProvides;
+
+    public static Accommodation createNewAccommodation(String title, long price, Image image, Point point, Address address) {
+        return new Accommodation(null, title, price, image, point, address, new ArrayList<>());
+    }
 }

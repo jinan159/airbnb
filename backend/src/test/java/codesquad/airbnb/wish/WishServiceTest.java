@@ -98,10 +98,10 @@ class WishServiceTest {
     }
 
     private Accommodation createNewAccommodation() {
-        return accommodationRepository.save(new Accommodation(null, "test hotel" , 10000, null, null, null, null));
+        return accommodationRepository.save(Accommodation.createNewAccommodation("test hotel" , 10000, null, null, null));
     }
 
     private Member createNewMember() {
-        return memberRepository.save(new Member(null, "test@email.com", null));
+        return memberRepository.save(Member.createNewMember("test@email.com", "jinan"));
     }
 }

@@ -131,16 +131,16 @@ class AccommodationReservationQueryRepositoryTest {
     }
 
     private Accommodation createNewAccommodation() {
-        return new Accommodation(null, "test hotel", 0L, null, null, null, null);
+        return Accommodation.createNewAccommodation("test hotel", 0L, null, null, null);
     }
 
     private Reservation createNewReservation(Accommodation accommodation, Member member, LocalDate startDate, LocalDate endDate) {
         StartEndDate startEndDate = new StartEndDate(startDate, endDate);
-        return new Reservation(null, accommodation, member, new Schedule(startEndDate, null));
+        return Reservation.createNewReservation(accommodation, member, new Schedule(startEndDate, null));
     }
 
     private Member createNewMember() {
-        return new Member(null, "jwkim@email.com", null);
+        return Member.createNewMember("jwkim@email.com", null);
     }
 
 }

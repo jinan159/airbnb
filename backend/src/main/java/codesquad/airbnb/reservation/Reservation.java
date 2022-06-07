@@ -38,4 +38,8 @@ public class Reservation {
     @Embedded
     @Column(nullable = false)
     private Schedule schedule;
+
+    public static Reservation createNewReservation(Accommodation accommodation,Member member, Schedule schedule) {
+        return new Reservation(null, accommodation, member, schedule);
+    }
 }
