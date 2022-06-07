@@ -22,7 +22,8 @@ public class WishService {
         validateAccommodationExists(accommodationId);
         validateMemberExists(memberId);
 
-        return WishResponse.from(wishRepository.save(new Wish(null, accommodationId, memberId)));
+        Wish savedWish = wishRepository.save(new Wish(null, accommodationId, memberId));
+        return WishResponse.from(savedWish);
     }
 
     @Transactional
