@@ -54,3 +54,47 @@ include::{snippets}/not-reserved-accommodations/response-body.adoc[]
 
 === http response fields
 include::{snippets}/not-reserved-accommodations/response-fields.adoc[]
+
+== 숙소 위시 리스트 추가 API
+
+위시 리스트 추가 API 입니다
+
+=== curl
+include::{snippets}/wish-list-add/curl-request.adoc[]
+
+=== http request
+include::{snippets}/wish-list-add/http-request.adoc[]
+
+=== http request body
+include::{snippets}/wish-list-add/request-body.adoc[]
+
+=== http response
+include::{snippets}/wish-list-add/http-response.adoc[]
+
+=== http response body
+include::{snippets}/wish-list-add/response-body.adoc[]
+
+=== http response fields
+include::{snippets}/wish-list-add/response-fields.adoc[]
+
+== 숙소 위시 리스트 삭제 API
+
+위시 리스트 삭제 API 입니다.
+
+=== curl
+include::{snippets}/wish-list-remove/curl-request.adoc[]
+
+=== http request
+include::{snippets}/wish-list-remove/http-request.adoc[]
+
+/api/wishes/\{id\} 의 id 부분에 `위시 리스트 아이디` 를 넣어주시면 됩니다.
+
+=== http request body
+include::{snippets}/wish-list-remove/request-body.adoc[]
+
+=== http response
+include::{snippets}/wish-list-remove/http-response.adoc[]
+
+=== http response body
+include::{snippets}/wish-list-remove/response-body.adoc[]
+
