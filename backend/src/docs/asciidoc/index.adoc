@@ -97,4 +97,3 @@ include::{snippets}/wish-list-remove/http-response.adoc[]
 
 === http response body
 include::{snippets}/wish-list-remove/response-body.adoc[]
-
