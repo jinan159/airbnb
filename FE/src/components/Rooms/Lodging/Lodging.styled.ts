@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const LodgingContainer = styled.section`
   padding: 3.2rem 2.4rem;
   width: 50%;
-  height: 100%;
   overflow: auto;
 `;
 
