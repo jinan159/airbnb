@@ -6,7 +6,6 @@ import {
 } from 'components/DateElement/DateElement.types';
 
 export const DateElementContent = styled.li<IDateElementContentStyle>`
-  ${FlexCenterSort}
   margin-top: 0.4rem;
   width: 4.8rem;
   height: 4.8rem;

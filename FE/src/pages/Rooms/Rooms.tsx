@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
-import { LodgingList } from 'components/Rooms/LodgingList';
+import { Lodging } from 'components/Rooms/Lodging';
 import { Maps } from 'components/Rooms/Maps';
 
 import { IRoomsOutletContext } from './Rooms.types';
@@ -20,7 +20,7 @@ export function Rooms(): JSX.Element {
 
   return (
     <RoomsContainer>
-      <LodgingList />
+      <Lodging />
       <Maps />
     </RoomsContainer>
   );
