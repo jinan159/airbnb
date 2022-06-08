@@ -5,8 +5,10 @@ import codesquad.airbnb.accomodation.dto.AccommodationResponse;
 import codesquad.airbnb.accomodation.dto.PriceAndCount;
 import codesquad.airbnb.accomodation.dto.PriceAndCountStatistics;
 import codesquad.airbnb.accomodation.dto.ProvideResponse;
-import codesquad.airbnb.accomodation.service.AccommodationService;
+import codesquad.airbnb.accomodation.dto.WishedAccommodationResponse;
 import codesquad.airbnb.accomodation.service.AccommodationStatisticsService;
+import codesquad.airbnb.accomodation.service.WishedAccommodationService;
+import codesquad.airbnb.wish.dto.WishResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
@@ -44,7 +46,7 @@ class AccommodationControllerTest {
     private AccommodationStatisticsService accommodationStatisticsService;
 
     @MockBean
-    private AccommodationService accommodationService;
+    private WishedAccommodationService wishedAccommodationService;
 
     @Test
     void 숙소_가격_데이터가_있을때_조회하면_가격_통계를_반환한다 () throws Exception {
@@ -95,8 +97,8 @@ class AccommodationControllerTest {
     @Test
     void 예약_가능한_숙소가_있을때_시작종료일과_인원수로_조회하면_숙소목록이_반환된다() throws Exception {
         // given
-        List<AccommodationResponse> responseList = createNewAccommodationResponseList();
-        given(accommodationService.findNotReservedAccommodations(any()))
+        List<WishedAccommodationResponse> responseList = createNewWishedAccommodationResponseList();
+        given(wishedAccommodationService.findWishedAccommodations(any()))
                 .willReturn(responseList);
 
         // when
@@ -106,48 +108,53 @@ class AccommodationControllerTest {
                 .queryParam("visitors", "3"));
 
         // then
-        performResult.andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(responseList.get(0).getId()))
-                .andExpect(jsonPath("$[0].title").value(responseList.get(0).getTitle()))
-                .andExpect(jsonPath("$[0].price").value(responseList.get(0).getPrice()))
-                .andExpect(jsonPath("$[0].imageUrl").value(responseList.get(0).getImageUrl()))
-                .andExpect(jsonPath("$[0].x").value(responseList.get(0).getX()))
-                .andExpect(jsonPath("$[0].y").value(responseList.get(0).getY()))
-                .andExpect(jsonPath("$[0].address").value(responseList.get(0).getAddress()))
+        performResult = performResult.andExpect(status().isOk());
 
-                .andExpect(jsonPath("$[1].id").value(responseList.get(1).getId()))
-                .andExpect(jsonPath("$[1].title").value(responseList.get(1).getTitle()))
-                .andExpect(jsonPath("$[1].price").value(responseList.get(1).getPrice()))
-                .andExpect(jsonPath("$[1].imageUrl").value(responseList.get(1).getImageUrl()))
-                .andExpect(jsonPath("$[1].x").value(responseList.get(1).getX()))
-                .andExpect(jsonPath("$[1].y").value(responseList.get(1).getY()))
-                .andExpect(jsonPath("$[1].address").value(responseList.get(1).getAddress()))
+        for (int i = 0; i < responseList.size(); i++) {
+            WishedAccommodationResponse response = responseList.get(i);
+            AccommodationResponse accommodation = response.getAccommodationResponse();
+            List<ProvideResponse> provides = accommodation.getProvides();
+            WishResponse wish = response.getWish();
 
-                .andExpect(jsonPath("$[2].id").value(responseList.get(2).getId()))
-                .andExpect(jsonPath("$[2].title").value(responseList.get(2).getTitle()))
-                .andExpect(jsonPath("$[2].price").value(responseList.get(2).getPrice()))
-                .andExpect(jsonPath("$[2].imageUrl").value(responseList.get(2).getImageUrl()))
-                .andExpect(jsonPath("$[2].x").value(responseList.get(2).getX()))
-                .andExpect(jsonPath("$[2].y").value(responseList.get(2).getY()))
-                .andExpect(jsonPath("$[2].address").value(responseList.get(2).getAddress()))
-                .andDo(document("not-reserved-accommodations",
-                        getDocumentRequest(),
-                        getDocumentResponse(),
-                        responseFields(
-                                fieldWithPath("[].id").type(JsonFieldType.NUMBER).description("숙소 아이디"),
-                                fieldWithPath("[].title").type(JsonFieldType.STRING).description("이름"),
-                                fieldWithPath("[].price").type(JsonFieldType.NUMBER).description("숙박 가격"),
-                                fieldWithPath("[].imageUrl").type(JsonFieldType.STRING).description("대표 이미지"),
-                                fieldWithPath("[].x").type(JsonFieldType.NUMBER).description("x 좌표"),
-                                fieldWithPath("[].y").type(JsonFieldType.NUMBER).description("y 좌표"),
-                                fieldWithPath("[].address").type(JsonFieldType.STRING).description("주소"),
-                                fieldWithPath("[].provides.[].name").type(JsonFieldType.STRING).description("옵션 이름"),
-                                fieldWithPath("[].provides.[].count").type(JsonFieldType.NUMBER).description("옵션 개수")
-                        )
-                ));
+            performResult.andExpect(jsonPath(String.format("$[%d].id", i)).value(accommodation.getId()))
+                    .andExpect(jsonPath(String.format("$[%d].title", i)).value(accommodation.getTitle()))
+                    .andExpect(jsonPath(String.format("$[%d].price", i)).value(accommodation.getPrice()))
+                    .andExpect(jsonPath(String.format("$[%d].imageUrl", i)).value(accommodation.getImageUrl()))
+                    .andExpect(jsonPath(String.format("$[%d].x", i)).value(accommodation.getX()))
+                    .andExpect(jsonPath(String.format("$[%d].y", i)).value(accommodation.getY()))
+                    .andExpect(jsonPath(String.format("$[%d].address", i)).value(accommodation.getAddress()))
+                    .andExpect(jsonPath(String.format("$[%d].wish.id", i)).value(wish.getId()))
+                    .andExpect(jsonPath(String.format("$[%d].wish.accommodationId", i)).value(wish.getAccommodationId()))
+                    .andExpect(jsonPath(String.format("$[%d].wish.memberId", i)).value(wish.getMemberId()));
+
+            for (int j = 0; j < provides.size(); j++) {
+                ProvideResponse provide = provides.get(j);
+                performResult.andExpect(jsonPath(String.format("$[%d].provides.[%d].name", i, j)).value(provide.getName()))
+                        .andExpect(jsonPath(String.format("$[%d].provides.[%d].count", i, j)).value(provide.getCount()));
+            }
+        }
+
+        performResult.andDo(document("not-reserved-accommodations",
+                getDocumentRequest(),
+                getDocumentResponse(),
+                responseFields(
+                        fieldWithPath("[].id").type(JsonFieldType.NUMBER).description("숙소 아이디"),
+                        fieldWithPath("[].title").type(JsonFieldType.STRING).description("이름"),
+                        fieldWithPath("[].price").type(JsonFieldType.NUMBER).description("숙박 가격"),
+                        fieldWithPath("[].imageUrl").type(JsonFieldType.STRING).description("대표 이미지"),
+                        fieldWithPath("[].x").type(JsonFieldType.NUMBER).description("x 좌표"),
+                        fieldWithPath("[].y").type(JsonFieldType.NUMBER).description("y 좌표"),
+                        fieldWithPath("[].address").type(JsonFieldType.STRING).description("주소"),
+                        fieldWithPath("[].wish.id").type(JsonFieldType.NUMBER).description("위시 리스트 아이디"),
+                        fieldWithPath("[].wish.accommodationId").type(JsonFieldType.NUMBER).description("숙소 아이디"),
+                        fieldWithPath("[].wish.memberId").type(JsonFieldType.NUMBER).description("회원 아이디"),
+                        fieldWithPath("[].provides.[].name").type(JsonFieldType.STRING).description("옵션 이름"),
+                        fieldWithPath("[].provides.[].count").type(JsonFieldType.NUMBER).description("옵션 개수")
+                )
+        ));
     }
 
-    private List<AccommodationResponse> createNewAccommodationResponseList() {
+    private List<WishedAccommodationResponse> createNewWishedAccommodationResponseList() {
         List<ProvideResponse> provideResponses = List.of(
                 new ProvideResponse(ProvideName.CAPACITY, 3),
                 new ProvideResponse(ProvideName.BED_ROOM, 2),
@@ -157,30 +164,39 @@ class AccommodationControllerTest {
         );
 
         return List.of(
-                new AccommodationResponse(1,
-                        "강남스테이힐",
-                        140000,
-                        "http://tong.visitkorea.or.kr/cms/resource/28/2573328_image2_1.jpg",
-                        127.0301236613,
-                        37.5034291706,
-                        "서울특별시 강남구 테헤란로13길 65",
-                        provideResponses),
-                new AccommodationResponse(2,
-                        "게더링 앳 홍대",
-                        22000,
-                        "http://tong.visitkorea.or.kr/cms/resource/93/2571393_image2_1.PNG",
-                        126.9248537833,
-                        37.5632120044,
-                        "서울특별시 마포구 동교로47길 3",
-                        provideResponses),
-                new AccommodationResponse(3,
-                        "게스트하우스 류가",
-                        108000,
-                        "http://tong.visitkorea.or.kr/cms/resource/07/2573607_image2_1.JPG",
-                        126.9187769621,
-                        37.5489302228,
-                        "서울특별시 마포구 독막로7길 19",
-                        provideResponses)
+                new WishedAccommodationResponse(
+                        new AccommodationResponse(1,
+                                "강남스테이힐",
+                                140000,
+                                "http://tong.visitkorea.or.kr/cms/resource/28/2573328_image2_1.jpg",
+                                127.0301236613,
+                                37.5034291706,
+                                "서울특별시 강남구 테헤란로13길 65",
+                                provideResponses),
+                        new WishResponse(1, 1, 1)
+                ),
+                new WishedAccommodationResponse(
+                        new AccommodationResponse(2,
+                                "게더링 앳 홍대",
+                                22000,
+                                "http://tong.visitkorea.or.kr/cms/resource/93/2571393_image2_1.PNG",
+                                126.9248537833,
+                                37.5632120044,
+                                "서울특별시 마포구 동교로47길 3",
+                                provideResponses),
+                        new WishResponse(2, 2, 1)
+                ),
+                new WishedAccommodationResponse(
+                        new AccommodationResponse(3,
+                                "게스트하우스 류가",
+                                108000,
+                                "http://tong.visitkorea.or.kr/cms/resource/07/2573607_image2_1.JPG",
+                                126.9187769621,
+                                37.5489302228,
+                                "서울특별시 마포구 독막로7길 19",
+                                provideResponses),
+                        new WishResponse(3, 3, 1)
+                )
         );
     }
 }
