@@ -3,8 +3,13 @@ package codesquad.airbnb.member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.geolatte.geom.M;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Getter
@@ -19,4 +24,8 @@ public class Member {
     private String email;
 
     private String name;
+
+    public static Member createNewMember(String email, String name) {
+        return new Member(null, email, name);
+    }
 }
