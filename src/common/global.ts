@@ -16,6 +16,15 @@ const GlobalStyle = createGlobalStyle`
     top: 0;
     left: 0;
   }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    background-color: transparent;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
 `;
 
 export default GlobalStyle;
