@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
 
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
+    
   a {
     text-decoration: none;
     color: #010101;

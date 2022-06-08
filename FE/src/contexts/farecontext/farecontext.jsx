@@ -9,12 +9,21 @@ const valueReducer = (state, action) => {
         ...state,
         left: action.value,
         placeHolder: `${action.value}~${state.right}`,
+        isSet: true,
       };
     case 'right':
       return {
         ...state,
         right: action.value,
         placeHolder: `${state.left}~${action.value}`,
+        isSet: true,
+      };
+    case 'init':
+      return {
+        left: 30000,
+        right: 70000,
+        placeHolder: '금액대 설정',
+        isSet: false,
       };
     default:
       return state;
@@ -26,6 +35,7 @@ export function FareProvider({ children }) {
     left: 30000,
     right: 70000,
     placeHolder: '금액대 설정',
+    isSet: false,
   });
   const Value = useMemo(
     () => ({

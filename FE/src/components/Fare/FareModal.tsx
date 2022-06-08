@@ -9,6 +9,9 @@ import Chart from './FareChart';
 
 export function FareModal({ show, modalShowHandler }: FareProps): JSX.Element {
   const value = useContext(FareContext);
+  const closeModalHandler = (): void => {
+    modalShowHandler();
+  };
   if (show) {
     return (
       <ModalPortal>
@@ -22,7 +25,7 @@ export function FareModal({ show, modalShowHandler }: FareProps): JSX.Element {
             <Chart />
             <FareSlider />
           </Modal>
-          <Backdrop onClick={() => modalShowHandler(false)} />
+          <Backdrop onClick={closeModalHandler} />
         </>
       </ModalPortal>
     );
