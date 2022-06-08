@@ -15,12 +15,17 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor // for @Entity
 public class Wish {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private Long accommodationId;
+    private long accommodationId;
 
     @Column(nullable = false)
-    private Long memberId;
+    private long memberId;
+
+    public static Wish createNewWish(long accommodationId, long memberId) {
+        return new Wish(null, accommodationId, memberId);
+    }
 }

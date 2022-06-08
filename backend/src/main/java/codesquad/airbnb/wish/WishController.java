@@ -23,8 +23,6 @@ public class WishController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public WishResponse addWish(@RequestBody WishAddRequest request) {
-
-
         return service.addWish(request);
     }
 

@@ -10,8 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
+// TODO : 2022-06-07 전체 Transactional 로 변경하고, 읽기 메소드만 readOnly 옵션과 함께 붙여주기
 public class WishService {
 
     private final WishRepository wishRepository;
@@ -23,13 +27,20 @@ public class WishService {
         validateAccommodationExists(request.getAccommodationId());
         validateMemberExists(request.getMemberId());
 
-        Wish savedWish = wishRepository.save(new Wish(null, request.getAccommodationId(), request.getMemberId()));
+        Wish savedWish = wishRepository.save(Wish.createNewWish(request.getAccommodationId(), request.getMemberId()));
         return WishResponse.from(savedWish);
     }
 
     @Transactional
     public void removeWish(long id) {
         wishRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<WishResponse> findAllWishesOfAccommodationAndMember(List<Long> accommodationIds, Long memberId) {
+        return wishRepository.findAllByAccommodationAndMember(accommodationIds, memberId).stream()
+                .map(WishResponse::from)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private void validateMemberExists(Long memberId) {

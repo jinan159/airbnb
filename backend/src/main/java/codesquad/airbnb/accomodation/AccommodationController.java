@@ -1,10 +1,10 @@
 package codesquad.airbnb.accomodation;
 
-import codesquad.airbnb.accomodation.dto.AccommodationResponse;
 import codesquad.airbnb.accomodation.dto.AccommodationSearchRequest;
 import codesquad.airbnb.accomodation.dto.PriceAndCountStatistics;
-import codesquad.airbnb.accomodation.service.AccommodationService;
+import codesquad.airbnb.accomodation.dto.WishedAccommodationResponse;
 import codesquad.airbnb.accomodation.service.AccommodationStatisticsService;
+import codesquad.airbnb.accomodation.service.WishedAccommodationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ public class AccommodationController {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private final AccommodationStatisticsService dummyAccommodationStatisticsService;
-    private final AccommodationService accommodationService;
+    private final WishedAccommodationService wishedAccommodationService;
 
     @GetMapping("/statistics/price")
     public PriceAndCountStatistics getAccommodationPriceStatistics() {
@@ -31,7 +31,7 @@ public class AccommodationController {
     }
 
     @GetMapping()
-    public List<AccommodationResponse> getNotReservedAccommodations(
+    public List<WishedAccommodationResponse> getNotReservedAccommodations(
             @RequestParam(value = "startDate", required = false) String startDate,
             @RequestParam(value = "endDate", required = false) String endDate,
             @RequestParam(value = "visitors", required = false) Integer visitors) {
@@ -41,6 +41,6 @@ public class AccommodationController {
                 LocalDate.parse(endDate, DATE_FORMAT),
                 visitors);
 
-        return accommodationService.findNotReservedAccommodations(searchRequest);
+        return wishedAccommodationService.findWishedAccommodations(searchRequest);
     }
 }
