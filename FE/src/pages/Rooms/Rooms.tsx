@@ -33,7 +33,7 @@ export function Rooms(): JSX.Element {
     return (
       <RoomsContainer>
         <Lodging lodgingData={lodgingData} isFetching={isFetching} />
-        <Maps />
+        <Maps lodgingData={lodgingData} />
       </RoomsContainer>
     );
   }
@@ -41,7 +41,6 @@ export function Rooms(): JSX.Element {
   return (
     <RoomsContainer>
       <Lodging isFetching={isFetching} />
-      <Maps />
     </RoomsContainer>
   );
 }

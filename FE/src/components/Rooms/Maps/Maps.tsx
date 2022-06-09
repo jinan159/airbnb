@@ -1,22 +1,15 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
 
-import { MapContainer, CButtonGroup, MapBtn } from './Maps.styled';
+import { MapContainer } from './Maps.styled';
 
+import { IMapsProps } from '../Maps/Maps.types';
 import { Map } from '../Map/Map';
 
-export function Maps(): JSX.Element {
+export function Maps({ lodgingData }: IMapsProps): JSX.Element {
   return (
     <MapContainer>
-      <Map />
-      {/* <CButtonGroup orientation="vertical">
-        <MapBtn variant="contained" href="#contained-buttons" disableRipple>
-          +
-        </MapBtn>
-        <MapBtn variant="contained" href="#contained-buttons" disableRipple>
-          -
-        </MapBtn>
-      </CButtonGroup> */}
+      <Map lodgingData={lodgingData} />
     </MapContainer>
   );
 }

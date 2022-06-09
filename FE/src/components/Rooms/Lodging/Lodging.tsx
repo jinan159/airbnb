@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { LodgingElement } from '../LodgingElement';
 
@@ -17,69 +17,6 @@ const temp = [
   '5월 12일 - 5월 18일',
   '$100,000~$1,000,000',
   '게스트 3명',
-];
-
-const temp2 = [
-  {
-    id: 1,
-    imageUrl: './assets/images/thumbnail.png',
-    exp: '서초구의 아파트 전체',
-    title: 'Spacious and Comfortable cozy house #4',
-    infoFirst: ['최대인원 3명', '원룸', '침대 1개', '욕실 1개'],
-    infoSecond: ['주방', '무선 인터넷', '에어컨', '헤어드라이어'],
-    star: 4.8,
-    review: 127,
-    price: 82953,
-    totalPrice: 1493159,
-  },
-  {
-    id: 2,
-    imageUrl: './assets/images/thumbnail.png',
-    exp: '서초구의 아파트 전체',
-    title: 'Spacious and Comfortable cozy house #4',
-    infoFirst: ['최대인원 3명', '원룸', '침대 1개', '욕실 1개'],
-    infoSecond: ['주방', '무선 인터넷', '에어컨', '헤어드라이어'],
-    star: 4.8,
-    review: 127,
-    price: 82953,
-    totalPrice: 1493159,
-  },
-  {
-    id: 3,
-    imageUrl: './assets/images/thumbnail.png',
-    exp: '서초구의 아파트 전체',
-    title: 'Spacious and Comfortable cozy house #4',
-    infoFirst: ['최대인원 3명', '원룸', '침대 1개', '욕실 1개'],
-    infoSecond: ['주방', '무선 인터넷', '에어컨', '헤어드라이어'],
-    star: 4.8,
-    review: 127,
-    price: 82953,
-    totalPrice: 1493159,
-  },
-  {
-    id: 4,
-    imageUrl: './assets/images/thumbnail.png',
-    exp: '서초구의 아파트 전체',
-    title: 'Spacious and Comfortable cozy house #4',
-    infoFirst: ['최대인원 3명', '원룸', '침대 1개', '욕실 1개'],
-    infoSecond: ['주방', '무선 인터넷', '에어컨', '헤어드라이어'],
-    star: 4.8,
-    review: 127,
-    price: 82953,
-    totalPrice: 1493159,
-  },
-  {
-    id: 5,
-    imageUrl: './assets/images/thumbnail.png',
-    exp: '서초구의 아파트 전체',
-    title: 'Spacious and Comfortable cozy house #4',
-    infoFirst: ['최대인원 3명', '원룸', '침대 1개', '욕실 1개'],
-    infoSecond: ['주방', '무선 인터넷', '에어컨', '헤어드라이어'],
-    star: 4.8,
-    review: 127,
-    price: 82953,
-    totalPrice: 1493159,
-  },
 ];
 
 export function Lodging({
