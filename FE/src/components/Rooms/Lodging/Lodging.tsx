@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { LodgingElement } from '../LodgingElement';
 
+import { ILodgingProps } from './Lodging.types';
+
 import {
   LodgingContainer,
   LodgingSearchInfoList,
@@ -80,28 +82,37 @@ const temp2 = [
   },
 ];
 
-export function Lodging(): JSX.Element {
-  const [isFetching, setIsFetching] = useState(false);
+export function Lodging({
+  lodgingData,
+  isFetching,
+}: ILodgingProps): JSX.Element {
+  if (lodgingData) {
+    const lodgingSearchInfos = temp.map(text => (
+      <LodgingSearchInfoItem key={text}>{text}</LodgingSearchInfoItem>
+    ));
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsFetching(true);
-    }, 5000);
-  }, [isFetching]);
+    const lodginElements = lodgingData.map(info => (
+      <LodgingElement
+        key={info.id}
+        lodgingData={info}
+        isFetching={isFetching}
+      />
+    ));
 
-  const lodgingSearchInfos = temp.map(text => (
-    <LodgingSearchInfoItem key={text}>{text}</LodgingSearchInfoItem>
-  ));
-
-  const lodginElements = temp2.map(info => (
-    <LodgingElement key={info.id} lodgingInfo={info} isFetching={isFetching} />
-  ));
+    return (
+      <LodgingContainer>
+        <LodgingSearchInfoList>{lodgingSearchInfos}</LodgingSearchInfoList>
+        <LodgingTitle>지도에서 선택한 지역의 숙소</LodgingTitle>
+        <LodgingList>{lodginElements}</LodgingList>
+      </LodgingContainer>
+    );
+  }
 
   return (
     <LodgingContainer>
-      <LodgingSearchInfoList>{lodgingSearchInfos}</LodgingSearchInfoList>
+      <LodgingSearchInfoList />
       <LodgingTitle>지도에서 선택한 지역의 숙소</LodgingTitle>
-      <LodgingList>{lodginElements}</LodgingList>
+      <LodgingList />
     </LodgingContainer>
   );
 }

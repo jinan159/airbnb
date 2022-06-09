@@ -1,15 +1,21 @@
 export interface ILodgingElementProps {
-  lodgingInfo: {
+  lodgingData: {
+    address: string;
     id: number;
     imageUrl: string;
-    exp: string;
-    title: string;
-    infoFirst: string[];
-    infoSecond: string[];
-    star: number;
-    review: number;
     price: number;
-    totalPrice: number;
+    provides: {
+      name: string;
+      count: number;
+    }[];
+    title: string;
+    wish: {
+      id: number;
+      accommodationId: number;
+      memberId: number;
+    } | null;
+    x: number;
+    y: number;
   };
   isFetching: boolean;
 }
