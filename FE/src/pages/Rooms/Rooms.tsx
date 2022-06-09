@@ -14,6 +14,7 @@ export function Rooms(): JSX.Element {
 
   useEffect(() => {
     setIsSearchShowing(true);
+
     return () => {
       setIsSearchShowing(false);
     };

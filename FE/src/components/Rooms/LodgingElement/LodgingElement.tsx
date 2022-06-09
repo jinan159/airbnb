@@ -32,7 +32,7 @@ export function LodgingElement({
     return (
       <LodgingElementContainer>
         <Skeleton variant="rectangular">
-          <LodgingItemImg src={lodgingInfo.src} />
+          <LodgingItemImg src={lodgingInfo.imageUrl} />
         </Skeleton>
         <LodgingDesc>
           <Skeleton variant="text" width={266} height={17}>
@@ -70,7 +70,7 @@ export function LodgingElement({
 
   return (
     <LodgingElementContainer>
-      <LodgingItemImg src={lodgingInfo.src} />
+      <LodgingItemImg src={lodgingInfo.imageUrl} />
       <LodgingDesc>
         <LodgingExp>{lodgingInfo.exp}</LodgingExp>
         <LodgingItemTitle>{lodgingInfo.title}</LodgingItemTitle>

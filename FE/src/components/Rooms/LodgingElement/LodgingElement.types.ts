@@ -1,7 +1,7 @@
 export interface ILodgingElementProps {
   lodgingInfo: {
     id: number;
-    src: string;
+    imageUrl: string;
     exp: string;
     title: string;
     infoFirst: string[];

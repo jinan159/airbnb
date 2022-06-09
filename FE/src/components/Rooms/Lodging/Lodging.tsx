@@ -20,7 +20,7 @@ const temp = [
 const temp2 = [
   {
     id: 1,
-    src: './assets/images/thumbnail.png',
+    imageUrl: './assets/images/thumbnail.png',
     exp: '서초구의 아파트 전체',
     title: 'Spacious and Comfortable cozy house #4',
     infoFirst: ['최대인원 3명', '원룸', '침대 1개', '욕실 1개'],
@@ -32,7 +32,7 @@ const temp2 = [
   },
   {
     id: 2,
-    src: './assets/images/thumbnail.png',
+    imageUrl: './assets/images/thumbnail.png',
     exp: '서초구의 아파트 전체',
     title: 'Spacious and Comfortable cozy house #4',
     infoFirst: ['최대인원 3명', '원룸', '침대 1개', '욕실 1개'],
@@ -44,7 +44,7 @@ const temp2 = [
   },
   {
     id: 3,
-    src: './assets/images/thumbnail.png',
+    imageUrl: './assets/images/thumbnail.png',
     exp: '서초구의 아파트 전체',
     title: 'Spacious and Comfortable cozy house #4',
     infoFirst: ['최대인원 3명', '원룸', '침대 1개', '욕실 1개'],
@@ -56,7 +56,7 @@ const temp2 = [
   },
   {
     id: 4,
-    src: './assets/images/thumbnail.png',
+    imageUrl: './assets/images/thumbnail.png',
     exp: '서초구의 아파트 전체',
     title: 'Spacious and Comfortable cozy house #4',
     infoFirst: ['최대인원 3명', '원룸', '침대 1개', '욕실 1개'],
@@ -68,7 +68,7 @@ const temp2 = [
   },
   {
     id: 5,
-    src: './assets/images/thumbnail.png',
+    imageUrl: './assets/images/thumbnail.png',
     exp: '서초구의 아파트 전체',
     title: 'Spacious and Comfortable cozy house #4',
     infoFirst: ['최대인원 3명', '원룸', '침대 1개', '욕실 1개'],
