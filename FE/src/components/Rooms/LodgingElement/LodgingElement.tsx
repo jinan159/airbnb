@@ -17,22 +17,14 @@ import {
 import { Skeleton } from '@mui/material';
 
 export function LodgingElement({
-  lodgingInfo,
+  lodgingData,
   isFetching,
 }: ILodgingElementProps): JSX.Element {
-  const firstLodging = lodgingInfo.infoFirst.map(text => (
-    <LodgingDetailInfoItem key={text}>{text}</LodgingDetailInfoItem>
-  ));
-
-  const secondLodging = lodgingInfo.infoSecond.map(text => (
-    <LodgingDetailInfoItem key={text}>{text}</LodgingDetailInfoItem>
-  ));
-
   if (!isFetching) {
     return (
       <LodgingElementContainer>
         <Skeleton variant="rectangular">
-          <LodgingItemImg src={lodgingInfo.src} />
+          <LodgingItemImg src={lodgingData.imageUrl} />
         </Skeleton>
         <LodgingDesc>
           <Skeleton variant="text" width={266} height={17}>
@@ -70,17 +62,15 @@ export function LodgingElement({
 
   return (
     <LodgingElementContainer>
-      <LodgingItemImg src={lodgingInfo.src} />
+      <LodgingItemImg src={lodgingData.imageUrl} />
       <LodgingDesc>
-        <LodgingExp>{lodgingInfo.exp}</LodgingExp>
-        <LodgingItemTitle>{lodgingInfo.title}</LodgingItemTitle>
-        <LodgingDetailInfoList>{firstLodging}</LodgingDetailInfoList>
-        <LodgingDetailInfoList>{secondLodging}</LodgingDetailInfoList>
+        <LodgingExp>{lodgingData.address}</LodgingExp>
+        <LodgingItemTitle>{lodgingData.title}</LodgingItemTitle>
+        {/* <LodgingDetailInfoList>{firstLodging}</LodgingDetailInfoList>
+        <LodgingDetailInfoList>{secondLodging}</LodgingDetailInfoList> */}
         <LodigingPrice>
-          <DailyPrice>₩{lodgingInfo.price.toLocaleString()} / 박</DailyPrice>
-          <TotalPrice>
-            총액 ₩{lodgingInfo.totalPrice.toLocaleString()}
-          </TotalPrice>
+          <DailyPrice>₩{lodgingData.price.toLocaleString()} / 박</DailyPrice>
+          <TotalPrice>총액 ₩{lodgingData.price.toLocaleString()}</TotalPrice>
         </LodigingPrice>
       </LodgingDesc>
     </LodgingElementContainer>

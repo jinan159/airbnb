@@ -18,7 +18,9 @@ export const LodgingItemImg = styled.img`
   height: 20rem;
 `;
 
-export const LodgingDesc = styled.section``;
+export const LodgingDesc = styled.section`
+  flex-grow: 1;
+`;
 
 export const LodgingExp = styled.em`
   display: block;

@@ -1,15 +1,15 @@
+/* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
+
 import { MapContainer } from './Maps.styled';
 
-export function Maps(): JSX.Element {
+import { IMapsProps } from '../Maps/Maps.types';
+import { Map } from '../Map/Map';
+
+export function Maps({ lodgingData }: IMapsProps): JSX.Element {
   return (
     <MapContainer>
-      {/* <HeadBtnContainer>
-      <Btn>
-      </Btn>
-      <BtnTitle></BtnTitle>
-    </HeadBtnContain>
-    <Map></Map> */}
+      <Map lodgingData={lodgingData} />
     </MapContainer>
   );
 }

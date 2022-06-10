@@ -1,4 +1,4 @@
-export interface ILodgingElementProps {
+export interface IMapsProps {
   lodgingData: {
     address: string;
     id: number;
@@ -16,6 +16,5 @@ export interface ILodgingElementProps {
     } | null;
     x: number;
     y: number;
-  };
-  isFetching: boolean;
+  }[];
 }
