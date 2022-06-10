@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  application:
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
+    container_name: airbnb-was
+    env_file:
+      - .env

@@ -1,0 +1,77 @@
+name: 백엔드 운영 CI/CD
+
+on:
+  push:
+    branches: [deploy-be]
+
+jobs:
+  buildAndDeploy:
+    name: 백엔드 운영 CI/CD
+    runs-on: ubuntu-18.04
+    defaults:
+      run:
+        shell: bash
+    env:
+      working-directory: ./backend
+
+    steps:
+      - name: 체크아웃 Github-Action
+        uses: actions/checkout@v2
+
+      - name: JDK 11 세팅
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11.0.11
+
+      - name: 프로젝트 빌드
+        run: ./gradlew build
+        env:
+          JASYPT_KEY: ${{ secrets.JASYPT_KEY }}
+        working-directory: ${{ env.working-directory }}
+
+      - name: API 문서 빌드 확인
+        id: check_api_docs
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "./backend/build/resources/main/static/docs/index.html"
+
+      - name: (API 문서 없을경우) jar 파일 재빌드
+        if: steps.check_api_docs.outputs.files_exists == 'false'
+        run: ./gradlew bootJar
+        env:
+          JASYPT_KEY: ${{ secrets.JASYPT_KEY }}
+        working-directory: ${{ env.working-directory }}
+
+      - name: API 문서 빌드 재확인
+        if: steps.check_api_docs.outputs.files_exists == 'false'
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "./backend/build/resources/main/static/docs/index.html"
+          allow_failure: true
+
+      - name: Docker 환경변수 파일 생성
+        run:
+          echo "JASYPT_KEY=${{secrets.JASYPT_KEY}}" > ./.env
+        working-directory: ${{ env.working-directory }}
+
+      - name: airbnb-deploy.zip 생성
+        run: zip -r ./airbnb-deploy.zip .
+        working-directory: ${{ env.working-directory }}
+
+      - name: AWS Credential 설정
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: AWS S3 로 업로드
+        run: aws s3 cp --region ap-northeast-2 ./airbnb-deploy.zip s3://airbnb-s3-bucket-deploy/airbnb-deploy.zip
+        working-directory: ${{ env.working-directory }}
+
+      - name: AWS CodeDeploy 배포 실행
+        run: aws deploy create-deployment 
+          --application-name airbnb-deploy 
+          --deployment-group airbnb-dg
+          --s3-location bucket=airbnb-s3-bucket-deploy,key=airbnb-deploy.zip,bundleType=zip
+        working-directory: ${{ env.working-directory }}
